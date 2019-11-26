@@ -1,25 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Switch, Route} from 'react-router-dom';
+import Navbar from './components/pages/Navbar';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 
-function App() {
+//pages
+import Login from './components/pages/Login'
+import Homepage from './components/pages/Homepage'
+import About from './components/pages/About'
+
+
+const theme = createMuiTheme({
+   palette: {
+     primary: {
+       light: '#33c9dc',
+       main: '#00bcd4',
+       dark: '#008394',
+       contrastText: '#fff'
+     },
+     secondary: {
+      light: '#ff6333',
+      main: '#ff3d00',
+      dark: '#b22a00',
+      contrastText: '#fff'
+    }
+   },
+   typography: {
+     useNextVariants: true,
+   }
+})
+
+const App =() => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+     <MuiThemeProvider theme={theme}> 
+     <Navbar />
+      <div className="container">      
+      <Switch>
+        <Route path='/' exact component={Homepage} />
+        <Route path='/login' exact component={Login} />   
+        <Route path='/about' exact component={About} />
+          
+      </Switch>
+      </div>
+     </MuiThemeProvider>
+    </React.Fragment>
   );
 }
 
