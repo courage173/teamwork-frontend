@@ -3,14 +3,18 @@ import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import Feeds from '../Feeds';
 import Login from './Login'
+import {getUser} from '../../actions/auth';
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types';
 
 
-export default class Homepage extends Component {
+class Homepage extends Component {
     state= {
         data: null
     };
         
         componentDidMount(){
+            //this.props.getUser().then(res => console.log(res))
             axios.get('https://krealax.herokuapp.com/v1/articles')
                 .then(res => {
                     
@@ -37,3 +41,11 @@ export default class Homepage extends Component {
         )
     }
 }
+Homepage.propTypes = {
+    getUser: PropTypes.func.isRequired
+    
+}
+
+
+
+export default connect(null,{getUser})(Homepage)

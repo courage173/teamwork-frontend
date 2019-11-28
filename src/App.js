@@ -5,11 +5,13 @@ import {Switch, Route} from 'react-router-dom';
 import Navbar from './components/pages/Navbar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
-
+import {privateRoute} from './components/route/userRoute'
 //pages
 import Login from './components/pages/Login'
 import Homepage from './components/pages/Homepage'
 import About from './components/pages/About'
+import Dashboard from './components/pages/Dashboard'
+
 
 
 const theme = createMuiTheme({
@@ -39,6 +41,7 @@ const App =() => {
      <Navbar />
       <div className="container">      
       <Switch>
+        <Route path='/dashboard' exact component={Dashboard} />
         <Route path='/' exact component={Homepage} />
         <Route path='/login' exact component={Login} />   
         <Route path='/about' exact component={About} />

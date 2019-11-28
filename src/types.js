@@ -1,2 +1,8 @@
 export const USER_LOGGED_IN ='USER_LOGGED_IN'
 export const USER_LOGGED_OUT ='USER_LOGGED_OUT'
+export const GET_ALL_FEEDS = 'GET_ALL_FEEDS'
+export const POST_GIFS = 'POST_GIFS'
+export const GET_ALL_GIFS = 'GET_ALL_GIFS'
+export const GET_LOGGED_USER = 'GET_LOGGED_USER'
+export const GET_SINGLE_GIFS = 'GET_SINGLE_GIFS'
+export const DELETE_GIFS = 'DELETE_GIFS'

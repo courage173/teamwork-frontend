@@ -8,6 +8,7 @@ import Button from '@material-ui/core/button'
 import {connect} from "react-redux"
 import CircularProgress from '@material-ui/core/CircularProgress'; 
 import {login} from '../../actions/auth'
+import Card from '@material-ui/core/Card';
 
 
 
@@ -19,7 +20,7 @@ const styles = {
         margin: '30px auto 30px auto'
     },
     textField: {
-        margin: '30px auto 30px auto'
+        margin: '10px auto 10px auto'
     },
     button: {
         marginTop: 20,
@@ -31,6 +32,11 @@ const styles = {
     },
     progress: {
         position: 'absolute'
+    },
+    card: {
+        display: 'flex',
+        marginBottom: 20,
+        
     }
 }
 
@@ -59,12 +65,14 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         }
+        const email = this.state.email
+        const password = this.state.password
         console.log(user)
-        this.props.login(user).then(()=> {
+        this.props.login(email,password).then(()=> {
             this.setState({loading: false})
             this.props.history.push("/")
         }).catch((err)=>{
-            
+            console.log(err)
             this.setState({error: err.response.data.errors, loading: false})
         })
         
@@ -87,7 +95,8 @@ class Login extends Component {
            <Grid container className={classes.form}>
                <Grid item sm/>
                <Grid item sm>
-                   <Typography variant='h3' className={classes.pageTitle}>
+                  <Card className={classes.content}>
+                  <Typography variant='h3' className={classes.pageTitle}>
                        Login
                    </Typography>
                    <form noValidate onSubmit={this.handleSubmit}>
@@ -111,6 +120,7 @@ class Login extends Component {
                         )}
                         </Button>
                    </form>
+                  </Card>
                </Grid>
                <Grid item sm/>
            </Grid>
