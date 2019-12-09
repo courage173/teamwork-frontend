@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment} from 'react'
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid'
@@ -9,6 +9,8 @@ import {connect} from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {feeds} from '../../actions/userAction'
 import {getAllGif} from '../../actions/userAction'
+import {getUser} from '../../actions/auth';
+import postArticles from './postArticle'
 
 
 
@@ -23,7 +25,12 @@ const styles = {
     }
 }
 class Dashboard extends Component {
+    state = {
+        first_name: '',
+        last_name: ''
+    }
     componentDidMount() {
+        this.props.getUser().then(res => this.setState({first_name: res.user.data.first_name, last_name: res.user.data.last_name}))
         this.props.feeds().then(res => console.log(res))
         this.props.getAllGif().then(res => console.log(res))
     }
@@ -41,8 +48,10 @@ class Dashboard extends Component {
    
     render() {
         const {error,loading} = this.state
-        const {user:{first_name,last_name,is_admin,email,created_on}} = this.props
-        const {classes} =this.props
+        //const {user:{first_name,last_name,is_admin,email,created_on}} = this.props
+        const first_name = this.state.first_name
+        const last_name = this.state.last_name
+         const {classes} =this.props
         //console.log(this.props.user.data.email)
         
         return (
@@ -75,7 +84,9 @@ class Dashboard extends Component {
                    </form>
                 </Grid>
                 <Grid item sm={4} xs={10}>
-                    <h1>Grid 2</h1>
+                    
+                        <postArticles />
+                   
                 </Grid>
             </Grid>
             
@@ -95,4 +106,4 @@ Dashboard.propTypes = {
     
 }
 
-export default connect(mapStateToProps,{feeds,getAllGif})(withStyles(styles)(Dashboard))
+export default connect(mapStateToProps,{feeds,getAllGif,getUser})(withStyles(styles)(Dashboard))

@@ -1,4 +1,4 @@
-import {GET_ALL_FEEDS, POST_GIFS,GET_ALL_GIFS,GET_SINGLE_GIFS,DELETE_GIFS} from '../types';
+import {GET_ALL_FEEDS, POST_GIFS,GET_ALL_GIFS,GET_SINGLE_GIFS,DELETE_GIFS,POST_GIF_COMMENT} from '../types';
 import api from '../api'
 //all feeds
 export const getAllFeeds = (payload) => ({
@@ -26,6 +26,11 @@ export const deleteGifs = (payload) => ({
     type: DELETE_GIFS,
     payload
 })
+export const postGifscomment = (payload) => ({
+    type: POST_GIF_COMMENT,
+    payload
+})
+
 
 
 //logic to handle api call
@@ -48,4 +53,12 @@ export const getSingleGifs = (id) => {
 export const deleteGif = (id) => {
     return dispatch => api.user.deleteGif(id).then(payload => dispatch(deleteGifs(payload)))
 }
+
+export const postGifComment = (id,data) => {
+    return dispatch => api.user.postGifcomment(id,data).then(payload => dispatch(postGifscomment(payload)))
+}
+
+//Articles
+
+
 

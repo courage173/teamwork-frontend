@@ -9,18 +9,23 @@ import {connect} from "react-redux"
 import CircularProgress from '@material-ui/core/CircularProgress'; 
 import {login} from '../../actions/auth'
 import Card from '@material-ui/core/Card';
+import './styles/loginStyle.css';
 
 
 
 const styles = {
     form: {
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: 200,
+        height: 510
+
     },
     pageTitle: {
-        margin: '30px auto 30px auto'
+        margin: '50px auto 50px auto',
+        
     },
     textField: {
-        margin: '10px auto 10px auto'
+        margin: '10px auto 10px auto',
     },
     button: {
         marginTop: 20,
@@ -33,11 +38,7 @@ const styles = {
     progress: {
         position: 'absolute'
     },
-    card: {
-        display: 'flex',
-        marginBottom: 20,
-        
-    }
+  
 }
 
 
@@ -67,13 +68,17 @@ class Login extends Component {
         }
         const email = this.state.email
         const password = this.state.password
-        console.log(user)
-        this.props.login(email,password).then(()=> {
+        
+        this.props.login(email,password).then((res)=> {
+            //console.log(res.user.token)
             this.setState({loading: false})
-            this.props.history.push("/")
+            if(res.user.data.is_admin){
+                return this.props.history.push("/admin")
+            }
+            return this.props.history.push("/")
         }).catch((err)=>{
             console.log(err)
-            this.setState({error: err.response.data.errors, loading: false})
+           this.setState({error: err.response.data.errors, loading: false})
         })
         
         
@@ -92,14 +97,20 @@ class Login extends Component {
         const {error,loading} = this.state
         
         return (
-           <Grid container className={classes.form}>
-               <Grid item sm/>
-               <Grid item sm>
-                  <Card className={classes.content}>
-                  <Typography variant='h3' className={classes.pageTitle}>
-                       Login
+           <Grid container spacing={10} container id="im" className={classes.form}>
+               <Grid item  className="im" sm={8} xs={12}>
+               <Typography variant='h4' id='kr'>Teamwork</Typography>
+               </Grid>
+               <Grid item sm={4} xs={12}>
+                <div className="contain">
+               <Typography variant='h3' className={classes.pageTitle}>
+                       Welcome Back
                    </Typography>
-                   <form noValidate onSubmit={this.handleSubmit}>
+                   
+                   <form id='form' noValidate onSubmit={this.handleSubmit}>
+                        <Typography>
+                            Please Log In
+                        </Typography>
                         <TextField id="email" name='email' label='Email' className={classes.textField}
                         value={this.state.email} helperText={error.email}
                         error={error.email ? true : false} 
@@ -120,9 +131,9 @@ class Login extends Component {
                         )}
                         </Button>
                    </form>
-                  </Card>
+                   </div>
+
                </Grid>
-               <Grid item sm/>
            </Grid>
         )
     }

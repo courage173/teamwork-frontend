@@ -8,16 +8,25 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
-import { userLoggedIn,getUser } from './actions/auth';
+import jwt_decode from 'jwt-decode'
+import { userLoggedIn,getUser ,logout} from './actions/auth';
 import { createLogger } from 'redux-logger';
 const loggerMiddleware = createLogger()
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk,loggerMiddleware)))
-
+export let toke = localStorage.krealaxJWT
+ 
 if(localStorage.krealaxJWT){
-    const user = {token: localStorage.krealaxJWT};
-    store.dispatch(userLoggedIn(user))
-    store.dispatch(getUser())
+    const decoded  = jwt_decode(localStorage.krealaxJWT)
+    if (decoded.exp * 1000 < Date.now()){
+        console.log(decoded.exp * 1000 < Date.now())
+        store.dispatch(logout())
+        window.location.href = '/login'
+    }else{ 
+        
+        store.dispatch(getUser())
+    }
+    
 }
 ReactDOM.render(
 <BrowserRouter>

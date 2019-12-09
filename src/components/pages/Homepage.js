@@ -3,10 +3,12 @@ import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import Feeds from '../Feeds';
 import Login from './Login'
-import {getUser} from '../../actions/auth';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
-
+import Profile from './Profile';
+import {feeds} from '../../actions/userAction'
+import PostArticles from './postArticle'
+import './styles/homeStyle.css';
 
 class Homepage extends Component {
     state= {
@@ -14,38 +16,48 @@ class Homepage extends Component {
     };
         
         componentDidMount(){
-            //this.props.getUser().then(res => console.log(res))
-            axios.get('https://krealax.herokuapp.com/v1/articles')
-                .then(res => {
+
+            this.props.feeds().then(res => {
+                console.log(res.payload.data)
+                this.setState({data: res.payload.data})
+            })
+            
+            // axios.get('https://krealax.herokuapp.com/v1/articles')
+            //     .then(res => {
                     
-                    this.setState({data: res.data.data})
-                })
-                .catch(err => console.log(err))
+            //         this.setState({data: res.data.data})
+            //     })
+            //     .catch(err => console.log(err))
         }
     render() {
         console.log(this.state.data)
         let articles = this.state.data ? (
-            this.state.data.map((dat) => <Feeds key={dat.article_id} data={dat}/>) 
+            this.state.data.map((dat) => <Feeds key={dat.id} data={dat}/>) 
         ) : (<p>Loading...</p>)
 
         return (
            
             <Grid container spacing={5}>
-                <Grid item sm={6} xs={12}>
+                <Grid item sm={8} xs={14}>
+                <div className="article">
+                    <PostArticles />
+                </div>
                     {articles}
                 </Grid>
-                <Grid item sm={6} xs={12}>
-                    <Login />
+                <Grid item sm={4} xs={10}>
+                    <Profile />
+                    
                 </Grid>
             </Grid>
         )
     }
 }
 Homepage.propTypes = {
-    getUser: PropTypes.func.isRequired
+    getUser: PropTypes.func.isRequired,
+    feeds: PropTypes.func.isRequired
     
 }
 
 
 
-export default connect(null,{getUser})(Homepage)
+export default connect(null,{feeds})(Homepage)

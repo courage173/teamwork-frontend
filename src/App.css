@@ -9,7 +9,9 @@ body {
 }
 
 .nav-container{
-    margin: auto;;
+    margin-left: auto;
+    margin-right: -18;
+    
 }
 
 a{
