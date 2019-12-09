@@ -10,7 +10,9 @@ import {privateRoute} from './components/route/userRoute'
 import Login from './components/pages/Login'
 import Homepage from './components/pages/Homepage'
 import About from './components/pages/About'
-import Dashboard from './components/pages/Dashboard'
+import Dashboard from './components/pages/Dashboard';
+import AdminDashboard from './components/pages/AdminDashboard'
+import updateForm from './components/pages/updateForm'
 
 
 
@@ -45,6 +47,8 @@ const App =() => {
         <Route path='/' exact component={Homepage} />
         <Route path='/login' exact component={Login} />   
         <Route path='/about' exact component={About} />
+        <Route path='/admin' exact component={AdminDashboard} />
+        <Route path='/update' exact component={updateForm} />
           
       </Switch>
       </div>

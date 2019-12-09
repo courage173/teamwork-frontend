@@ -10,8 +10,7 @@ export const userLoggedIn = (user) => ({
 
 export const getUserData = (user) => ({
     type: GET_LOGGED_USER,
-    user,
-    token
+    user
 })
 
 export const userLoggedOut = () => ({
@@ -27,15 +26,33 @@ export const login = (email,password)=> {
         console.log(user)
         localStorage.krealaxJWT = user.token
         
-        return dispatch(userLoggedIn(user))})}
-       // return dispatch(getUser())})}
+       // return dispatch(userLoggedIn(user))})}
+       return dispatch(getUser())})}
 
-export const register = (userData)=> {
+export const register = (
+    email,
+    password, 
+    first_name,
+    last_name,
+    jobroles,
+    is_admin ,
+    department,
+    address 
+)=> {
 
-    return dispatch => api.user.register(userData).then(user => {
+    return dispatch => api.user.register(
+        email,
+        password, 
+        first_name,
+        last_name,
+        jobroles,
+        is_admin ,
+        department,
+        address 
+    ).then(user => {
         console.log(user)
         
-        localStorage.krealaxJWT = user.token
+        
         return dispatch(userLoggedIn(user))})}
 
 export const getUser = ()=> {

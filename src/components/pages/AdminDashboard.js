@@ -1,0 +1,278 @@
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/button'
+import {connect} from "react-redux"
+import CircularProgress from '@material-ui/core/CircularProgress'; 
+import {register} from '../../actions/auth'
+import Card from '@material-ui/core/Card';
+import './styles/loginStyle.css';
+import updateForm from './updateForm'
+import { flexbox } from '@material-ui/system';
+
+
+
+const styles = {
+    form: {
+        textAlign: 'center',
+        marginTop: 100,
+        height: 510
+
+    },
+    image: {
+        height: '200px',
+        width: '200px',
+        borderRadius: '1000px',
+        float: 'left'
+    },
+    pageTitle: {
+        margin: '50px auto 50px auto',
+        
+    },
+    textField: {
+        margin: '10px auto 10px auto',
+    },
+    button: {
+        marginTop: 20,
+        position: 'relative'
+    },
+    customError: {
+        color: 'red',
+        fontSize: '0.8rem'
+    },
+    progress: {
+        position: 'absolute'
+    },
+    frm: {
+        float: null,
+        width: '300px'
+    },
+    update: {
+        float: 'left',
+        
+    },
+    kr: {
+      //padding: '20px'
+    },
+    div: {
+        float: 'left'
+    },
+    subMenu: {
+        display: 'flex',
+        padding: '10px',
+        float: 'left',
+        spacing: '5px',
+        border: '1px solid #33c9dc',
+        margin: '20px',
+        width: '95%'
+    },
+    cat: {
+        paddingLeft: '20px'
+    },
+    postArt: {
+        display: 'flex',
+        padding: '10px',
+        float: 'left',
+        spacing: '5px',
+        //border: '1px solid #33c9dc',
+        margin: '20px',
+        width: '95%',
+        color: '#33c9dc'
+    },
+    area: {
+        marginTop: '20px'
+    }
+  
+}
+
+
+
+
+class AdminDashboard extends Component {
+    constructor(){
+        super();
+        this.state = {
+            first_name: '',
+            last_name: '',
+            email: '',
+            password: '',
+            jobRoles: '',
+            isAdmin: false,
+            department: '',
+            address: '',
+            gender: '',
+            error: {}
+        }
+    }
+    
+
+    handleSubmit = (event) => {
+        
+        event.preventDefault();
+        this.setState({
+            loading: true
+        })
+        const email = this.state.email
+        const password = this.state.password
+        const first_name = this.state.first_name
+        const last_name =  this.state.last_name
+        const jobroles= this.state.jobRoles
+        const department = this.state.department
+        const address = this.state.address
+        const gender = this.state.gender
+        const is_admin = this.state.isAdmin
+        //console.log(isAdmin)
+           
+        
+        this.props. register(
+            email,
+            password, 
+            first_name,
+            last_name,
+            jobroles,
+            is_admin ,
+            department,
+            address
+           
+                
+                
+        ).then(()=> {
+            this.setState({loading: false})
+            this.props.history.push("/")
+        }).catch((err)=>{
+            console.log(err)
+            this.setState({error: err.response, loading: false})
+        })
+        
+        
+        
+                                                
+            
+    }
+
+    handleChange =(event)=>{
+        this.setState({
+            [event.target.name] : event.target.value
+        })
+    }
+    handleChecked =(event)=>{
+        
+        this.setState({
+            isAdmin : event.target.checked
+        })
+    }
+    render() {
+        const {classes} =this.props;
+        const {error,loading} = this.state
+        
+        return (
+           <Grid container spacing={10} container id="im" className={classes.form}>
+               <Grid item  className="imh" sm={8} xs={12}>
+               <Typography variant='h4' id='kr'>Welcome Admin</Typography>
+              <div className={classes.div}>
+              <img className={classes.image} alt="Default" src="https://res.cloudinary.com/dm4gkystq/image/upload/v1573881164/i9juuv6wgtcid02d7e92.png" />
+               <br />
+               <Typography className={classes.kr} id='kr'>Profile photo</Typography>
+               <br />
+               <div className={classes.subMenu}>
+               <Typography id='kr' component={Link} to='/update'>update Your Profile</Typography>
+               <Typography className={classes.cat} id='kr'>|</Typography>
+               <Typography className={classes.cat} id='kr'>Create Categories</Typography>
+               <Typography className={classes.cat} id='kr'>|</Typography>
+               <Typography className={classes.cat} id='kr'>Manage Users</Typography>
+               <Typography className={classes.cat} id='kr'>|</Typography>
+               <Typography className={classes.cat} id='kr'>Flagged Comments</Typography>
+               </div>
+               <div className ={classes.postArt}>
+                   <form>
+                   
+                    <input type='text' name='title' placeholder='Title' onChange={this.handleChange}/> 
+                    <br />
+                    <textarea className={classes.area} type='text' name='content' placeholder='Title' onChange={this.handleChange}/> 
+                   </form>
+               </div>
+               
+              </div>
+               </Grid>
+               <Grid  item sm={4} xs={12}>
+            <div className="dashcontain">
+               <Typography variant='h3' className={classes.pageTitle}>
+                       Create User
+                   </Typography>
+                   
+                   <form id='form' noValidate onSubmit={this.handleSubmit}>
+                        <TextField id="first_name" name='first_name' label='FirstName' className={classes.textField}
+                        //value={this.state.first_name} helperText={error.first_name}
+                        //error={error.first_name ? true : false} 
+                        onChange={this.handleChange} fullWidth />
+
+                        <TextField id="last_name" name='last_name' label='LastName' className={classes.textField}
+                        value={this.state.last_name} //helperText={error.last_name}
+                        //error={error.last_name ? true : false} 
+                        onChange={this.handleChange} fullWidth />
+
+                        <TextField id="email" name='email' label='Email' className={classes.textField}
+                        value={this.state.email} //helperText={error.email}
+                        //error={error.email ? true : false} 
+                        onChange={this.handleChange} fullWidth />   
+
+                        <TextField id="department" name='department' label='Department' className={classes.textField}
+                        value={this.state.department} //helperText={error.department}
+                        //error={error.department ? true : false} 
+                        onChange={this.handleChange} fullWidth />
+                        
+                        <TextField id="jobroles" name='jobroles' label='JobRoles' className={classes.textField}
+                        value={this.state.jobroles} //helperText={error.jobroles}
+                        //error={error.jobroles ? true : false} 
+                        onChange={this.handleChange} fullWidth />
+
+                        <label>
+                            isAdmin: 
+                             <input
+                                name="checked"
+                                type="checkbox"
+                                checked={this.state.isAdmin}
+                                onChange={this.handleChecked} />
+                        </label>
+
+                        <TextField id="address" name='address' label='Address' className={classes.textField}
+                        value={this.state.address} // helperText={error.address}
+                       // error={error.address ? true : false} 
+                        onChange={this.handleChange} fullWidth />
+
+                        <TextField id="password" type="password" name='password' label='Password' className={classes.textField}
+                        value={this.state.password} 
+                        //helperText={error.password}
+                        //error={error.password ? true : false}
+                        onChange={this.handleChange} fullWidth />
+                       
+                        <Button type="submit" variant="contained" color='primary' className={classes.button}>submit
+                        {loading &&(
+                            <CircularProgress size={27} className={classes.progress}/>
+                        )}
+            
+                        </Button>
+                        <p>{this.state.first_name}</p>
+                   </form>
+                </div>
+
+               </Grid>
+           </Grid>
+        )
+    }
+}
+
+
+AdminDashboard.propTypes = {
+    classes: PropTypes.object.isRequired,
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }),
+     register: PropTypes.func.isRequired
+}
+
+export default connect(null,{ register})(withStyles(styles)(AdminDashboard))

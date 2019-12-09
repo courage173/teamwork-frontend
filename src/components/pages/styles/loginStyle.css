@@ -1,0 +1,29 @@
+.im {
+    background-image: url("../images/image1.png");
+}
+
+.contain {
+    border: 5px solid #33c9dc;
+    padding: 2000;  
+    width: 130%;
+
+}
+
+.dashcontain {
+    border: 5px solid #33c9dc;
+    padding: 200;  
+    width: 130%;
+    height: 175%;
+
+}
+
+#form {
+    position: center;
+    padding-left: 50px;
+    height: 300px;
+    width: 300px;
+
+}
+#kr {
+    color: #33c9dc;
+}

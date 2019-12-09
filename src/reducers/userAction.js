@@ -1,4 +1,4 @@
-import {GET_ALL_FEEDS, POST_GIFS,GET_ALL_GIFS,GET_SINGLE_GIFS,DELETE_GIFS} from '../types'
+import {GET_ALL_FEEDS, POST_GIFS,GET_ALL_GIFS,GET_SINGLE_GIFS,DELETE_GIFS,POST_GIF_COMMENT} from '../types'
 
 
 export default function userAction(state={}, action={}){
@@ -25,6 +25,11 @@ export default function userAction(state={}, action={}){
                 payload
             }
         case DELETE_GIFS:
+            return {
+                ...state,
+                gifs: state.userAction.filter(post => post.gif_id !==payload)
+            }
+        case POST_GIF_COMMENT:
             return {
                 ...state,
                 payload
