@@ -1,5 +1,10 @@
 .article {
     padding-top: 10px;
     padding-bottom: 10px;
-    border: 1px solid #33c9dc;
+    word-spacing: 10px;
+    /*border: 1px solid #33c9dc;*/
+}
+
+.gif {
+    padding-left: 20px;
 }

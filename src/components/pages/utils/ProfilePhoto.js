@@ -14,7 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import EditIcon from '@material-ui/icons/Edit'
 // Redux stuff
 import { connect } from 'react-redux';
-import { postGif } from '../../actions/userAction';
+import { postArticles } from '../../actions/articleActions';
 import { Typography } from '@material-ui/core';
 
 const styles = (theme) => ({
@@ -42,7 +42,7 @@ class PostGif extends Component {
   state = {
     open: false,
     title: '',
-    image: null,
+    gifUrl: '',
     loading: false,
     success: "",
     flagged: false
@@ -50,10 +50,15 @@ class PostGif extends Component {
   };
 
   handleImageChange = (event) => {
-    
-    this.setState({image: event.target.files[0]})
+    const image = event.target.files[0];
+    const formData = new FormData();
+    formData.append('image', image, image.name);
+    this.props.uploadImage(formData);
   };
- 
+  handleEditPicture = () => {
+    const fileInput = document.getElementById('imageInput');
+    fileInput.click();
+  }
   handleLogout = () => {
     this.props.logoutUser();
   }
@@ -70,20 +75,11 @@ class PostGif extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-  
-    let form_data = new FormData();
-    form_data.append('image', this.state.image);
-    const image = this.state.image;
-    const title = this.state.title
-    
-    form_data.append('title', this.state.title);
-    form_data.append('flagged', this.state.flagged);
-    const username = form_data.get('title')
-    //console.log(...form_data)
-    //console.log(username)
-    
-    this.props.postGif(
-        image,title
+    const title = this.state.title;
+    const flagged = this.state.flagged
+    const gifUrl = this.state.article
+    this.props.postArticles(
+        title,flagged
     ).then(res => this.setState({
       loading: true,
       success: "Article Posted!!"
@@ -130,9 +126,16 @@ class PostGif extends Component {
               <input
                 type="file"
                 id="imageInput"
+                hidden="hidden"
                 onChange={this.handleImageChange}
               />
-            
+              <myButton
+                tip="Edit profile picture"
+                onClick={this.handleEditPicture}
+                btnClassName="button"
+              >
+                <EditIcon color="primary" />
+              </myButton>
               <Button
                 onSubmit={this.handleSubmit}
                 type="submit"
@@ -160,12 +163,12 @@ class PostGif extends Component {
 }
 
 PostGif.propTypes = {
-  postGif: PropTypes.func.isRequired,
+  postArticles: PropTypes.func.isRequired,
  
 };
 
 
 
 export default connect(null,
-  { postGif}
+  { postArticles}
 )(withStyles(styles)(PostGif));
