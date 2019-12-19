@@ -8,8 +8,8 @@ export const postArt = (payload) => ({
     payload
 })
 
-export const postArticles = (data) => {
-    return dispatch => api.user.postArticle(data).then(payload => dispatch(postArt(payload))) 
+export const postArticles = (title,article,flagged,category) => {
+    return dispatch => api.user.postArticle(title,article,flagged,category).then(payload => dispatch(postArt(payload))) 
 }
 //edit articles
 export const editArt = (payload) => ({
@@ -17,8 +17,8 @@ export const editArt = (payload) => ({
     payload
 })
 
-export const editArticles = (article_id,data) => {
-    return dispatch => api.user.editArticle(article_id,data).then(payload => dispatch(editArt(payload))) 
+export const editArticles = (article_id,title,article,flagged,category) => {
+    return dispatch => api.user.editArticle(article_id,title,article,flagged,category).then(payload => dispatch(editArt(payload))) 
 }
 
 //get single article

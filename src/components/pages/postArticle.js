@@ -14,6 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 // Redux stuff
 import { connect } from 'react-redux';
 import { postArticles } from '../../actions/articleActions';
+import { Typography } from '@material-ui/core';
 
 const styles = (theme) => ({
  
@@ -29,6 +30,9 @@ const styles = (theme) => ({
     position: 'absolute',
     left: '91%',
     top: '6%'
+  },
+  button: {
+    color: '#33c9dc'
   }
 });
 
@@ -38,7 +42,9 @@ class PostArticles extends Component {
     title: '',
     article: '',
     flagged: false,
-    category: 'general'
+    category: 'general',
+    loading: false,
+    success: ""
    
   };
   
@@ -60,7 +66,14 @@ class PostArticles extends Component {
     const category = this.state.category
     this.props.postArticles(
         title,article,flagged,category
-    );
+    ).then(res => {
+      this.setState({
+        loading: true,
+        success: "Article Posted!!"
+      })
+      return this.props.history.push("/")
+    })
+    .catch(err => console.log(err));
   };
   render() {
    
@@ -69,7 +82,7 @@ class PostArticles extends Component {
     } = this.props;
     return (
       <Fragment>
-        <Button onClick={this.handleOpen} tip="Post an Article!">
+        <Button variant='contained' className='button' onClick={this.handleOpen} tip="Post an Article!">
           Add New Article
         </Button>
         <Dialog
@@ -89,28 +102,29 @@ class PostArticles extends Component {
           <DialogContent>
             <form onSubmit={this.handleSubmit}>
               <TextField
-                name="body"
+                name="title"
                 type="text"
-                label="SCREAM!!"
+                label="title"
                 multiline
                 rows="3"
-                placeholder="Scream at your fellow apes"
+                placeholder="title"
                 className={classes.textField}
                 onChange={this.handleChange}
                 fullWidth
               />
               <TextField
-                name="body"
+                name="article"
                 type="text"
-                label="SCREAM!!"
+                label="Article"
                 multiline
                 rows="3"
-                placeholder="Scream at your fellow apes"
+                placeholder="Article"
                 className={classes.textField}
                 onChange={this.handleChange}
                 fullWidth
               />
               <Button
+                onSubmit={this.handleSubmit}
                 type="submit"
                 variant="contained"
                 color="primary"
@@ -125,7 +139,9 @@ class PostArticles extends Component {
                   />
                 )} */}
               </Button>
+              {this.state.loading ? <Typography color='primary' >{this.state.success}</Typography>: null}
             </form>
+            
           </DialogContent>
         </Dialog>
       </Fragment>

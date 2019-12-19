@@ -70,7 +70,7 @@ class updateForm extends Component {
         const {error,loading} = this.state
         return (
             <form noValidate className={classes.frm}>
-                    <img className={classes.image} alt="Default" src="https://res.cloudinary.com/dm4gkystq/image/upload/v1573881164/i9juuv6wgtcid02d7e92.png" />
+                    <img className={classes.image} alt="Default" src="https://res.cloudinary.com/dm4gkystq/image/upload/v1575044885/r7t7cn4s7xqctfq0fzch.png" />
                         <TextField id="first_name" name='first_name' label='First Name' className={classes.textField}
                         value={this.state.first_name} helperText={error.first_name}
                         error={error.first_name ? true : false} 

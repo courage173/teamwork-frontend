@@ -38,8 +38,8 @@ export const feeds = () => {
     return dispatch => api.user.feeds().then(payload => dispatch(getAllFeeds(payload)))
 }
 
-export const postGif = (data) => {
-    return dispatch => api.user.postGif(data).then(payload => dispatch(postGifs(payload)))
+export const postGif = (image,title) => {
+    return dispatch => api.user.postGif(image,title).then(payload => dispatch(postGifs(payload)))
 }
 
 export const getAllGif = () => {

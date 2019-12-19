@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import Profile from './Profile';
 import {feeds} from '../../actions/userAction'
 import PostArticles from './postArticle'
+import PostGif from './postGif'
 import './styles/homeStyle.css';
 
 class Homepage extends Component {
@@ -16,6 +17,7 @@ class Homepage extends Component {
     };
         
         componentDidMount(){
+            
 
             this.props.feeds().then(res => {
                 console.log(res.payload.data)
@@ -40,11 +42,16 @@ class Homepage extends Component {
             <Grid container spacing={5}>
                 <Grid item sm={8} xs={14}>
                 <div className="article">
-                    <PostArticles />
+                    <PostArticles/>
+                    
+                    <PostGif className='gif'/>
+                   
                 </div>
+                
                     {articles}
                 </Grid>
                 <Grid item sm={4} xs={10}>
+
                     <Profile />
                     
                 </Grid>

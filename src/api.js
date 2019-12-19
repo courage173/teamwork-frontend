@@ -68,18 +68,19 @@ export default {
                 return res.json()
             }).catch(err => console.log(err))
         },
-        postGif: (data) => {
+        postGif: (image,title) => {
+            console.log(image,title)
             const request = {
-                method: "POST",
-                headers: { 
+                method: 'POST',
+                headers: {  
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',  
+                    'Content-Type': 'multipart/form-data',
                     'Authorization': 'Bearer ' + token    
                 },
-                body: JSON.stringify(data)
-                
-            }
-            return fetch('http://localhost:3000/v1/gifs/gif',request).then(res => {
+                body: JSON.stringify({title})
+            };              
+            
+            return fetch('http://localhost:3000/v1/gifs/gifs',request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
@@ -165,7 +166,7 @@ export default {
         },
         //Articles api calls
         //Post articles
-        postArticle: (data) => {
+        postArticle: (title,article,flagged,category) => {
             const request = {
                 method: "POST",
                 headers: { 
@@ -173,7 +174,7 @@ export default {
                     'Accept': 'application/json',  
                     'Authorization': 'Bearer ' + token    
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify({title,article,flagged,category})
                 
             }
             return fetch('http://localhost:3000/v1/articles',request).then(res => {
@@ -182,7 +183,7 @@ export default {
             }).catch(err => console.log(err))
         },
         //Edit articles
-        editArticle: (article_id,data) => {
+        editArticle: (article_id,title,article,flagged,category) => {
         const request = {
             method: "PATCH",
             headers: { 
@@ -190,7 +191,7 @@ export default {
                 'Accept': 'application/json',  
                 'Authorization': 'Bearer ' + token    
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({title,article,flagged,category})
             
         }
         return fetch(`http://localhost:3000/v1/articles/${article_id}`,request).then(res => {

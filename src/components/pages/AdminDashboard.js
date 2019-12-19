@@ -174,7 +174,7 @@ class AdminDashboard extends Component {
                <Grid item  className="imh" sm={8} xs={12}>
                <Typography variant='h4' id='kr'>Welcome Admin</Typography>
               <div className={classes.div}>
-              <img className={classes.image} alt="Default" src="https://res.cloudinary.com/dm4gkystq/image/upload/v1573881164/i9juuv6wgtcid02d7e92.png" />
+              <img className={classes.image} alt="Default" src="https://res.cloudinary.com/dm4gkystq/image/upload/v1575044885/r7t7cn4s7xqctfq0fzch.png" />
                <br />
                <Typography className={classes.kr} id='kr'>Profile photo</Typography>
                <br />

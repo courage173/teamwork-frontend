@@ -11,17 +11,38 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {getUser} from '../../actions/auth'
 
 
 const styles = {
     card: {
       maxWidth: 345,
+      position: 'fixed'
     },
   };
 
 class Profile extends Component {
+  constructor(props){
+    super(props)
+    this.state= {
+      firstName: '',
+        loading: false
+    }
+  }
+  componentDidMount(){
+    this.props.getUser().then(res => {
+      console.log(res)
+      this.setState({
+        loading: true,
+        firstName: res.user.data.first_name})
+    } )
+  }
+  
+  
     render() {
-        const firstName = this.props.user.first_name
+        const firstName = this.state.firstName
+        console.log(firstName)
+        const loading = this.state.loading
          const {classes, } = this.props
         return (
             <Card className={classes.card}>
@@ -30,12 +51,12 @@ class Profile extends Component {
           component="img"
           alt="Profile Photo"
           height="140"
-          image="https://res.cloudinary.com/dm4gkystq/image/upload/v1573881164/i9juuv6wgtcid02d7e92.png"
+          image="https://res.cloudinary.com/dm4gkystq/image/upload/v1575044885/r7t7cn4s7xqctfq0fzch.png"
           title="Photo"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {firstName}
+            {loading ? firstName : null}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             this place is going to take a short bio of the current logged in user
@@ -59,8 +80,9 @@ const mapStateToProps =(state) =>({
 })
 
 Profile.propTypes = {
+    getUser: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
 }
 
 
-export default connect(mapStateToProps,null)(withStyles(styles)(Profile))
+export default connect(mapStateToProps,{getUser})(withStyles(styles)(Profile))

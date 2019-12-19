@@ -10,27 +10,47 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {feeds} from '../../actions/userAction'
 import {getAllGif} from '../../actions/userAction'
 import {getUser} from '../../actions/auth';
-import postArticles from './postArticle'
+import postArticles from './postArticle';
+import Profile from './updateForm';
+import './styles/dashboardStyle.css';
+import {Link} from 'react-router-dom';
 
 
 
 const styles = {
     update: {
-        margin: '30px auto 30px auto',
+        margin: '10px auto 30px auto',
     },
     image: {
-        height: '200px',
-        width: '200px',
-        borderRadius: '1000px'
+        height: '500px',
+        width: '700px',
+        borderRadius: '10px'
+    },
+    name: {
+        fontWeight: 'bold',
+        paddingBottom: '10px'
+    },
+    profile: {
+        paddingTop: '10px'
+    },
+    edit: {
+        paddingBottom: '10px',
+        position: 'center',
+        textDecoration: 'none'
     }
 }
 class Dashboard extends Component {
     state = {
         first_name: '',
-        last_name: ''
+        last_name: '',
+        email: '',
+        department: '',
+        jobRole: ''
     }
     componentDidMount() {
-        this.props.getUser().then(res => this.setState({first_name: res.user.data.first_name, last_name: res.user.data.last_name}))
+        this.props.getUser().then(res => this.setState({first_name: res.user.data.first_name, last_name: res.user.data.last_name,
+            email: res.user.data.email, department: res.user.data.department, jobRole: res.user.data.jobrole
+        }))
         this.props.feeds().then(res => console.log(res))
         this.props.getAllGif().then(res => console.log(res))
     }
@@ -51,39 +71,32 @@ class Dashboard extends Component {
         //const {user:{first_name,last_name,is_admin,email,created_on}} = this.props
         const first_name = this.state.first_name
         const last_name = this.state.last_name
+        const email = this.state.email
+        const department = this.state.department === undefined ? this.state.department : "Department not assigned, Update profile"
+        const jobRole =  this.state.jobRole === undefined ? this.state.jobRole : "JobRole not assigned, Update profile"
          const {classes} =this.props
         //console.log(this.props.user.data.email)
         
         return (
             <Grid container spacing={5}>
-                <Grid item sm={8} xs={14}>
+                <Grid item sm={10} xs={16}>
+                <Typography size="small"  className={classes.edit} color="primary" component={Link} to='/update'>
+                        Edit Profile
+                    </Typography>
+                <Typography variant="h4" color="primary" className={classes.name}>{first_name + ' ' + last_name}</Typography>
+                
+                    <img alt='dashImage' className={classes.image} src="https://res.cloudinary.com/dm4gkystq/image/upload/v1575044885/r7t7cn4s7xqctfq0fzch.png" />
                     
-                    <Typography color="primary" variant="h5" className={classes.update}>Welcome {first_name + ' ' + last_name}</Typography>
-                    <img className={classes.image} alt="Default" src="https://res.cloudinary.com/dm4gkystq/image/upload/v1573881164/i9juuv6wgtcid02d7e92.png" />
-                    <Typography variant="h6"  className={classes.update}>Update Your Profile</Typography>
-                    <form noValidate>
-                        <TextField id="first_name" name='first_name' label='First Name' className={classes.textField}
-                        value={this.state.first_name} helperText={error.first_name}
-                        error={error.first_name ? true : false} 
-                        onChange={this.handleChange} fullWidth />
-                        <TextField id="last_name"  name='last_name' label='Last Name' className={classes.textField}
-                        value={this.state.last_name} 
-                        helperText={error.last_name}
-                        error={error.last_name ? true : false}
-                        onChange={this.handleChange} fullWidth />
-                        {error.message && (
-                            <Typography variant="body2" className={classes.customError}>
-                                {error.message}
-                            </Typography>
-                        )}
-                        <Button type="submit" variant="contained" color='primary' className={classes.button}>update
-                        {loading &&(
-                            <CircularProgress size={27} className={classes.progress}/>
-                        )}
-                        </Button>
-                   </form>
+                    <Typography variant="h5" className={classes.profile}>Profile details</Typography>
+                    <Typography variant="h6" color="primary" className={classes.update}>First Name - {first_name}</Typography>
+                    <Typography variant="h6" color="primary" className={classes.update}>Last Name - {last_name}</Typography>
+                    <Typography variant="h6" color="primary" className={classes.update}>Email - {email}</Typography>
+                    <Typography variant="h6" color="primary" className={classes.update}>Department - {department} </Typography>
+                    <Typography variant="h6" color="primary" className={classes.update}>Job roles - {jobRole}</Typography>
+                    <Typography variant="h6" color="primary" className={classes.update}>Age</Typography>
+                    
                 </Grid>
-                <Grid item sm={4} xs={10}>
+                <Grid item sm={2} xs={8}>
                     
                         <postArticles />
                    
