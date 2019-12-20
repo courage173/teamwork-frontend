@@ -1,4 +1,6 @@
-import {POST_ARTICLES,EDIT_ARTICLES,GET_SINGLE_ARTICLES,GET_ALL_ARTICLES,GET_CAT_ARTICLES,POST_ARTICLE_COMMENT,DELETE_ARTICLES} from '../types';
+import {POST_ARTICLES,EDIT_ARTICLES,GET_SINGLE_ARTICLES,
+    GET_ALL_ARTICLES,GET_CAT_ARTICLES,
+    POST_ARTICLE_COMMENT,DELETE_ARTICLES, GET_USER_ARTICLES} from '../types';
 import api from '../api'
 
 
@@ -49,6 +51,15 @@ export const getCatArt = (payload) => ({
 
 export const getCatArticles = (catId) => {
     return dispatch => api.user.getCatArticle(catId).then(payload => dispatch(getCatArt(payload))) 
+}
+//get articles by a particular user
+export const getUserArt = (payload) => ({
+    type: GET_USER_ARTICLES,
+    payload
+})
+
+export const getUserArticles = (userId) => {
+    return dispatch => api.user.getUserArticle(userId).then(payload => dispatch(getUserArt(payload))) 
 }
 
 //post article comment

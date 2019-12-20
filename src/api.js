@@ -215,6 +215,22 @@ export default {
             return res.json()
         }).catch(err => console.log(err))
     },
+    //get articles by a particular user
+    getUserArticle: (userId) => {
+        const request = {
+            method: "GET",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',  
+                'Authorization': 'Bearer ' + token    
+            },
+            
+        }
+        return fetch(`http://localhost:3000/v1/articles/user-feed/${userId}`,request).then(res => {
+            
+            return res.json()
+        }).catch(err => console.log(err))
+    },
 
         //get all articles
         getAllArticle: () => {
