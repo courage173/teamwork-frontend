@@ -1,5 +1,6 @@
 import {POST_ARTICLES,EDIT_ARTICLES,GET_SINGLE_ARTICLES,
-    GET_ALL_ARTICLES,GET_CAT_ARTICLES,POST_ARTICLE_COMMENT,DELETE_ARTICLES} from '../types'
+    GET_ALL_ARTICLES,GET_CAT_ARTICLES,
+    POST_ARTICLE_COMMENT,DELETE_ARTICLES,GET_USER_ARTICLES} from '../types'
 
 
 export default function articles(state={}, action={}){
@@ -22,6 +23,11 @@ export default function articles(state={}, action={}){
             }
         case GET_ALL_ARTICLES:
             return {                    
+                ...state,
+                payload
+            }
+        case GET_USER_ARTICLES:
+            return {
                 ...state,
                 payload
             }
