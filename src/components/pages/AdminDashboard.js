@@ -13,16 +13,14 @@ import Card from '@material-ui/core/Card';
 import './styles/loginStyle.css';
 import updateForm from './updateForm'
 import { flexbox } from '@material-ui/system';
+import {getUserArticles} from '../../actions/articleActions';
+import Feeds from '../Feeds'
+import PostArticles from './postArticle'
 
 
 
 const styles = {
-    form: {
-        textAlign: 'center',
-        marginTop: 100,
-        height: 510
-
-    },
+   
     image: {
         height: '200px',
         width: '200px',
@@ -31,6 +29,7 @@ const styles = {
     },
     pageTitle: {
         margin: '50px auto 50px auto',
+        paddingLeft: '30px'
         
     },
     textField: {
@@ -56,7 +55,7 @@ const styles = {
         
     },
     kr: {
-      //padding: '20px'
+        overflow:'hidden'
     },
     div: {
         float: 'left'
@@ -69,6 +68,11 @@ const styles = {
         border: '1px solid #33c9dc',
         margin: '20px',
         width: '95%'
+    },
+    artMenu: {
+        padding: '10px',
+        spacing: '5px',
+        overflow:'hidden'
     },
     cat: {
         paddingLeft: '20px'
@@ -85,7 +89,7 @@ const styles = {
     },
     area: {
         marginTop: '20px'
-    }
+    },
   
 }
 
@@ -105,8 +109,13 @@ class AdminDashboard extends Component {
             department: '',
             address: '',
             gender: '',
-            error: {}
+            error: {},
+            user_id: null
         }
+    }
+    componentDidMount(){
+        //this.setState({user_id: userId})
+        this.props.getUserArticles(1).then(res => this.setState({data: res.payload.data}))
     }
     
 
@@ -168,15 +177,16 @@ class AdminDashboard extends Component {
     render() {
         const {classes} =this.props;
         const {error,loading} = this.state
-        
+        let articles = this.state.data ? (
+            this.state.data.map((dat) => <Feeds key={dat.id} data={dat}/>) 
+        ) : (<p>Loading...</p>)
         return (
            <Grid container spacing={10} container id="im" className={classes.form}>
-               <Grid item  className="imh" sm={8} xs={12}>
+            <Grid item className="img" sm={8} xs={12}>
                <Typography variant='h4' id='kr'>Welcome Admin</Typography>
               <div className={classes.div}>
-              <img className={classes.image} alt="Default" src="https://res.cloudinary.com/dm4gkystq/image/upload/v1575044885/r7t7cn4s7xqctfq0fzch.png" />
-               <br />
-               <Typography className={classes.kr} id='kr'>Profile photo</Typography>
+              <img className={classes.image} alt="Default" src="https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg" />
+              
                <br />
                <div className={classes.subMenu}>
                <Typography id='kr' component={Link} to='/update'>update Your Profile</Typography>
@@ -187,16 +197,14 @@ class AdminDashboard extends Component {
                <Typography className={classes.cat} id='kr'>|</Typography>
                <Typography className={classes.cat} id='kr'>Flagged Comments</Typography>
                </div>
-               <div className ={classes.postArt}>
-                   <form>
-                   
-                    <input type='text' name='title' placeholder='Title' onChange={this.handleChange}/> 
-                    <br />
-                    <textarea className={classes.area} type='text' name='content' placeholder='Title' onChange={this.handleChange}/> 
-                   </form>
-               </div>
+               
+               
                
               </div>
+              <div className={classes.artMenu}>
+                  <PostArticles />
+                    {articles}
+                 </div>
                </Grid>
                <Grid  item sm={4} xs={12}>
             <div className="dashcontain">
@@ -272,7 +280,8 @@ AdminDashboard.propTypes = {
     history: PropTypes.shape({
         push: PropTypes.func.isRequired
     }),
-     register: PropTypes.func.isRequired
+     register: PropTypes.func.isRequired,
+     getUserArticles: PropTypes.func.isRequired
 }
 
-export default connect(null,{ register})(withStyles(styles)(AdminDashboard))
+export default connect(null,{ register,getUserArticles})(withStyles(styles)(AdminDashboard))

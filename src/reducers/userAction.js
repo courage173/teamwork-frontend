@@ -1,14 +1,10 @@
-import {GET_ALL_FEEDS, POST_GIFS,GET_ALL_GIFS,GET_SINGLE_GIFS,DELETE_GIFS,POST_GIF_COMMENT} from '../types'
+import { POST_GIFS,GET_ALL_GIFS,GET_SINGLE_GIFS,DELETE_GIFS,POST_GIF_COMMENT} from '../types'
 
 
 export default function userAction(state={}, action={}){
     const { type, payload } = action
     switch(type){
-        case GET_ALL_FEEDS:
-            return {
-                ...state,
-                payload
-            }
+        
         case POST_GIFS:
             return {
                 ...state,

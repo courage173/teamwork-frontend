@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import { postArticles } from '../../actions/articleActions';
 import { Typography } from '@material-ui/core';
 
+
 const styles = (theme) => ({
  
   submitButton: {
@@ -54,9 +55,11 @@ class PostArticles extends Component {
   handleClose = () => {
     
     this.setState({ open: false, errors: {} });
+    
   };
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+    
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -71,8 +74,11 @@ class PostArticles extends Component {
         loading: true,
         success: "Article Posted!!"
       })
-      return this.props.history.push("/")
+      
+      this.handleClose()
+      
     })
+    
     .catch(err => console.log(err));
   };
   render() {
@@ -151,6 +157,9 @@ class PostArticles extends Component {
 
 PostArticles.propTypes = {
   postArticles: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+}),
  
 };
 

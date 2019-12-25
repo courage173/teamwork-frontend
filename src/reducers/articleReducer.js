@@ -1,15 +1,22 @@
-import {POST_ARTICLES,EDIT_ARTICLES,GET_SINGLE_ARTICLES,
+import {GET_ALL_FEEDS,POST_ARTICLES,EDIT_ARTICLES,GET_SINGLE_ARTICLES,
     GET_ALL_ARTICLES,GET_CAT_ARTICLES,
     POST_ARTICLE_COMMENT,DELETE_ARTICLES,GET_USER_ARTICLES} from '../types'
 
 
 export default function articles(state={}, action={}){
     const {payload,type} = action
+    
     switch(type){
+        case GET_ALL_FEEDS:
+            return {
+                ...state,
+                article: payload
+            }
+            
         case POST_ARTICLES:
             return {
                 ...state,
-                payload
+               articles: ([payload]).concat(state.article)
             }
         case EDIT_ARTICLES:
             return {                    
@@ -19,7 +26,7 @@ export default function articles(state={}, action={}){
         case GET_SINGLE_ARTICLES:
             return {                    
                 ...state,
-                payload
+                data: payload.data
             }
         case GET_ALL_ARTICLES:
             return {                    
@@ -44,9 +51,10 @@ export default function articles(state={}, action={}){
         case DELETE_ARTICLES:
             return {
                 ...state,
-                gifs: state.articles.filter(post => post.article_id !==payload)
+                articles: state.articles.filter(post => post.article_id !== payload.id)
             }
         default: 
             return state;
     }
+    
 }

@@ -21,7 +21,8 @@
 }
 #editProfile {
     width: 100px;
-    background-color: #33c9dc;
     margin: 10px;
+    border: 1px solid #33c9dc;
     border-radius: 30px;
+    
 }

@@ -7,7 +7,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'; 
+import {getSingleArticles} from '../actions/articleActions'
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types';
+import FeedDetails from '../components/pages/feedDetails'
 
 const styles = {
     card: {
@@ -26,20 +30,47 @@ const styles = {
     } 
 }
 class Feeds extends Component {
+    state = {
+        open: false
+    }
+
+
+    handleClick = (id) => {
+        console.log(id)
+        this.props.getSingleArticles(id)
+        this.handleOpen()
+    }
+    handleOpen = () => {
+        this.setState({ open: true });
+      };
+    
+      handleClose = () => {
+          this.setState({open: false})
+      }
+
+   
+
+
     render() {
         dayjs.extend(relativeTime)
-        const {classes, data: {title,article,created_on,article_id,gifUrl}} = this.props
+        const {classes, data: {title,article,created_on,id,gifUrl}} = this.props
+        
+        
         return (
+            <div>
             <Card className={classes.card}>
                 {gifUrl &&
               <CardMedia className={classes.image}
               image={gifUrl}
               title="Gif Upload"/>   
             }
+            
+            
                 <CardContent className={classes.content}>
-                    <Typography variant="h5"
-                    component={Link}
-                    to={`/articles/${article_id}`}
+                    <Typography variant="h5" 
+                    onClick={() => { this.handleClick(id); }}
+                    component={Link}                    
+                    
                     color='primary'
                     >{title}</Typography>
                     <Typography variant="body2" color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
@@ -48,9 +79,17 @@ class Feeds extends Component {
                     <Button type="submit" color='primary' className={classes.button}>flag</Button>
                     <Button type="submit" color='primary' className={classes.button}>delete</Button>
                 </CardContent>
+                
             </Card>
+            <FeedDetails open={this.state.open} close={this.handleClose}/>
+            </div>
         )
     }
 }
 
-export default withStyles(styles)(Feeds)
+Feeds.propTypes = {
+    getSingleArticles: PropTypes.func.isRequired,
+    
+}
+
+export default connect(null, {getSingleArticles})(withStyles(styles)(Feeds))

@@ -31,7 +31,6 @@ const styles = {
        // borderRadius: '10px 10px 0px 0px'
     },
     name: {
-        fontWeight: 'bold',
         paddingBottom: '10px',
         paddingLeft: '10px'
     },
@@ -44,7 +43,7 @@ const styles = {
         position: 'center',
         textDecoration: 'none',
         paddingLeft: '10px',
-        color: 'black'
+        
     }
 }
 class Dashboard extends Component {
@@ -91,13 +90,13 @@ class Dashboard extends Component {
                 <Grid item sm={10} xs={14}>
                 <div className='editp'>
                 <div id='editProfile'>
-                <Typography size="small"  className={classes.edit}  component={Link} to='/update'>
+                <Typography size="small" color='primary' className={classes.edit}  component={Link} to='/update'>
                         Edit Profile
                     </Typography>
                 </div>
                 <Typography variant="h4"  className={classes.name}>{first_name + ' ' + last_name}</Typography>
                 
-                    <img alt='dashImage' className={classes.image} src="https://res.cloudinary.com/dm4gkystq/image/upload/v1575044885/r7t7cn4s7xqctfq0fzch.png" />
+                    <img alt='dashImage' className={classes.image} src="https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg" />
                     </div>
                  <div className='containe'>
                  {/* <Typography variant="h5" className={classes.profile}>Profile details</Typography> */}

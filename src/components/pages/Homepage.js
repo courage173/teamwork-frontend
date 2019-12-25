@@ -31,6 +31,15 @@ class Homepage extends Component {
             //     })
             //     .catch(err => console.log(err))
         }
+        componentWillReceiveProps(nextProps,prevState) {
+            this.getPosts(nextProps);
+        }
+
+        getPosts(props, willMount = false) {
+            if (willMount) {
+                this.props.feeds();
+            }
+        }
     render() {
         console.log(this.state.data)
         let articles = this.state.data ? (

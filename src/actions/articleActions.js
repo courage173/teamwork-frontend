@@ -1,6 +1,7 @@
 import {POST_ARTICLES,EDIT_ARTICLES,GET_SINGLE_ARTICLES,
     GET_ALL_ARTICLES,GET_CAT_ARTICLES,
     POST_ARTICLE_COMMENT,DELETE_ARTICLES, GET_USER_ARTICLES} from '../types';
+import {feeds} from './userAction'
 import api from '../api'
 
 
@@ -11,7 +12,10 @@ export const postArt = (payload) => ({
 })
 
 export const postArticles = (title,article,flagged,category) => {
-    return dispatch => api.user.postArticle(title,article,flagged,category).then(payload => dispatch(postArt(payload))) 
+    return dispatch => api.user.postArticle(title,article,flagged,category).then(payload =>{
+        dispatch(postArt(payload))
+    })
+    
 }
 //edit articles
 export const editArt = (payload) => ({
