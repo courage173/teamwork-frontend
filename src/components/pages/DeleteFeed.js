@@ -19,6 +19,9 @@ import CardMedia from '@material-ui/core/CardMedia'
 // Redux stuff
 import { connect } from 'react-redux';
 import { Typography } from '@material-ui/core';
+import {deleteArt} from '../../actions/articleActions'
+import {deleteGif} from '../../actions/userAction'
+import {feeds} from '../../actions/userAction'
 
 
 const styles = (theme) => ({
@@ -38,53 +41,40 @@ const styles = (theme) => ({
   },
   button: {
     color: '#33c9dc'
-  },
-  image: {
-    width: 200,
-},
+  }
 });
 
-class FeedDetails extends Component {
+class DeleteFeed extends Component {
   constructor(props){
     super(props)
-    console.log(props)
     this.state = {
       open: this.props.open,
-      data: null
+      data: null,
+      message: null
     }
   }
   
-componentDidMount(){
-  const {
-     title, article
-  } = this.props;
-  console.log(title)
-  if(title===undefined){
-     this.setState({data: null})
-  }else{
-    this.setState({data: title.ArticleId})
+  handleClick = () => {
+      const article = this.props.article
+      const id = this.props.id
+      const gif = this.props.gif
+      if(!gif){       
+        this.props.deleteArt(id).then(res => this.setState({message: res.payload.data.message}))
+      }else{
+        this.props.deleteGif(id).then(res => this.setState({message: res.payload.data.message}))
+      }
+      
+      
+      this.props.feeds()
+      
   }
-}
  
  
   render() {
-   let id;
-   let tit;
-   let art
-   let name
-   let gifUrl
    
-    const {classes,title} = this.props
-    if(title===undefined){
-      console.log(title)
-    }else{
-      id = title.ArticleId
-      tit = title.title
-      art = title.article
-      name = title.createdBy
-      gifUrl = title.gifUrl
-      
-    }
+    const {classes} = this.props
+    console.log(this.props.id)
+   
     
     return (
       <Fragment>
@@ -102,31 +92,15 @@ componentDidMount(){
             <CloseIcon />
           </myButton>
           <DialogContent>
-          <Card>
            <CardActionArea>
              <CardContent>
-             <Typography variant="h5">Author: {name}</Typography>
-              <Typography variant="h5">Title: {tit}</Typography>
-              {art &&
-                <div>
-                <Typography variant="h5">Article-Content:</Typography>
-                <Typography variant="body1">{art}</Typography>
-                </div>
-                }
-              
-              
+             <Typography variant="h6">Confirm Delete or click X to cancel</Typography>
+             <Button type="submit" color='primary' onClick={() => { this.handleClick(); }} className={classes.button}>Yes, Delete</Button>
+             <Typography variant="h6">{this.state.message}</Typography>
+             
              </CardContent>
-             {gifUrl &&
-              
-              <CardMedia
-          component="img"
-          alt="Profile Photo"
-          height="auto"
-          image={gifUrl}
-          title="Photo"
-        />}
            </CardActionArea>
-           </Card>
+         
            
             
           </DialogContent>
@@ -136,11 +110,14 @@ componentDidMount(){
   }
 }
 
-FeedDetails.propTypes = {
+DeleteFeed.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   
 }),
+deleteArt: PropTypes.func.isRequired,
+deleteGif: PropTypes.func.isRequired,
+feeds: PropTypes.func.isRequired
  
 };
 
@@ -153,6 +130,6 @@ const mapStateToProps =(state) =>{
 
 
 
-export default connect(mapStateToProps,
+export default connect(mapStateToProps,{deleteArt,deleteGif,feeds}
   
-)(withStyles(styles)(FeedDetails));
+)(withStyles(styles)(DeleteFeed));

@@ -12,6 +12,9 @@ import {getSingleArticles} from '../actions/articleActions'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import FeedDetails from '../components/pages/feedDetails'
+import DeleteFeed from '../components/pages/DeleteFeed'
+import {getSingleGifs} from '../actions/userAction'
+
 
 const styles = {
     card: {
@@ -31,15 +34,41 @@ const styles = {
 }
 class Feeds extends Component {
     state = {
-        open: false
+        open: false,
+        deleteOpen: false,
+        deleteId: null,
+        article: null,
+        gif: null
     }
 
 
-    handleClick = (id) => {
-        console.log(id)
+    handleClick = (id,article,gifUrl) => {
+       console.log(article + ' ' +  gifUrl)
+       if(!gifUrl){
         this.props.getSingleArticles(id)
+       }else{
+        this.props.getSingleGifs(id)
+       }
+        
         this.handleOpen()
     }
+
+
+
+    handleDeleteOpen = (id,article,gifUrl) => {
+        
+        this.setState({
+            deleteId: id,
+            article: article,
+            gif: gifUrl,
+            deleteOpen: true
+        })
+    }
+    handleDeleteClose = () => {
+        this.setState({deleteOpen: false})
+    }
+
+
     handleOpen = () => {
         this.setState({ open: true });
       };
@@ -68,7 +97,7 @@ class Feeds extends Component {
             
                 <CardContent className={classes.content}>
                     <Typography variant="h5" 
-                    onClick={() => { this.handleClick(id); }}
+                    onClick={() => { this.handleClick(id,article,gifUrl); }}
                     component={Link}                    
                     
                     color='primary'
@@ -77,11 +106,12 @@ class Feeds extends Component {
                     <Typography variant="body1">{article}</Typography>
                     <Button type="submit" color='primary' className={classes.button}>comment</Button>
                     <Button type="submit" color='primary' className={classes.button}>flag</Button>
-                    <Button type="submit" color='primary' className={classes.button}>delete</Button>
+                    <Button type="submit" color='primary' onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.button}>delete</Button>
                 </CardContent>
                 
             </Card>
             <FeedDetails open={this.state.open} close={this.handleClose}/>
+            <DeleteFeed article={this.state.article} gif={this.state.gif} id= {this.state.deleteId} open={this.state.deleteOpen} close={this.handleDeleteClose}/>
             </div>
         )
     }
@@ -89,7 +119,8 @@ class Feeds extends Component {
 
 Feeds.propTypes = {
     getSingleArticles: PropTypes.func.isRequired,
+    getSingleGifs: PropTypes.func.isRequired
     
 }
 
-export default connect(null, {getSingleArticles})(withStyles(styles)(Feeds))
+export default connect(null, {getSingleArticles,getSingleGifs})(withStyles(styles)(Feeds))

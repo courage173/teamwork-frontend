@@ -82,5 +82,5 @@ export const deleteArticles = (payload) => ({
 })
 
 export const deleteArt = (article_id) => {
-    return dispatch => api.user.deleteArticle(article_id).then(payload => dispatch(deleteArt(payload))) 
+    return dispatch => api.user.deleteArticle(article_id).then(payload => dispatch(deleteArticles(payload))) 
 }

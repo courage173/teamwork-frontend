@@ -32,16 +32,18 @@ class Homepage extends Component {
             //     .catch(err => console.log(err))
         }
         componentWillReceiveProps(nextProps,prevState) {
-            this.getPosts(nextProps);
-        }
-
-        getPosts(props, willMount = false) {
-            if (willMount) {
-                this.props.feeds();
+            
+            if(prevState === nextProps){
+                return 
+            }else{
+                this.setState({data: nextProps.article})
             }
-        }
+
+          }
+       
+
+      
     render() {
-        console.log(this.state.data)
         let articles = this.state.data ? (
             this.state.data.map((dat) => <Feeds key={dat.id} data={dat}/>) 
         ) : (<p>Loading...</p>)
@@ -68,6 +70,15 @@ class Homepage extends Component {
         )
     }
 }
+
+const mapStateToProps =(state) =>{
+    const article = state.articles.articles
+    console.log(article) 
+    return {
+     article
+   }
+ }
+
 Homepage.propTypes = {
     getUser: PropTypes.func.isRequired,
     feeds: PropTypes.func.isRequired
@@ -76,4 +87,4 @@ Homepage.propTypes = {
 
 
 
-export default connect(null,{feeds})(Homepage)
+export default connect(mapStateToProps,{feeds})(Homepage)
