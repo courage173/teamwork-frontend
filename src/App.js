@@ -13,7 +13,8 @@ import About from './components/pages/About'
 import Dashboard from './components/pages/Dashboard';
 import AdminDashboard from './components/pages/AdminDashboard'
 import updateForm from './components/pages/updateForm'
-
+import postArticle from './components/pages/postArticle'
+import FeedDetails from './components/pages/feedDetails'
 
 
 const theme = createMuiTheme({
@@ -49,6 +50,8 @@ const App =() => {
         <Route path='/about' exact component={About} />
         <Route path='/admin' exact component={AdminDashboard} />
         <Route path='/update' exact component={updateForm} />
+        <Route path='/article' exact component={postArticle} />
+        <Route path='/details' exact component={FeedDetails} />
           
       </Switch>
       </div>

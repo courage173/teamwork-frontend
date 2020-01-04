@@ -83,7 +83,7 @@ class PostGif extends Component {
     //console.log(username)
     
     this.props.postGif(
-        image,title
+        form_data
     ).then(res => this.setState({
       loading: true,
       success: "Article Posted!!"

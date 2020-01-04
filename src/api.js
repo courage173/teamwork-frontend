@@ -68,16 +68,14 @@ export default {
                 return res.json()
             }).catch(err => console.log(err))
         },
-        postGif: (image,title) => {
-            console.log(image,title)
+        postGif: (form_data) => {
+            console.log(form_data)
             const request = {
                 method: 'POST',
-                headers: {  
-                    'Content-Type': 'application/json',
-                    'Content-Type': 'multipart/form-data',
+                headers: {   
                     'Authorization': 'Bearer ' + token    
                 },
-                body: JSON.stringify({title})
+                body: form_data
             };              
             
             return fetch('http://localhost:3000/v1/gifs/gifs',request).then(res => {
@@ -199,6 +197,7 @@ export default {
             return res.json()
         }).catch(err => console.log(err))
         },
+        
         //get single articles
         getSingleArticle: (article_id) => {
         const request = {
@@ -265,7 +264,7 @@ export default {
                 return res.json()
             }).catch(err => console.log(err))
         },
-        //Post articles
+        //Post articles comment
         postComment: (article_id,data) => {
         const request = {
             method: "POST",
@@ -359,6 +358,22 @@ export default {
                     
                     return res.json()
                 }).catch(err => console.log(err))
+            },
+            //Delete Article
+        deleteArticle: (article_id) => {
+            const request = {
+                method: "DELETE",
+                headers: { 
+                    'Content-Type': 'application/json',  
+                    'Authorization': 'Bearer ' + token    
+                },
+                
+                
+            }
+            return fetch(`http://localhost:3000/v1/articles/${article_id}`,request).then(res => {
+                
+                return res.json()
+            }).catch(err => console.log(err))
             },
             
     }
