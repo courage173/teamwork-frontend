@@ -75,7 +75,7 @@ class Login extends Component {
             if(res.user.data.is_admin){
                 return this.props.history.push("/admin")
             }
-            return this.props.history.push("/")
+            return this.props.history.push("/home")
         }).catch((err)=>{
             console.log(err)
            this.setState({error: err.response.data.errors, loading: false})
