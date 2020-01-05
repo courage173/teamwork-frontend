@@ -11,9 +11,10 @@ const Navbar = ({isAuthenticated, logout})=>(
     <AppBar position="fixed">
         <Toolbar className="nav-container">
             <div id='nav'>
-            <Button color="inherit" component={Link} to="/" >Home</Button>
+            
+            {isAuthenticated ? <Button color="inherit" component={Link} to="/home" >Home</Button>: null}
             {isAuthenticated ? <Button color="inherit" component={Link} to="/dashboard" >Dashboard</Button>: null}
-        {isAuthenticated ?<Button onClick={()=> logout()} component={Link} to="/login" color="inherit">Logout</Button>:  <Button color="inherit" component={Link} to="/login">Login</Button> }
+        {isAuthenticated ?<Button onClick={()=> logout()} component={Link} to="/" color="inherit">Logout</Button>:  <Button color="inherit" component={Link} to="/">Login</Button> }
             <Button color="inherit" component={Link} to="/about">About</Button>
             </div>
         </Toolbar>
