@@ -110,12 +110,18 @@ class AdminDashboard extends Component {
             address: '',
             gender: '',
             error: {},
-            user_id: null
+            user_id: null,
+            data: null
         }
     }
     componentDidMount(){
         //this.setState({user_id: userId})
-        this.props.getUserArticles(1).then(res => this.setState({data: res.payload.data}))
+        
+        this.props.getUserArticles(1).then(res => {
+            
+            this.setState({data: res.payload.data})
+        })
+        
     }
     
 
@@ -175,20 +181,21 @@ class AdminDashboard extends Component {
         })
     }
     render() {
-        const {classes} =this.props;
+        const {classes,user} =this.props;
+        const photoUrl = user.imageUrl
         const {error,loading} = this.state
         let articles = this.state.data ? (
-            this.state.data.map((dat) => <Feeds key={dat.id} data={dat}/>) 
+            this.state.data.map((dat) => <Feeds key={dat.article_id} data={dat}/>) 
         ) : (<p>Loading...</p>)
         return (
            <Grid container spacing={10} container id="im" className={classes.form}>
             <Grid item className="img" sm={8} xs={12}>
                <Typography variant='h4' id='kr'>Welcome Admin</Typography>
               <div className={classes.div}>
-              <img className={classes.image} alt="Default" src="https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg" />
+              <img className={classes.image} alt="Default" src={photoUrl? photoUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} />
               
                <br />
-               <div className={classes.subMenu}>
+               <div id='fle' className={classes.subMenu}>
                <Typography id='kr' component={Link} to='/update'>update Your Profile</Typography>
                <Typography className={classes.cat} id='kr'>|</Typography>
                <Typography className={classes.cat} id='kr'>Create Categories</Typography>
@@ -275,6 +282,13 @@ class AdminDashboard extends Component {
 }
 
 
+
+const mapStateToProps =(state) =>{
+    return {
+      user:  state.user
+    }
+    
+}
 AdminDashboard.propTypes = {
     classes: PropTypes.object.isRequired,
     history: PropTypes.shape({
@@ -284,4 +298,4 @@ AdminDashboard.propTypes = {
      getUserArticles: PropTypes.func.isRequired
 }
 
-export default connect(null,{ register,getUserArticles})(withStyles(styles)(AdminDashboard))
+export default connect(mapStateToProps,{ register,getUserArticles})(withStyles(styles)(AdminDashboard))

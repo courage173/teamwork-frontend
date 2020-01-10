@@ -12,12 +12,14 @@
 }
 .art {
     width: 700px;
+    
 }
 .editp {
     border-top: 1px solid  lightgrey;
     border-left: 1px solid  lightgrey;
     border-right: 1px solid  lightgrey;
     width: 700px;
+    position: relative;
 }
 #editProfile {
     width: 100px;

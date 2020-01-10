@@ -11,7 +11,7 @@ export default function user(state=initialState, action={}){
             return action.user
         case GET_LOGGED_USER:
             return {
-                ...action.user,
+                ...action.user.data,
                 authenticated: true
             }
         case USER_LOGGED_OUT:

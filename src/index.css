@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+@media only screen
+and (min-width : 320px)
+and (max-width : 480px) { 
+    .dashcontain {
+        border: 5px solid #33c9dc;
+        padding: 200;  
+        width: 10%;
+        height: 800px;
+    
+    } 
+    .fle{
+      display: flex;
+      color: red
+    }  
+    body{
+        overflow-x: hidden;
+    }   
+
+}

@@ -6,16 +6,29 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {logout} from '../../actions/auth'
+
 let token = localStorage.getItem('krealaxJWT')
-const Navbar = ({isAuthenticated, logout})=>(
+const Navbar = ({isAuthenticated, logout,isAdmin})=>(
     <AppBar position="fixed">
+        
         <Toolbar className="nav-container">
-            <div id='nav'>
             
-            {isAuthenticated ? <Button color="inherit" component={Link} to="/home" >Home</Button>: null}
-            {isAuthenticated ? <Button color="inherit" component={Link} to="/dashboard" >Dashboard</Button>: null}
+            <div id='nav' class="navbar navbar-expand-lg navbar-light ">
+            <nav class="navbar navbar-expand-lg navbar-light ">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+</nav>
+<div className="nav-container" id="">
+    <ul className="">
+            {isAuthenticated ? <Button color="inherit"  component={Link} to="/home" >Home</Button>: null}
+            {isAuthenticated ? <Button color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} >Dashboard</Button>: null}
         {isAuthenticated ?<Button onClick={()=> logout()} component={Link} to="/" color="inherit">Logout</Button>:  <Button color="inherit" component={Link} to="/">Login</Button> }
             <Button color="inherit" component={Link} to="/about">About</Button>
+            </ul>
+            </div>
             </div>
         </Toolbar>
     </AppBar>
@@ -26,7 +39,8 @@ Navbar.propTypes = {
 }
 function mapStateToProps(state){
     return {
-        isAuthenticated: !!state.user.authenticated
+        isAuthenticated: !!state.user.authenticated,
+        isAdmin: !!state.user.is_admin
     }
 }
 

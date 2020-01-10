@@ -47,7 +47,7 @@ const styles = (theme) => ({
 class FeedDetails extends Component {
   constructor(props){
     super(props)
-    console.log(props)
+    
     this.state = {
       open: this.props.open,
       data: null
@@ -58,7 +58,7 @@ componentDidMount(){
   const {
      title, article
   } = this.props;
-  console.log(title)
+  
   if(title===undefined){
      this.setState({data: null})
   }else{
@@ -75,6 +75,7 @@ componentDidMount(){
    let gifUrl
    
     const {classes,title} = this.props
+    
     if(title===undefined){
       console.log(title)
     }else{
@@ -83,6 +84,7 @@ componentDidMount(){
       art = title.article
       name = title.createdBy
       gifUrl = title.gifUrl
+
       
     }
     
