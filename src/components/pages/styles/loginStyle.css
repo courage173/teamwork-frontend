@@ -47,15 +47,21 @@
 @media only screen
 and (min-width : 320px)
 and (max-width : 480px) { 
-    .dashcontain {
+     
+    #im{
+        width: 100%;
+        height: 100%;
+    }
+    .contain {
         border: 5px solid #33c9dc;
         padding: 200;  
-        width: 110%;
-        height: 800px;
+        width: 130%;
+        height: 100%;
     
-    } 
+    }
     #fle{
         width: 100%;
       display: flex;
       color: red
-    }  }
+    }  
+}
