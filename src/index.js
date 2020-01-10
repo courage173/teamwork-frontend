@@ -21,7 +21,7 @@ if(localStorage.krealaxJWT){
     if (decoded.exp * 1000 < Date.now()){
         console.log(decoded.exp * 1000 < Date.now())
         store.dispatch(logout())
-        window.location.href = '/login'
+        window.location.href = '/'
     }else{ 
         
         store.dispatch(getUser())

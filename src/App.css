@@ -8,11 +8,30 @@ body {
     
 }
 
-.nav-container{
-    margin-left: auto;
-    margin-right: -18;
-    
+
+
+@media (min-width: 768px) {
+    .nav-container{
+        margin-left: auto;
+        margin-right: -18;
+        
+    }
 }
+@media only screen
+and (max-width : 768px)
+ { 
+    .nav-container{
+       display: flex;
+       flex-direction: column;
+       position: absolute;
+       height: 30vh;
+       top: 8vh;
+       right: 0px;
+        
+    }
+}
+
+
 
 a{
     text-decoration: none;

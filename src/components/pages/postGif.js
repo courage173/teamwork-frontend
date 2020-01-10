@@ -73,12 +73,9 @@ class PostGif extends Component {
   
     let form_data = new FormData();
     form_data.append('image', this.state.image);
-    const image = this.state.image;
-    const title = this.state.title
     
     form_data.append('title', this.state.title);
     form_data.append('flagged', this.state.flagged);
-    const username = form_data.get('title')
     //console.log(...form_data)
     //console.log(username)
     

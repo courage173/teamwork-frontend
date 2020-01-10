@@ -2,7 +2,7 @@ import {GET_ALL_FEEDS,POST_ARTICLES,EDIT_ARTICLES,GET_SINGLE_ARTICLES,
     GET_ALL_ARTICLES,GET_CAT_ARTICLES,
     POST_ARTICLE_COMMENT,DELETE_ARTICLES,GET_USER_ARTICLES} from '../types'
 
-import { POST_GIFS,GET_ALL_GIFS,GET_SINGLE_GIFS,DELETE_GIFS,POST_GIF_COMMENT} from '../types'
+import { POST_GIFS,GET_ALL_GIFS,GET_SINGLE_GIFS,DELETE_GIFS,POST_GIF_COMMENT,PROFILE_PICTURE} from '../types'
 
 
 export default function articles(state={}, action={}){
@@ -57,6 +57,10 @@ export default function articles(state={}, action={}){
                     articles: state.articles.filter((_, i) => i !== index)
                  }
             }
+            case PROFILE_PICTURE:
+                    return {...state,
+                        payload
+                    }
             //gifs stufss
             case POST_GIFS:
                 return {

@@ -30,6 +30,7 @@ class Profile extends Component {
     }
   }
   componentDidMount(){
+    
     this.props.getUser().then(res => {
       console.log(res)
       this.setState({
@@ -43,15 +44,18 @@ class Profile extends Component {
         const firstName = this.state.firstName
         console.log(firstName)
         const loading = this.state.loading
-         const {classes, } = this.props
+         const {classes} = this.props
+         const {user} = this.props
+         const photoUrl = user.imageUrl
+         
         return (
             <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           component="img"
           alt="Profile Photo"
-          height="140"
-          image="https://res.cloudinary.com/dm4gkystq/image/upload/v1575044885/r7t7cn4s7xqctfq0fzch.png"
+          height="300"
+          image={photoUrl? photoUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"}
           title="Photo"
         />
         <CardContent>
@@ -75,13 +79,17 @@ class Profile extends Component {
 }
 
 
-const mapStateToProps =(state) =>({
-    user: state.user.data
-})
+const mapStateToProps =(state) =>{
+    return {
+      user:  state.user
+    }
+    
+}
 
 Profile.propTypes = {
     getUser: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 }
 
 

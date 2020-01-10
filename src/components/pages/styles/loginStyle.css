@@ -2,11 +2,26 @@
     background-image: url("../images/image1.png");
 }
 
+@media (max-width: 768px) {
+    #im{
+        display: flex;
+    }
+    .dashcontain {
+    border: 5px solid red;
+
+    width: 100px;
+    height: 800px;
+    }
+}
+
 .contain {
     border: 5px solid #33c9dc;
     padding: 2000;  
-    width: 130%;
+    width: 100%;
 
+}
+#im{
+    width: 110%;
 }
 
 .dashcontain {
@@ -16,6 +31,7 @@
     height: 800px;
 
 }
+
 
 #form {
     position: center;
@@ -27,3 +43,19 @@
 #kr {
     color: #33c9dc;
 }
+
+@media only screen
+and (min-width : 320px)
+and (max-width : 480px) { 
+    .dashcontain {
+        border: 5px solid #33c9dc;
+        padding: 200;  
+        width: 110%;
+        height: 800px;
+    
+    } 
+    #fle{
+        width: 100%;
+      display: flex;
+      color: red
+    }  }

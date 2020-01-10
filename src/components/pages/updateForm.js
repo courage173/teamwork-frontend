@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {uploadProfilePic} from '../../actions/auth'
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
@@ -36,6 +36,10 @@ const styles = {
         color: 'red',
         fontSize: '0.8rem'
     },
+    customSuccess: {
+        color: 'green',
+        fontSize: '0.8rem'
+    },
     progress: {
         position: 'absolute'
     },
@@ -62,15 +66,58 @@ class updateForm extends Component {
             department: '',
             address: '',
             gender: '',
-            error: {}
+            error: {},
+            image: null,
+            message: null
         }
     }
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+      };
+   
+   handleImageChange = (event) => {
+
+    this.setState({image: event.target.files[0]})
+   }
+
+   handleSubmit = (event) => {
+    event.preventDefault()
+    let form_data = new FormData();
+    form_data.append('image', this.state.image);
+    
+    this.props.uploadProfilePic(form_data).then(res => {
+        if(res.payload.status === "success"){
+            this.setState({message: "Uploaded Successfully"})
+        }else{
+            this.setState({message: "Image Upload fail"})
+        }
+    })
+     
+    
+   }
+
+
+
     render() {
-        const {classes} =this.props;
-        const {error,loading} = this.state
+        const {classes,user} =this.props;
+        const photoUrl = user.imageUrl
+        const {error,loading,message} = this.state
+    
         return (
-            <form noValidate className={classes.frm}>
-                    <img className={classes.image} alt="Default" src="https://res.cloudinary.com/dm4gkystq/image/upload/v1575044885/r7t7cn4s7xqctfq0fzch.png" />
+            <form noValidate onSubmit={this.handleSubmit} className={classes.frm}>
+                    <img className={classes.image} alt="Default" src={photoUrl? photoUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} />
+                    <input
+                type="file"
+                id="imageInput"
+                onChange={this.handleImageChange}
+
+              />
+              {message && (
+                            <Typography variant="body2" className={message === "Image Upload fail"? classes.customError: classes.customSuccess}>
+                                {message}
+                            </Typography>
+                        )}
                         <TextField id="first_name" name='first_name' label='First Name' className={classes.textField}
                         value={this.state.first_name} helperText={error.first_name}
                         error={error.first_name ? true : false} 
@@ -108,4 +155,16 @@ class updateForm extends Component {
 }
 
 
-export default withStyles(styles)(updateForm)
+const mapStateToProps =(state) =>{
+    return {
+      user:  state.user
+    }
+    
+}
+updateForm.propTypes = {
+    uploadProfilePic: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+   
+  };
+
+export default connect(mapStateToProps,{uploadProfilePic})(withStyles(styles)(updateForm))

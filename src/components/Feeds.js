@@ -42,10 +42,10 @@ class Feeds extends Component {
     }
 
 
-    handleClick = (id,article,gifUrl) => {
-       console.log(article + ' ' +  gifUrl)
+    handleClick = (id,article_id,article,gifUrl) => {
+       console.log(article_id)
        if(!gifUrl){
-        this.props.getSingleArticles(id)
+        this.props.getSingleArticles(id ? id : article_id)
        }else{
         this.props.getSingleGifs(id)
        }
@@ -82,7 +82,7 @@ class Feeds extends Component {
 
     render() {
         dayjs.extend(relativeTime)
-        const {classes, data: {title,article,created_on,id,gifUrl}} = this.props
+        const {classes, data: {title,article_id, article,created_on,id,gifUrl}} = this.props
         
         
         return (
@@ -97,7 +97,7 @@ class Feeds extends Component {
             
                 <CardContent className={classes.content}>
                     <Typography variant="h5" 
-                    onClick={() => { this.handleClick(id,article,gifUrl); }}
+                    onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
                     component={Link}                    
                     
                     color='primary'

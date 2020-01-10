@@ -27,8 +27,10 @@ const styles = {
     },
     image: {
         height: '500px',
-        width: '697px',
-       // borderRadius: '10px 10px 0px 0px'
+        width: '550px',
+        
+       paddingLeft: '50px',
+       borderRadius: '10px'
     },
     name: {
         paddingBottom: '10px',
@@ -82,7 +84,7 @@ class Dashboard extends Component {
         const email = this.state.email
         const department = this.state.department 
         const jobRole =  this.state.jobRole
-         const {classes} =this.props
+         const {classes,user} =this.props
         //console.log(this.props.user.data.email)
         
         return (
@@ -96,7 +98,7 @@ class Dashboard extends Component {
                 </div>
                 <Typography variant="h4"  className={classes.name}>{first_name + ' ' + last_name}</Typography>
                 
-                    <img alt='dashImage' className={classes.image} src="https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg" />
+                    <img alt='dashImage' className={classes.image} src={user.imageUrl? user.imageUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} />
                     </div>
                  <div className='containe'>
                  {/* <Typography variant="h5" className={classes.profile}>Profile details</Typography> */}
@@ -125,9 +127,12 @@ class Dashboard extends Component {
     }
 }
 
-const mapStateToProps =(state) =>({
-    user: state.user
-})
+const mapStateToProps =(state) =>{
+    return {
+      user:  state.user
+    }
+    
+}
 Dashboard.propTypes = {
     user: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,

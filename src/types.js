@@ -1,6 +1,7 @@
 export const USER_LOGGED_IN ='USER_LOGGED_IN'
 export const USER_LOGGED_OUT ='USER_LOGGED_OUT'
 export const GET_LOGGED_USER = 'GET_LOGGED_USER'
+export const PROFILE_PICTURE = 'PROFILE_PICTURE'
 //feeds stuff
 export const GET_ALL_FEEDS = 'GET_ALL_FEEDS'
 //gif stuffs

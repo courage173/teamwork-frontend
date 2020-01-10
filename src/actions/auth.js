@@ -1,4 +1,4 @@
-import {USER_LOGGED_IN,USER_LOGGED_OUT,GET_LOGGED_USER} from '../types';
+import {USER_LOGGED_IN,USER_LOGGED_OUT,GET_LOGGED_USER,PROFILE_PICTURE} from '../types';
 import api from '../api'
 let token = localStorage.getItem('krealaxJWT')
 
@@ -16,6 +16,11 @@ export const getUserData = (user) => ({
 export const userLoggedOut = () => ({
     type: USER_LOGGED_OUT
    
+})
+
+export const uploadImage = (payload) => ({
+    type: PROFILE_PICTURE,
+    payload
 })
 
 
@@ -54,6 +59,15 @@ export const register = (
         
         
         return dispatch(userLoggedIn(user))})}
+
+
+//uploading profile picture
+export const uploadProfilePic = (form_data) => {
+    return dispatch => api.user.uploadPic(form_data)
+        .then(payload=> {
+            return dispatch(uploadImage(payload))
+        })
+}
 
 export const getUser = ()=> {
 

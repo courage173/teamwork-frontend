@@ -53,6 +53,20 @@ export default {
                 return res.json()
             });
         },
+        uploadPic: (form_data) => {
+            
+            const request = {
+                method: "PATCH",
+                headers: {   
+                    'Authorization': 'Bearer ' + token    
+                },
+                body: form_data
+              };
+          
+              return fetch('http://localhost:3000/v1/auth/upload-image', request).then(res => {
+                  return res.json()
+              });
+        },
         feeds: () => {
             const request = {
                 method: "GET",
