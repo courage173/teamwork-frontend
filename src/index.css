@@ -17,8 +17,8 @@ and (max-width : 480px) {
     .dashcontain {
         border: 5px solid #33c9dc;
         padding: 200;  
-        width: 10%;
-        height: 800px;
+        width: 110%;
+        height: 92vh;
     
     } 
     .fle{

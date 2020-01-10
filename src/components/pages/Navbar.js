@@ -9,7 +9,7 @@ import {logout} from '../../actions/auth'
 
 let token = localStorage.getItem('krealaxJWT')
 const Navbar = ({isAuthenticated, logout,isAdmin})=>(
-    <AppBar position="fixed">
+    <AppBar position="fixed" className="appBar">
         
         <Toolbar className="nav-container">
             
