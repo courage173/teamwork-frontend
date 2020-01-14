@@ -14,20 +14,20 @@ const Navbar = ({isAuthenticated, logout,isAdmin})=>(
         <Toolbar className="nav-container">
             
             <div id='nav' class="navbar navbar-expand-lg navbar-light ">
-            <nav class="navbar navbar-expand-lg navbar-light ">
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <nav class="navbar navbar-expand-md  ">
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
- 
+  
 </nav>
-<div className="nav-container" id="">
-    <ul className="">
-            {isAuthenticated ? <Button color="inherit"  component={Link} to="/home" >Home</Button>: null}
-            {isAuthenticated ? <Button color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} >Dashboard</Button>: null}
-        {isAuthenticated ?<Button onClick={()=> logout()} component={Link} to="/" color="inherit">Logout</Button>:  <Button color="inherit" component={Link} to="/">Login</Button> }
-            <Button color="inherit" component={Link} to="/about">About</Button>
-            </ul>
+<div  className="collapse navbar-collapse" id="collapsibleNavbar" >
+    
+            {isAuthenticated ? <Button class="nav-link col" href="#"color="primary"  component={Link} to="/home" >Home</Button>: null}
+            {isAuthenticated ? <Button class="nav-link col" href="#" color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} >Dashboard</Button>: null}
+        {isAuthenticated ?<Button class="nav-link col" href="#" onClick={()=> logout()} component={Link} to="/" color="inherit">Logout</Button>:  <Button color="inherit" component={Link} to="/">Login</Button> }
+            <Button color="inherit" class="nav-link col" href="#" component={Link} to="/about">About</Button>
+            
             </div>
             </div>
         </Toolbar>

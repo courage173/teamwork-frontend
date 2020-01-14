@@ -10,18 +10,24 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {login} from '../../actions/auth'
 import Card from '@material-ui/core/Card';
 import './styles/loginStyle.css';
+import Box from '@material-ui/core/Box';
 
-
+const defaultProps = {
+    bgcolor: 'background.paper',
+    m: 1,
+    color: '#33c9dc',
+  }
 
 const styles = {
     form: {
         textAlign: 'center',
-        marginTop: 200,
+        marginTop: 100,
         height: 510
 
     },
     pageTitle: {
         margin: '50px auto 50px auto',
+        fontSize: "4vw"
         
     },
     textField: {
@@ -97,13 +103,13 @@ class Login extends Component {
         const {error,loading} = this.state
         
         return (
-           <Grid container spacing={10} container id="im" className={classes.form}>
-               <Grid item  className="im" sm={8} xs={12}>
+           <Grid container spacing={10}   className={classes.form}>
+               <Grid item className="i"  sm={8} xs={12}>
                <Typography variant='h4' id='kr'>Teamwork</Typography>
                </Grid>
                <Grid item sm={4} xs={12}>
-                <div className="contain">
-               <Typography variant='h3' className={classes.pageTitle}>
+                <Box border={4} {...defaultProps} className="bod">
+               <Typography variant='h3'   className={classes.pageTitle}>
                        Welcome Back
                    </Typography>
                    
@@ -131,7 +137,7 @@ class Login extends Component {
                         )}
                         </Button>
                    </form>
-                   </div>
+                   </Box>
 
                </Grid>
            </Grid>

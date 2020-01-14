@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {getUser} from '../../actions/auth'
+import './styles/homeStyle.css';
 
 
 const styles = {
@@ -54,7 +55,8 @@ class Profile extends Component {
         <CardMedia
           component="img"
           alt="Profile Photo"
-          height="300"
+          
+          className="img-fluid card-img-top embed-responsive-item"
           image={photoUrl? photoUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"}
           title="Photo"
         />

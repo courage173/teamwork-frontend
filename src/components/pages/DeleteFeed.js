@@ -1,21 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import myButton from './utils/myButton';
+
 // MUI Stuff
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
-import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia'
 // Redux stuff
 import { connect } from 'react-redux';
 import { Typography } from '@material-ui/core';
@@ -40,7 +34,7 @@ const styles = (theme) => ({
     top: '6%'
   },
   button: {
-    color: '#33c9dc'
+    color: 'secondary'
   }
 });
 
@@ -95,8 +89,8 @@ class DeleteFeed extends Component {
            <CardActionArea>
              <CardContent>
              <Typography variant="h6">Confirm Delete or click X to cancel</Typography>
-             <Button type="submit" color='primary' onClick={() => { this.handleClick(); }} className={classes.button}>Yes, Delete</Button>
-             <Typography variant="h6">{this.state.message}</Typography>
+             <Button type="submit" color='secondary' onClick={() => { this.handleClick(); }} className={classes.button}>Yes, Delete</Button>
+             <Typography variant="h6" color='secondary'>{this.state.message}</Typography>
              
              </CardContent>
            </CardActionArea>

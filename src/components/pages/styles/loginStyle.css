@@ -1,22 +1,33 @@
-.im {
+.i {
     background-image: url("../images/image1.png");
+    background-repeat: no-repeat
 }
-
+#im{
+    width: 100%;
+}
 @media (max-width: 768px) {
     #im{
         display: flex;
-        width: 10px;
+        width: 100%;
         height: 92vh;
         
     }
-    .im{
-        display: none;
+    .contain {
+        border: 5px solid #33c9dc;
+        padding: 200;  
+        height: 100%;
+        width: 100%;
+        
+        
+        
+    
     }
+   
     
     .dashcontain {
     border: 5px solid red;
 
-    width: 100px;
+    width: 100%;
     height: 92vh;
     }
     
@@ -28,14 +39,12 @@
     width: 120%;
 
 }
-#im{
-    width: 100%;
-}
+
 
 .dashcontain {
     border: 5px solid #33c9dc;
     padding: 200;  
-    width: 130%;
+    width: 100%;
     height: 800px;
 
 }
@@ -43,9 +52,12 @@
 
 #form {
     position: center;
-    padding-left: 50px;
-    height: 300px;
-    width: 300px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    
+   
 
 }
 #kr {
@@ -56,21 +68,67 @@
 and (min-width : 320px)
 and (max-width : 480px) { 
      
-    #im{
-        width: 92vh;
-        height: 92vh;
+    #box{
+        width: 100%!important
         
+        
+    }
+    #krd {
+        display: none;
     }
     .contain {
         border: 5px solid #33c9dc;
         padding: 200;  
-        width: 92vh;
-        height: 92vh;
+        width: 135%;
+        height: 85%;
     
     }
     #fle{
-        width: 100%;
-      display: flex;
-      color: red
-    }  
+        width: 80%;
+        
+      color: #33c9dc
+    } 
+     
+}
+/* @media only screen
+and (min-width : 600px)
+and (max-width : 764px) { 
+     
+    #{
+        width: 150%!important
+        
+        
+    } 
+    .i {
+        width: 80%!important
+    }
+    
+     
+} */
+
+@media only screen
+and (min-width : 600px)
+and (max-width : 990px) { 
+     
+    .bod{
+        width: 150%!important
+        
+        
+    } 
+    .i {
+        width: 80%!important
+    }
+    #wel {
+        font-size: 25px;
+    }
+     
+}
+
+
+
+
+@media only screen
+and (min-width : 600px)
+and (max-width : 990px) {
+    
 }
