@@ -98,7 +98,7 @@ class Dashboard extends Component {
                 </div>
                 <Typography variant="h4"  className={classes.name}>{first_name + ' ' + last_name}</Typography>
                 
-                    <img alt='dashImage' className={classes.image} src={user.imageUrl? user.imageUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} />
+                    <img alt='dashImage' className="img-fluid img-responsive img-rounded card-img-topin" src={user.imageUrl? user.imageUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} />
                     </div>
                  <div className='containe'>
                  {/* <Typography variant="h5" className={classes.profile}>Profile details</Typography> */}

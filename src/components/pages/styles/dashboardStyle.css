@@ -7,6 +7,15 @@
     width:700px;
     border-radius: 0px 0px 2px 2px;
 }
+.card-img-topin {
+    height: 35vw;
+    object-fit: cover;
+    width: 55vw;
+    
+    border-radius: 10px;
+    
+    
+}
 .main{
     padding-top: 20px;
 }

@@ -14,11 +14,23 @@ import './styles/loginStyle.css';
 import updateForm from './updateForm'
 import { flexbox } from '@material-ui/system';
 import {getUserArticles} from '../../actions/articleActions';
-import Feeds from '../Feeds'
+import Feeds from '../Feeds';
+import Box from '@material-ui/core/Box';
 import PostArticles from './postArticle'
 
 
+const defaultProps = {
+    bgcolor: 'background.paper',
+    m: 1,
+    style: { width: '25rem', height: '60em' },
+    color: '#33c9dc',
+}
 
+const defaultProp = {
+    bgcolor: 'background.paper',
+    m: 1,
+    color: '#33c9dc',
+}
 const styles = {
    
     image: {
@@ -188,20 +200,20 @@ class AdminDashboard extends Component {
             this.state.data.map((dat) => <Feeds key={dat.article_id} data={dat}/>) 
         ) : (<p>Loading...</p>)
         return (
-           <Grid container spacing={10} container id="im" className={classes.form}>
+           <Grid container spacing={10}   className={classes.form}>
             <Grid item className="img" sm={8} xs={12}>
                <Typography variant='h4' id='kr'>Welcome Admin</Typography>
               <div className={classes.div}>
               <img className={classes.image} alt="Default" src={photoUrl? photoUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} />
               
                <br />
-               <div id='fle' className={classes.subMenu}>
+               <div id='fle' border={4} {...defaultProp} className={classes.subMenu}>
                <Typography id='kr' component={Link} to='/update'>update Your Profile</Typography>
-               <Typography className={classes.cat} id='kr'>|</Typography>
+               <Typography  className={classes.cat} id='krd'>|</Typography>
                <Typography className={classes.cat} id='kr'>Create Categories</Typography>
-               <Typography className={classes.cat} id='kr'>|</Typography>
+               <Typography className={classes.cat} id='krd'>|</Typography>
                <Typography className={classes.cat} id='kr'>Manage Users</Typography>
-               <Typography className={classes.cat} id='kr'>|</Typography>
+               <Typography className={classes.cat} id='krd'>|</Typography>
                <Typography className={classes.cat} id='kr'>Flagged Comments</Typography>
                </div>
                
@@ -214,7 +226,7 @@ class AdminDashboard extends Component {
                  </div>
                </Grid>
                <Grid  item sm={4} xs={12}>
-            <div className="dashcontain">
+            <Box id ='box' border={4} {...defaultProps}>
                <Typography variant='h3' className={classes.pageTitle}>
                        Create User
                    </Typography>
@@ -273,7 +285,7 @@ class AdminDashboard extends Component {
                         </Button>
                         <p>{this.state.first_name}</p>
                    </form>
-                </div>
+                </Box>
 
                </Grid>
            </Grid>
