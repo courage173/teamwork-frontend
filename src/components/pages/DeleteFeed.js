@@ -49,7 +49,7 @@ class DeleteFeed extends Component {
   }
   
   handleClick = () => {
-      const article = this.props.article
+      //const article = this.props.article
       const id = this.props.id
       const gif = this.props.gif
       if(!gif){       

@@ -9,7 +9,7 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import jwt_decode from 'jwt-decode'
-import { userLoggedIn,getUser ,logout} from './actions/auth';
+import { getUser ,logout} from './actions/auth';
 import { createLogger } from 'redux-logger';
 const loggerMiddleware = createLogger()
 

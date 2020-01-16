@@ -9,10 +9,7 @@ import {Button} from '@material-ui/core'
 import {connect} from "react-redux"
 import CircularProgress from '@material-ui/core/CircularProgress'; 
 import {register} from '../../actions/auth'
-import Card from '@material-ui/core/Card';
 import './styles/loginStyle.css';
-import updateForm from './updateForm'
-import { flexbox } from '@material-ui/system';
 import {getUserArticles} from '../../actions/articleActions';
 import Feeds from '../Feeds';
 import Box from '@material-ui/core/Box';
@@ -87,7 +84,8 @@ const styles = {
         overflow:'hidden'
     },
     cat: {
-        paddingLeft: '20px'
+        paddingLeft: '20px',
+        
     },
     postArt: {
         display: 'flex',
@@ -200,15 +198,15 @@ class AdminDashboard extends Component {
             this.state.data.map((dat) => <Feeds key={dat.article_id} data={dat}/>) 
         ) : (<p>Loading...</p>)
         return (
-           <Grid container spacing={10}   className={classes.form}>
-            <Grid item className="img" sm={8} xs={12}>
+           <Grid container    className={classes.form}>
+            <Grid item container sm={8} xs={12}>
                <Typography variant='h4' id='kr'>Welcome Admin</Typography>
               <div className={classes.div}>
               <img className={classes.image} alt="Default" src={photoUrl? photoUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} />
               
                <br />
                <div id='fle' border={4} {...defaultProp} className={classes.subMenu}>
-               <Typography id='kr' component={Link} to='/update'>update Your Profile</Typography>
+               <Typography id='kr' className={classes.cat} component={Link} to='/update'>update Your Profile</Typography>
                <Typography  className={classes.cat} id='krd'>|</Typography>
                <Typography className={classes.cat} id='kr'>Create Categories</Typography>
                <Typography className={classes.cat} id='krd'>|</Typography>

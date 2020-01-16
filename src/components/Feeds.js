@@ -14,6 +14,9 @@ import PropTypes from 'prop-types';
 import FeedDetails from '../components/pages/feedDetails'
 import DeleteFeed from '../components/pages/DeleteFeed'
 import {getSingleGifs} from '../actions/userAction'
+import CardHeader from '@material-ui/core/CardHeader';
+import './pages/styles/homeStyle.css'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 
 const styles = {
@@ -22,15 +25,39 @@ const styles = {
         marginBottom: 20,
     },
     image: {
-        width: 200,
+        width: '25%',
+        objectFit: 'cover'
+        
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+        marginLeft: 100,
+        width: "70%",
+      },
+      card2: {
+        maxWidth: "100%",
+        marginBottom: 20
+      },
+    imag: {
+        width: '50%',
+        objectFit: 'cover',
+        position: 'bottom'
+        
     },
     content:{
-        padding: 25 
+        padding: 25 ,
+        width: '100%'
     },
     button: {
         marginTop: 20,
         //width
-    } 
+    },
+    buttona: {
+        marginTop: 20,
+        paddingLeft: '30%'
+        
+    }
 }
 class Feeds extends Component {
     state = {
@@ -82,20 +109,20 @@ class Feeds extends Component {
 
     render() {
         dayjs.extend(relativeTime)
-        const {classes, data: {title,article_id, article,created_on,id,gifUrl}} = this.props
+        const {classes, data: {title,article_id, article,created_on,id,gifUrl,imagurl}} = this.props
         
         
         return (
             <div>
             <Card className={classes.card}>
-                {gifUrl &&
-              <CardMedia className={classes.image}
-              image={gifUrl}
-              title="Gif Upload"/>   
-            }
+                  
             
-            
-                <CardContent className={classes.content}>
+              {article && 
+                imagurl &&
+              <CardMedia id='imageUrl' className={classes.image}
+              image={imagurl}
+              title="Gif Upload"/>}
+              {article && <CardContent className={classes.content}>
                     <Typography variant="h5" 
                     onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
                     component={Link}                    
@@ -104,12 +131,49 @@ class Feeds extends Component {
                     >{title}</Typography>
                     <Typography variant="body2" color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
                     <Typography variant="body1">{article}</Typography>
-                    <Button type="submit" color='primary' className={classes.button}>comment</Button>
-                    <Button type="submit" color='primary' className={classes.button}>flag</Button>
-                    <Button type="submit" color='primary' onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.button}>delete</Button>
-                </CardContent>
+                    <div className="comment">
+                    <Button type="submit" color='primary' className={classes.butto}>comment</Button>
+                    <Button type="submit" color='primary' className={classes.butto}>flag</Button>
+                    <Button type="submit" color='primary' onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.butto}><DeleteIcon /></Button>
+                    </div>
+                </CardContent>}
+                
+            
+                 
+            
+            
+                
+              
+             
                 
             </Card>
+            {gifUrl &&
+             <div>
+                 <Card className={classes.card2}>
+      <CardHeader
+        
+        
+        title={<Typography variant="h5" 
+        onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
+        component={Link}                    
+        
+        color='primary'
+        >{title}</Typography>}
+        
+      />
+      <CardMedia
+        className={classes.media}
+        image={gifUrl}
+        title="Gifs"
+        onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
+        component={Link}
+      />
+      <Button type="submit" color='primary' className={classes.buttona}>comment</Button>
+                    <Button type="submit" color='primary' className={classes.button}>flag</Button>
+                    <Button type="submit" color='primary' onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.button}>delete</Button>
+      </Card>
+             </div>
+            }
             <FeedDetails open={this.state.open} close={this.handleClose}/>
             <DeleteFeed article={this.state.article} gif={this.state.gif} id= {this.state.deleteId} open={this.state.deleteOpen} close={this.handleDeleteClose}/>
             </div>
