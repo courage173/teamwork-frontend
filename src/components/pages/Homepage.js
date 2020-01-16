@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
-import axios from 'axios';
 import Feeds from '../Feeds';
-import Login from './Login'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import Profile from './Profile';

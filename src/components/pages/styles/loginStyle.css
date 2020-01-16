@@ -2,8 +2,35 @@
     background-image: url("../images/image1.png");
     background-repeat: no-repeat
 }
+#me {
+    background: url("../images/image3.jpg") no-repeat center center fixed;
+    
+  background-size: cover;
+  
+  position: relative;
+  
+    
+}
+
+@media (min-width: 992px){
+.containe {
+    max-width: 100%;
+}
+}
+
+.cot {
+    width: 100%!important;
+}
+
 #im{
     width: 100%;
+}
+#id{
+    left: 0;
+    margin: 0;
+}
+#krd {
+    color: #33c9dc
 }
 @media (max-width: 768px) {
     #im{
@@ -12,6 +39,19 @@
         height: 92vh;
         
     }
+    #krd {
+        color: #33c9dc;
+        display: none;
+    }
+    #fle{
+        
+        display: inline;
+        color: #33c9dc
+        
+        
+        
+    }
+    
     .contain {
         border: 5px solid #33c9dc;
         padding: 200;  
@@ -50,6 +90,7 @@
 }
 
 
+
 #form {
     position: center;
     padding-left: 20px;
@@ -73,8 +114,12 @@ and (max-width : 480px) {
         
         
     }
+    .i {
+        display: none
+    }
     #krd {
         display: none;
+        
     }
     .contain {
         border: 5px solid #33c9dc;
@@ -84,7 +129,9 @@ and (max-width : 480px) {
     
     }
     #fle{
-        width: 80%;
+        width: 95%;
+        display: inline;
+        
         
       color: #33c9dc
     } 
@@ -128,7 +175,16 @@ and (max-width : 990px) {
 
 
 @media only screen
-and (min-width : 600px)
-and (max-width : 990px) {
+and (min-width : 505px)
+and (max-width : 599px) {
+    #fle{
+        
+        flex-wrap: nowrap;
+        color: #33c9dc;
+        display: flex!important
+        
+        
+        
+    }
     
 }

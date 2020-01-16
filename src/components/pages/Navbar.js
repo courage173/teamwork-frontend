@@ -9,12 +9,13 @@ import {logout} from '../../actions/auth'
 
 let token = localStorage.getItem('krealaxJWT')
 const Navbar = ({isAuthenticated, logout,isAdmin})=>(
-    <AppBar position="fixed" className="appBar">
+    <AppBar position="fixed" className="appBar ">
         
-        <Toolbar className="nav-container">
+        <Toolbar className="nav-container ">
             
-            <div id='nav' class="navbar navbar-expand-lg navbar-light ">
+            <div id='nav' class="navbar navbar-expand-lg navbar-light  ">
             <nav class="navbar navbar-expand-md  ">
+            
  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
@@ -23,10 +24,10 @@ const Navbar = ({isAuthenticated, logout,isAdmin})=>(
 </nav>
 <div  className="collapse navbar-collapse" id="collapsibleNavbar" >
     
-            {isAuthenticated ? <Button class="nav-link col" href="#"color="primary"  component={Link} to="/home" >Home</Button>: null}
-            {isAuthenticated ? <Button class="nav-link col" href="#" color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} >Dashboard</Button>: null}
-        {isAuthenticated ?<Button class="nav-link col" href="#" onClick={()=> logout()} component={Link} to="/" color="inherit">Logout</Button>:  <Button color="inherit" component={Link} to="/">Login</Button> }
-            <Button color="inherit" class="nav-link col" href="#" component={Link} to="/about">About</Button>
+            {isAuthenticated ? <Button className="nav-link col" color="primary"  component={Link} to="/home" >Home</Button>: null}
+            {isAuthenticated ? <Button className="nav-link col"  color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} >Dashboard</Button>: null}
+        {isAuthenticated ?<Button className="nav-link col"  onClick={()=> logout()} component={Link} to="/" color="inherit">Logout</Button>:  <Button color="inherit" className="nav-link col" component={Link} to="/">Login</Button> }
+            <Button color="inherit" className="nav-link col"  component={Link} to="/about">About</Button>
             
             </div>
             </div>

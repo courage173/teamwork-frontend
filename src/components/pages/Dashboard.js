@@ -3,20 +3,18 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 //import Button from '@material-ui/core/button'
 import {connect} from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {feeds} from '../../actions/userAction'
 import {getAllGif} from '../../actions/userAction'
 import {getUser} from '../../actions/auth';
-import postArticles from './postArticle';
-import Profile from './updateForm';
+
 import './styles/dashboardStyle.css';
 import {Link} from 'react-router-dom';
 import PostArticles from './postArticle'
 import {getUserArticles} from '../../actions/articleActions'
-import PostGif from './postGif'
+
 import Feeds from '../Feeds'
 
 
@@ -88,8 +86,8 @@ class Dashboard extends Component {
         //console.log(this.props.user.data.email)
         
         return (
-            <Grid container spacing={5}>
-                <Grid item sm={10} xs={14}>
+            <Grid container item spacing={5}>
+                <Grid item container sm={10} xs={14}>
                 <div className='editp'>
                 <div id='editProfile'>
                 <Typography size="small" color='primary' className={classes.edit}  component={Link} to='/update'>

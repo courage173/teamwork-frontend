@@ -8,7 +8,7 @@ import {Button} from '@material-ui/core'
 import {connect} from "react-redux"
 import CircularProgress from '@material-ui/core/CircularProgress'; 
 import {login} from '../../actions/auth'
-import Card from '@material-ui/core/Card';
+
 import './styles/loginStyle.css';
 import Box from '@material-ui/core/Box';
 
@@ -103,7 +103,7 @@ class Login extends Component {
         const {error,loading} = this.state
         
         return (
-           <Grid container spacing={10}   className={classes.form}>
+           <Grid container  id='how'  className={classes.form}>
                <Grid item className="i"  sm={8} xs={12}>
                <Typography variant='h4' id='kr'>Teamwork</Typography>
                </Grid>
