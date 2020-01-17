@@ -79,7 +79,7 @@ export default function articles(state={}, action={}){
             case DELETE_GIFS:
                 {
 
-                    const index = state.articles.findIndex(post => post.article_id !== payload.data.id);
+                    const index = state.articles.findIndex(post => post.gif_id !== payload.data.id);
                      return { ...state,
                         articles: state.articles.filter((_, i) => i !== index)
                      }
