@@ -2,6 +2,9 @@
     background-image: url("../images/image1.png");
     background-repeat: no-repeat
 }
+#but{
+    padding: 50px;
+}
 #me {
     background: url("../images/image3.jpg") no-repeat center center fixed;
     

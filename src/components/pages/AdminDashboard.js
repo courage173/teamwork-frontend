@@ -46,7 +46,7 @@ const styles = {
     },
     button: {
         marginTop: 20,
-        position: 'relative'
+        position: 'relative',
     },
     customError: {
         color: 'red',
@@ -121,7 +121,8 @@ class AdminDashboard extends Component {
             gender: '',
             error: {},
             user_id: null,
-            data: null
+            data: null,
+            message: ''
         }
     }
     componentDidMount(){
@@ -166,8 +167,7 @@ class AdminDashboard extends Component {
                 
                 
         ).then(()=> {
-            this.setState({loading: false})
-            this.props.history.push("/")
+            this.setState({loading: false,message: `Success! User with ${this.state.email} and password ${this.state.password} created successfully`})
         }).catch((err)=>{
             console.log(err)
             this.setState({error: err.response, loading: false})
@@ -275,13 +275,13 @@ class AdminDashboard extends Component {
                         //error={error.password ? true : false}
                         onChange={this.handleChange} fullWidth />
                        
-                        <Button type="submit" variant="contained" color='primary' className={classes.button}>submit
+                       <Button type="submit" variant="contained" color='primary' className={classes.button}>Submit
                         {loading &&(
                             <CircularProgress size={27} className={classes.progress}/>
                         )}
-            
                         </Button>
-                        <p>{this.state.first_name}</p>
+                        
+                        <p>{this.state.message}</p>  
                    </form>
                 </Box>
 
