@@ -86,14 +86,14 @@ class DeleteFeed extends Component {
             <CloseIcon />
           </myButton>
           <DialogContent>
-           <CardActionArea>
+           
              <CardContent>
              <Typography variant="h6">Confirm Delete or click X to cancel</Typography>
              <Button type="submit" color='secondary' onClick={() => { this.handleClick(); }} className={classes.button}>Yes, Delete</Button>
              <Typography variant="h6" color='secondary'>{this.state.message}</Typography>
              
              </CardContent>
-           </CardActionArea>
+          
          
            
             

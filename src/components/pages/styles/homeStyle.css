@@ -22,6 +22,9 @@
         border-radius: 50%;
         height: 15vh;
     }
+    #imageU {
+        margin-left: 50px;
+    }
     .comment{
         font-size: 5vh;
     }
