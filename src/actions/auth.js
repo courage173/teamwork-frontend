@@ -58,7 +58,7 @@ export const register = (
         console.log(user)
         
         
-        return dispatch(userLoggedIn(user))})}
+        })}
 
 
 //uploading profile picture
