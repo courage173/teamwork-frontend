@@ -167,7 +167,7 @@ class AdminDashboard extends Component {
                 
                 
         ).then(()=> {
-            this.setState({loading: false,message: `Success! User with ${this.state.email} and password ${this.state.password} created successfully`})
+            this.setState({loading: false,message: `Success! User with Email ${this.state.email} and password ${this.state.password} created successfully`})
         }).catch((err)=>{
             console.log(err)
             this.setState({error: err.response, loading: false})
@@ -281,7 +281,7 @@ class AdminDashboard extends Component {
                         )}
                         </Button>
                         
-                        <p>{this.state.message}</p>  
+                        <p style={{color: "green"}}>{this.state.message}</p>  
                    </form>
                 </Box>
 

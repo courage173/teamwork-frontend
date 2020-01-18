@@ -26,7 +26,19 @@ const styles = {
     },
     image: {
         width: '25%',
-        objectFit: 'cover'
+        objectFit: 'cover',
+        borderRadius: '50%',
+        height: '15vh',
+        margin: '20px'
+        
+    },
+    ima: {
+        width: '10%',
+        objectFit: 'cover',
+        borderRadius: '50%',
+        height: '10vh',
+        float: 'left'
+        
         
     },
     media: {
@@ -34,10 +46,11 @@ const styles = {
         paddingTop: '56.25%', // 16:9
         marginLeft: 100,
         width: "70%",
+        
       },
       card2: {
         maxWidth: "100%",
-        marginBottom: 20
+        marginBottom: 20,
       },
     imag: {
         width: '50%',
@@ -121,7 +134,7 @@ class Feeds extends Component {
                 imagurl &&
               <CardMedia id='imageUrl' className={classes.image}
               image={imagurl}
-              title="Gif Upload"/>}
+              title="Profile pic"/>}
               {article && <CardContent className={classes.content}>
                     <Typography variant="h5" 
                     onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
@@ -134,7 +147,7 @@ class Feeds extends Component {
                     <div className="comment">
                     <Button type="submit" color='primary' className={classes.butto}>comment</Button>
                     <Button type="submit" color='primary' className={classes.butto}>flag</Button>
-                    <Button type="submit" color='primary' onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.butto}><DeleteIcon /></Button>
+                    <Button type="submit" style={{color:'red'}} onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.butto}><DeleteIcon /></Button>
                     </div>
                 </CardContent>}
                 
@@ -149,7 +162,9 @@ class Feeds extends Component {
             </Card>
             {gifUrl &&
              <div>
+                 
                  <Card className={classes.card2}>
+                
       <CardHeader
         
         
@@ -160,9 +175,17 @@ class Feeds extends Component {
         color='primary'
         >{title}</Typography>}
         
+        
+        
       />
+      <Typography variant="body2" color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
+      <CardMedia id='imageUr' className={classes.ima}
+              image={imagurl}
+              title="Profile pic"/>
+      
       <CardMedia
         className={classes.media}
+        id='imageU'
         image={gifUrl}
         title="Gifs"
         onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
@@ -170,7 +193,7 @@ class Feeds extends Component {
       />
       <Button type="submit" color='primary' className={classes.buttona}>comment</Button>
                     <Button type="submit" color='primary' className={classes.button}>flag</Button>
-                    <Button type="submit" color='primary' onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.button}>delete</Button>
+                    <Button type="submit" style={{color:'red'}} onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.button}>delete</Button>
       </Card>
              </div>
             }
