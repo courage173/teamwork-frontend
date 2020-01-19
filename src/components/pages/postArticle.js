@@ -45,7 +45,9 @@ class PostArticles extends Component {
     flagged: false,
     category: 'general',
     loading: false,
-    success: ""
+    success: "",
+    load: false
+
    
   };
   
@@ -63,6 +65,7 @@ class PostArticles extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
+    this.setState({loading: true})
     const title = this.state.title;
     const article = this.state.article
     const flagged = this.state.flagged;
@@ -71,18 +74,21 @@ class PostArticles extends Component {
         title,article,flagged,category
     ).then(res => {
       this.setState({
-        loading: true,
-        success: "Article Posted!!"
+        loading: false,
+        success: "Article Posted!!",
+        load: true
       })
       
-      this.handleClose()
+      setInterval(() => {
+        this.handleClose()
+      },2000)
       
     })
     
     .catch(err => console.log(err));
   };
   render() {
-   
+   const loading = this.state.loading
     const {
       classes
     } = this.props;
@@ -135,17 +141,17 @@ class PostArticles extends Component {
                 variant="contained"
                 color="primary"
                 className={classes.submitButton}
-               // disabled={loading}
+                disabled={loading}
               >
                 Submit
-                {/* {loading && (
+                {loading && (
                   <CircularProgress
                     size={30}
                     className={classes.progressSpinner}
                   />
-                )} */}
+                )}
               </Button>
-              {this.state.loading ? <Typography color='primary' >{this.state.success}</Typography>: null}
+              {this.state.load ? <Typography color='primary' >{this.state.success}</Typography>: null}
             </form>
             
           </DialogContent>
