@@ -87,6 +87,7 @@ class updateForm extends Component {
     form_data.append('image', this.state.image);
     
     this.props.uploadProfilePic(form_data).then(res => {
+        
         if(res.payload.status === "success"){
             this.setState({message: "Uploaded Successfully"})
         }else{

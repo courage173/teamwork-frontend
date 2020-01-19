@@ -14,6 +14,7 @@ export const postArt = (payload) => ({
 export const postArticles = (title,article,flagged,category) => {
     return dispatch => api.user.postArticle(title,article,flagged,category).then(payload =>{
         dispatch(postArt(payload))
+        dispatch(feeds())
     })
     
 }

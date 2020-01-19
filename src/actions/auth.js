@@ -65,6 +65,7 @@ export const register = (
 export const uploadProfilePic = (form_data) => {
     return dispatch => api.user.uploadPic(form_data)
         .then(payload=> {
+            dispatch(getUser())
             return dispatch(uploadImage(payload))
         })
 }

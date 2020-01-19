@@ -81,14 +81,20 @@ class PostGif extends Component {
     
     this.props.postGif(
         form_data
-    ).then(res => {this.setState({
-      loading: true,
-      success: "Article Posted!!"
+
+    ).then(res => {
+      this.setState({
+        loading: true,
+        success: "Gif Uploaded!"
+        
+      })
+      setInterval(() => {
+        this.handleClose()
+      },3000)
     })
-        setInterval(() => {
-         this.handleClose()
-       },3000)            
-     })
+
+  
+
     .catch(err => console.log(err));
   };
   render() {

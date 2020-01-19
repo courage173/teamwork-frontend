@@ -39,7 +39,10 @@ export const feeds = () => {
 }
 
 export const postGif = (image,title) => {
-    return dispatch => api.user.postGif(image,title).then(payload => dispatch(postGifs(payload)))
+    return dispatch => api.user.postGif(image,title).then(payload => {
+        dispatch(postGifs(payload))
+        dispatch(feeds())
+    })
 }
 
 export const getAllGif = () => {
