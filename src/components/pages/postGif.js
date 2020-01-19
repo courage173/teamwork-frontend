@@ -45,7 +45,8 @@ class PostGif extends Component {
     image: null,
     loading: false,
     success: "",
-    flagged: false
+    flagged: false,
+    load: false
    
   };
 
@@ -70,6 +71,7 @@ class PostGif extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
+    this.setState({loading: true})
   
     let form_data = new FormData();
     form_data.append('image', this.state.image);
@@ -81,20 +83,17 @@ class PostGif extends Component {
     
     this.props.postGif(
         form_data
-
     ).then(res => {
       this.setState({
-        loading: true,
+        loading: false,
+        load: true,
         success: "Gif Uploaded!"
         
       })
       setInterval(() => {
         this.handleClose()
-      },3000)
+      },2000)
     })
-
-  
-
     .catch(err => console.log(err));
   };
   render() {
@@ -102,6 +101,7 @@ class PostGif extends Component {
     const {
       classes
     } = this.props;
+    const loading = this.state.loading
     return (
       <Fragment>
         <Button variant='contained' className='button' onClick={this.handleOpen} tip="Post Gif!">
@@ -146,17 +146,17 @@ class PostGif extends Component {
                 variant="contained"
                 color="primary"
                 className={classes.submitButton}
-               // disabled={loading}
+                disabled={loading}
               >
                 Submit
-                {/* {loading && (
+                {loading && (
                   <CircularProgress
                     size={30}
                     className={classes.progressSpinner}
                   />
-                )} */}
+                )}
               </Button>
-              {this.state.loading ? <Typography color='primary' >{this.state.success}</Typography>: null}
+              {this.state.load ? <Typography color='primary' >{this.state.success}</Typography>: null}
             </form>
             
           </DialogContent>
@@ -170,6 +170,7 @@ PostGif.propTypes = {
   postGif: PropTypes.func.isRequired,
  
 };
+
 
 
 
