@@ -81,6 +81,7 @@ class PostGif extends Component {
     
     this.props.postGif(
         form_data
+
     ).then(res => {
       this.setState({
         loading: true,
@@ -91,6 +92,9 @@ class PostGif extends Component {
         this.handleClose()
       },3000)
     })
+
+  
+
     .catch(err => console.log(err));
   };
   render() {
