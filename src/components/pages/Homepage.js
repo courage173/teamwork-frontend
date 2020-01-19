@@ -59,9 +59,9 @@ class Homepage extends Component {
                 
                     {articles}
                 </Grid>
-                <Grid item sm={4} xs={10}>
+                <Grid item className="profileOff" sm={4} xs={10}>
 
-                    <Profile />
+                    <Profile  />
                     
                 </Grid>
             </Grid>

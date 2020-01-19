@@ -29,3 +29,10 @@
         font-size: 5vh;
     }
 }
+
+@media (max-width: 599px) {
+    .profileOff{
+        display: none;
+    }
+}
+
