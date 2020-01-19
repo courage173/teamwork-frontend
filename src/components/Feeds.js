@@ -17,6 +17,7 @@ import {getSingleGifs} from '../actions/userAction'
 import CardHeader from '@material-ui/core/CardHeader';
 import './pages/styles/homeStyle.css'
 import DeleteIcon from '@material-ui/icons/Delete'
+import AddCommentIcon from '@material-ui/icons/AddComment';
 
 
 const styles = {
@@ -145,8 +146,8 @@ class Feeds extends Component {
                     <Typography variant="body2" color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
                     <Typography variant="body1">{article}</Typography>
                     <div className="comment">
-                    <Button type="submit" color='primary' className={classes.butto}>comment</Button>
-                    <Button type="submit" color='primary' className={classes.butto}>flag</Button>
+                    <Button type="submit" color='primary' className={classes.butto}><AddCommentIcon/></Button>
+                    
                     <Button type="submit" style={{color:'red'}} onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.butto}><DeleteIcon /></Button>
                     </div>
                 </CardContent>}
@@ -191,9 +192,9 @@ class Feeds extends Component {
         onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
         component={Link}
       />
-      <Button type="submit" color='primary' className={classes.buttona}>comment</Button>
-                    <Button type="submit" color='primary' className={classes.button}>flag</Button>
-                    <Button type="submit" style={{color:'red'}} onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.button}>delete</Button>
+      <Button type="submit" color='primary' className={classes.buttona}><AddCommentIcon/></Button>
+                    
+                    <Button type="submit" style={{color:'red'}} onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.button}><DeleteIcon /></Button>
       </Card>
              </div>
             }
