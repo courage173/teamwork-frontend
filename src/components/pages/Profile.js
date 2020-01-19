@@ -33,10 +33,10 @@ class Profile extends Component {
   componentDidMount(){
     
     this.props.getUser().then(res => {
-      console.log(res)
+      
       this.setState({
         loading: true,
-        firstName: res.user.data.first_name})
+        firstName: res.user.data.first_name ?  res.user.data.first_name : "Undefined"})
     } )
   }
   
