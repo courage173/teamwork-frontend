@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route,Redirect} from 'react-router-dom';
 import Navbar from './components/pages/Navbar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import {privateRoute} from './components/route/userRoute'
+
 //pages
 import Login from './components/pages/Login'
 import Homepage from './components/pages/Homepage'
@@ -52,6 +53,7 @@ const App =() => {
         <Route path='/update' exact component={updateForm} />
         <Route path='/article' exact component={postArticle} />
         <Route path='/details' exact component={FeedDetails} />
+        <Redirect from="*" to="/" />
           
       </Switch>
       </div>
