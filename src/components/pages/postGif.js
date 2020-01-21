@@ -46,13 +46,14 @@ class PostGif extends Component {
     loading: false,
     success: "",
     flagged: false,
-    load: false
+    load: false,
+    loaded: true
    
   };
 
   handleImageChange = (event) => {
     
-    this.setState({image: event.target.files[0]})
+    this.setState({image: event.target.files[0], loaded:false})
   };
  
   handleLogout = () => {
@@ -64,14 +65,14 @@ class PostGif extends Component {
   };
   handleClose = () => {
     
-    this.setState({ open: false, errors: {} });
+    this.setState({ open: false, errors: {} ,success: ""});
   };
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({loading: true})
+    this.setState({loading: true,loaded: true})
   
     let form_data = new FormData();
     form_data.append('image', this.state.image);
@@ -87,10 +88,11 @@ class PostGif extends Component {
       this.setState({
         loading: false,
         load: true,
+        loaded: false,
         success: "Gif Uploaded!"
         
       })
-      setInterval(() => {
+      setTimeout(() => {
         this.handleClose()
       },2000)
     })
@@ -101,7 +103,7 @@ class PostGif extends Component {
     const {
       classes
     } = this.props;
-    const loading = this.state.loading
+    const {loading,loaded }= this.state
     return (
       <Fragment>
         <Button variant='contained' className='button' onClick={this.handleOpen} tip="Post Gif!">
@@ -146,7 +148,7 @@ class PostGif extends Component {
                 variant="contained"
                 color="primary"
                 className={classes.submitButton}
-                disabled={loading}
+                disabled={loaded}
               >
                 Submit
                 {loading && (

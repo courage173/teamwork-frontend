@@ -56,7 +56,7 @@ class PostArticles extends Component {
   };
   handleClose = () => {
     
-    this.setState({ open: false, errors: {} });
+    this.setState({ open: false, errors: {},success: "" });
     
   };
   handleChange = (event) => {
@@ -79,7 +79,7 @@ class PostArticles extends Component {
         load: true
       })
       
-      setInterval(() => {
+      setTimeout(() => {
         this.handleClose()
       },2000)
       
