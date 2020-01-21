@@ -46,7 +46,8 @@ class PostArticles extends Component {
     category: 'general',
     loading: false,
     success: "",
-    load: false
+    load: false,
+    loaded: true
 
    
   };
@@ -60,7 +61,10 @@ class PostArticles extends Component {
     
   };
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value })
+    if(this.state.title && this.state.article){
+      this.setState({loaded: false})
+    }else{this.setState({loaded: true})};
     
   };
   handleSubmit = (event) => {
@@ -70,6 +74,7 @@ class PostArticles extends Component {
     const article = this.state.article
     const flagged = this.state.flagged;
     const category = this.state.category
+    
     this.props.postArticles(
         title,article,flagged,category
     ).then(res => {
@@ -88,7 +93,7 @@ class PostArticles extends Component {
     .catch(err => console.log(err));
   };
   render() {
-   const loading = this.state.loading
+   const {loading,loaded} = this.state
     const {
       classes
     } = this.props;
@@ -141,7 +146,7 @@ class PostArticles extends Component {
                 variant="contained"
                 color="primary"
                 className={classes.submitButton}
-                disabled={loading}
+                disabled={loaded}
               >
                 Submit
                 {loading && (
