@@ -53,13 +53,19 @@ class DeleteFeed extends Component {
       const id = this.props.id
       const gif = this.props.gif
       if(!gif){       
-        this.props.deleteArt(id).then(res => this.setState({message: res.payload.data.message}))
+        this.props.deleteArt(id).then(res => {
+          this.setState({message: res.payload.data.message})
+          this.props.feeds()
+        })
       }else{
-        this.props.deleteGif(id).then(res => this.setState({message: res.payload.data.message}))
+        this.props.deleteGif(id).then(res => {
+          this.setState({message: res.payload.data.message})
+          this.props.feeds()
+        })
       }
       
       
-      this.props.feeds()
+      
       
   }
  

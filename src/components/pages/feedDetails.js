@@ -72,7 +72,9 @@ componentDidMount(){
    let gifUrl
    
     const {classes,title} = this.props
-    
+    if(!this.props.close){
+      this.setState({data: null})
+    }
     if(title===undefined){
       console.log(title)
     }else{
