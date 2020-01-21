@@ -31,7 +31,8 @@ const styles = {
         objectFit: 'cover',
         borderRadius: '50%',
         height: '15vh',
-        margin: '20px'
+        margin: '20px',
+        padding: 5
         
     },
     ima: {
@@ -39,7 +40,9 @@ const styles = {
         objectFit: 'cover',
         borderRadius: '50%',
         height: '10vh',
-        float: 'left'
+        float: 'left',
+        
+        marginLeft: '1.5vh'
         
         
     },
@@ -53,6 +56,9 @@ const styles = {
       card2: {
         maxWidth: "100%",
         marginBottom: 20,
+      },
+      created: {
+        marginLeft: '1vh'
       },
     imag: {
         width: '50%',
@@ -150,7 +156,7 @@ class Feeds extends Component {
                     
                     color='primary'
                     >{title}</Typography>
-                    <Typography variant="body2" color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
+                    <Typography variant="body2"  color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
                     <Typography variant="body1">{article}</Typography>
                     <div className="comment">
                     <Button type="submit" color='primary' className={classes.butto}><AddCommentIcon/></Button>
@@ -186,7 +192,7 @@ class Feeds extends Component {
         
         
       />
-      <Typography variant="body2" color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
+      <Typography variant="body2" className={classes.created} color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
       <CardMedia id='imageUr' className={classes.ima}
               image={imagurl}
               title="Profile pic"/>

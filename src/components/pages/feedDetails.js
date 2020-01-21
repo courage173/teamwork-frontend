@@ -116,7 +116,8 @@ componentDidMount(){
     ) : (
       <Grid container spacing={16}>
         <Grid item sm={5}>
-          <img src={imageUrl} alt="Profile" className={classes.profileImage} />
+          <img src={imageUrl? imageUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} 
+          alt="Profile" className={classes.profileImage} />
         </Grid>
         <Grid item sm={7}>
           <Typography
