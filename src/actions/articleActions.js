@@ -1,6 +1,6 @@
 import {POST_ARTICLES,EDIT_ARTICLES,GET_SINGLE_ARTICLES,
     GET_ALL_ARTICLES,GET_CAT_ARTICLES,
-    POST_ARTICLE_COMMENT,DELETE_ARTICLES, GET_USER_ARTICLES} from '../types';
+    POST_ARTICLE_COMMENT,DELETE_ARTICLES, GET_USER_ARTICLES,CLEAR_ARTICLE} from '../types';
 import {feeds} from './userAction'
 import api from '../api'
 
@@ -85,3 +85,13 @@ export const deleteArticles = (payload) => ({
 export const deleteArt = (article_id) => {
     return dispatch => api.user.deleteArticle(article_id).then(payload => dispatch(deleteArticles(payload))) 
 }
+
+//clear single article
+export const clearArticle = () => ({
+    type: CLEAR_ARTICLE
+   
+})
+export const clearArt = ()=>dispatch => {
+    
+   
+    return dispatch(clearArticle())}

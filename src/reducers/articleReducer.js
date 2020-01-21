@@ -1,6 +1,6 @@
 import {GET_ALL_FEEDS,POST_ARTICLES,EDIT_ARTICLES,GET_SINGLE_ARTICLES,
     GET_ALL_ARTICLES,GET_CAT_ARTICLES,
-    POST_ARTICLE_COMMENT,DELETE_ARTICLES,GET_USER_ARTICLES} from '../types'
+    POST_ARTICLE_COMMENT,DELETE_ARTICLES,GET_USER_ARTICLES,CLEAR_ARTICLE} from '../types'
 
 import { POST_GIFS,GET_ALL_GIFS,GET_SINGLE_GIFS,DELETE_GIFS,POST_GIF_COMMENT,PROFILE_PICTURE} from '../types'
 
@@ -28,6 +28,12 @@ export default function articles(state={}, action={}){
             return {                    
                 ...state,
                 data: payload.data
+            }
+        case CLEAR_ARTICLE:
+            return {
+                
+                ...state,
+                data: {}
             }
         case GET_ALL_ARTICLES:
             return {                    

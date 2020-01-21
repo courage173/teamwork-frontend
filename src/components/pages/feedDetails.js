@@ -1,11 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
+import dayjs from 'dayjs';
+
 
 // MUI Stuff
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
+import Grid from '@material-ui/core/Grid';
+import ChatIcon from '@material-ui/icons/Chat'
 
 import CloseIcon from '@material-ui/icons/Close';
 import Card from '@material-ui/core/Card';
@@ -16,6 +20,9 @@ import CardMedia from '@material-ui/core/CardMedia'
 // Redux stuff
 import { connect } from 'react-redux';
 import { Typography } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { typography } from '@material-ui/system';
+
 
 
 const styles = (theme) => ({
@@ -36,8 +43,19 @@ const styles = (theme) => ({
   button: {
     color: '#33c9dc'
   },
+  spinnerDiv: {
+    textAlign: 'center',
+    marginTop: 50,
+    marginBottom: 50
+  },
   image: {
     width: 200,
+},
+profileImage: {
+  maxWidth: 200,
+  height: 200,
+  borderRadius: '50%',
+  objectFit: 'cover'
 },
 });
 
@@ -51,6 +69,7 @@ class FeedDetails extends Component {
     }
   }
   
+
 componentDidMount(){
   const {
      title, article
@@ -62,6 +81,7 @@ componentDidMount(){
     this.setState({data: title.ArticleId})
   }
 }
+
  
  
   render() {
@@ -70,11 +90,10 @@ componentDidMount(){
    let art
    let name
    let gifUrl
+   let createdAt
+   let imageUrl
    
     const {classes,title} = this.props
-    if(!this.props.close){
-      this.setState({data: null})
-    }
     if(title===undefined){
       console.log(title)
     }else{
@@ -83,9 +102,68 @@ componentDidMount(){
       art = title.article
       name = title.createdBy
       gifUrl = title.gifUrl
+      createdAt = title.createdOn
+      imageUrl = title.imageUrl
+      
 
       
     }
+
+    const dialogMarkup = !name ? (
+      <div className={classes.spinnerDiv}>
+        <CircularProgress size={200} thickness={2} />
+      </div>
+    ) : (
+      <Grid container spacing={16}>
+        <Grid item sm={5}>
+          <img src={imageUrl} alt="Profile" className={classes.profileImage} />
+        </Grid>
+        <Grid item sm={7}>
+          <Typography
+            
+            color="primary"
+            variant="h5"
+            
+          >
+            {name}
+          </Typography>
+          <hr className={classes.invisibleSeparator} />
+          <Typography variant="body2" color="textSecondary">
+            {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
+          </Typography>
+          <hr className={classes.invisibleSeparator} />
+          {art &&
+                <div>
+                <Typography variant="h5">{tit}</Typography>
+                <hr className={classes.invisibleSeparator} />
+                <Typography variant="body1">{art}</Typography>
+                </div>
+                }
+              
+              
+            
+             {gifUrl &&
+              <div>
+                {
+                  tit && <div>
+                    <Typography variant="h5">{tit}</Typography>
+                    <hr className={classes.invisibleSeparator} />
+                  </div>
+                  
+                }
+         <CardMedia
+          component="img"
+          alt="Profile Photo"
+          height="auto"
+          image={gifUrl}
+          title="Photo"
+          
+        /> </div>}
+        </Grid>
+        <hr className={classes.visibleSeparator} />
+      </Grid>
+
+    )
     
     return (
       <Fragment>
@@ -104,29 +182,7 @@ componentDidMount(){
           </myButton>
           <DialogContent>
           <Card>
-           <CardActionArea>
-             <CardContent>
-             <Typography variant="h5">Author: {name}</Typography>
-              <Typography variant="h5">Title: {tit}</Typography>
-              {art &&
-                <div>
-                <Typography variant="h5">Article-Content:</Typography>
-                <Typography variant="body1">{art}</Typography>
-                </div>
-                }
-              
-              
-             </CardContent>
-             {gifUrl &&
-              
-              <CardMedia
-          component="img"
-          alt="Profile Photo"
-          height="auto"
-          image={gifUrl}
-          title="Photo"
-        />}
-           </CardActionArea>
+            {dialogMarkup}
            </Card>
            
             
@@ -142,6 +198,7 @@ FeedDetails.propTypes = {
     push: PropTypes.func.isRequired
   
 }),
+clearArt: PropTypes.func.isRequired
  
 };
 

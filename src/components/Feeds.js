@@ -18,6 +18,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import './pages/styles/homeStyle.css'
 import DeleteIcon from '@material-ui/icons/Delete'
 import AddCommentIcon from '@material-ui/icons/AddComment';
+import {clearArt} from '../actions/articleActions'
 
 
 const styles = {
@@ -79,16 +80,20 @@ class Feeds extends Component {
         deleteOpen: false,
         deleteId: null,
         article: null,
-        gif: null
+        gif: null,
+        loading: false
     }
 
 
     handleClick = (id,article_id,article,gifUrl) => {
        console.log(article_id)
+       
        if(!gifUrl){
         this.props.getSingleArticles(id ? id : article_id)
+        
        }else{
         this.props.getSingleGifs(id)
+        
        }
         
         this.handleOpen()
@@ -116,6 +121,7 @@ class Feeds extends Component {
     
       handleClose = () => {
           this.setState({open: false})
+          this.props.clearArt()
       }
 
    
@@ -123,6 +129,7 @@ class Feeds extends Component {
 
     render() {
         dayjs.extend(relativeTime)
+        
         const {classes, data: {title,article_id, article,created_on,id,gifUrl,imagurl}} = this.props
         
         
@@ -199,16 +206,18 @@ class Feeds extends Component {
              </div>
             }
             <FeedDetails open={this.state.open} close={this.handleClose}/>
-            <DeleteFeed article={this.state.article} gif={this.state.gif} id= {this.state.deleteId} open={this.state.deleteOpen} close={this.handleDeleteClose}/>
+            <DeleteFeed article={this.state.article} gif={this.state.gif} id= {this.state.deleteId} open={this.state.deleteOpen} close={this.handleDeleteClose} />
             </div>
         )
     }
 }
 
+
 Feeds.propTypes = {
     getSingleArticles: PropTypes.func.isRequired,
-    getSingleGifs: PropTypes.func.isRequired
+    getSingleGifs: PropTypes.func.isRequired,
+    clearArt: PropTypes.func.isRequired
     
 }
 
-export default connect(null, {getSingleArticles,getSingleGifs})(withStyles(styles)(Feeds))
+export default connect(null, {getSingleArticles,getSingleGifs,clearArt})(withStyles(styles)(Feeds))
