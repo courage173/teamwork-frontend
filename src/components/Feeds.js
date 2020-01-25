@@ -51,6 +51,7 @@ const styles = {
         paddingTop: '56.25%', // 16:9
         marginLeft: 100,
         width: "70%",
+        borderRadius: '20px'
         
       },
       card2: {
@@ -76,7 +77,8 @@ const styles = {
     },
     buttona: {
         marginTop: 20,
-        paddingLeft: '30%'
+        //paddingLeft: '30%',
+        marginLeft: '30%'
         
     }
 }

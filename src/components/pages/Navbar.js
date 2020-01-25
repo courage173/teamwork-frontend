@@ -24,10 +24,10 @@ const Navbar = ({isAuthenticated, logout,isAdmin})=>(
 </nav>
 <div  className="collapse navbar-collapse" id="collapsibleNavbar" >
     
-            {isAuthenticated ? <Button className="nav-link col" color="primary"  component={Link} to="/home" >Home</Button>: null}
+            {isAuthenticated ? <Button  className="nav-link col" color="primary"  component={Link} to="/home" >Home</Button>: null}
             {isAuthenticated ? <Button className="nav-link col"  color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} >Dashboard</Button>: null}
         {isAuthenticated ?<Button className="nav-link col"  onClick={()=> logout()} component={Link} to="/" color="inherit">Logout</Button>:  <Button color="inherit" className="nav-link col" component={Link} to="/">Login</Button> }
-            <Button color="inherit" className="nav-link col"  component={Link} to="/about">About</Button>
+            <Button color="inherit" className="nav-link col"  component={Link} to="/about" >About</Button>
             
             </div>
             </div>

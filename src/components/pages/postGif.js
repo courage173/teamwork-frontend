@@ -22,7 +22,8 @@ const styles = (theme) => ({
   submitButton: {
     position: 'relative',
     float: 'right',
-    marginTop: 10
+    marginTop: 10,
+    
   },
   progressSpinner: {
     position: 'absolute'
@@ -153,7 +154,7 @@ class PostGif extends Component {
                 Submit
                 {loading && (
                   <CircularProgress
-                    size={30}
+                    size={25}
                     className={classes.progressSpinner}
                   />
                 )}

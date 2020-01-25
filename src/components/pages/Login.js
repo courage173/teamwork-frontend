@@ -12,6 +12,7 @@ import {login} from '../../actions/auth'
 import './styles/loginStyle.css';
 import Box from '@material-ui/core/Box';
 
+
 const defaultProps = {
     bgcolor: 'background.paper',
     m: 1,
@@ -35,7 +36,8 @@ const styles = {
     },
     button: {
         marginTop: 20,
-        position: 'relative'
+        position: 'relative',
+        
     },
     customError: {
         color: 'red',
@@ -44,6 +46,11 @@ const styles = {
     progress: {
         position: 'absolute'
     },
+    serverError:{
+        color: 'red',
+        fontSize: '0.8rem',
+        marginTop: 10
+    }
   
 }
 
@@ -57,7 +64,8 @@ class Login extends Component {
             email: '',
             password: '',
             loading: false,
-            error: {}
+            error: {},
+            serverError: ''
         }
     }
     
@@ -77,14 +85,17 @@ class Login extends Component {
         
         this.props.login(email,password).then((res)=> {
             //console.log(res.user.token)
-            this.setState({loading: false})
+            this.setState({loading: false, serverError: ''})
             if(res.user.data.is_admin){
                 return this.props.history.push("/admin")
             }
             return this.props.history.push("/home")
         }).catch((err)=>{
-            console.log(err)
-           this.setState({error: err.response.data.errors, loading: false})
+            if(err.response && err.response.data){
+                this.setState({error: err.response.data.errors, loading: false})
+               }else{
+                   this.setState({loading: false, serverError: 'Internal Server Error!! Check your Internet Connection'})
+               }
         })
         
         
@@ -131,11 +142,12 @@ class Login extends Component {
                                 {error.message}
                             </Typography>
                         )}
-                        <Button type="submit" variant="contained" color='primary' className={classes.button}>Login
+                        <Button type="submit" disabled={loading} variant="contained" color='primary' className={classes.button}>Login
                         {loading &&(
-                            <CircularProgress size={27} className={classes.progress}/>
+                            <CircularProgress size={20} className={classes.progress}/>
                         )}
                         </Button>
+                        <Typography className={classes.serverError}> {this.state.serverError} </Typography>
                    </form>
                    </Box>
 

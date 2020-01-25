@@ -22,10 +22,12 @@ const styles = (theme) => ({
   submitButton: {
     position: 'relative',
     float: 'right',
-    marginTop: 10
+    marginTop: 20,
+ 
   },
   progressSpinner: {
-    position: 'absolute'
+    position: 'absolute',
+    boder: 'none'
   },
   closeButton: {
     position: 'absolute',
@@ -69,7 +71,7 @@ class PostArticles extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({loading: true})
+    this.setState({loading: true, loaded: true})
     const title = this.state.title;
     const article = this.state.article
     const flagged = this.state.flagged;
@@ -81,7 +83,8 @@ class PostArticles extends Component {
       this.setState({
         loading: false,
         success: "Article Posted!!",
-        load: true
+        load: true,
+        loaded: false
       })
       
       setTimeout(() => {
@@ -151,7 +154,7 @@ class PostArticles extends Component {
                 Submit
                 {loading && (
                   <CircularProgress
-                    size={30}
+                    size={25}
                     className={classes.progressSpinner}
                   />
                 )}
