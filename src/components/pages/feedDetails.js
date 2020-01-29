@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import dayjs from 'dayjs';
+import './styles/feedDetail.css'
 
 
 // MUI Stuff
@@ -119,28 +120,29 @@ componentDidMount(){
       <Grid container spacing={16}>
         <Grid item sm={5}>
           <img src={imageUrl? imageUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} 
-          alt="Profile" className={classes.profileImage} />
+          alt="Profile" className={classes.profileImage} id='profilePicture' />
         </Grid>
         <Grid item sm={7}>
           
           <Typography           
             color="primary"
             variant="h5"
-            className={classes.name}  
+            className={classes.name} 
+            id='name' 
           >
             {name}
           </Typography>
-          <hr className={classes.invisibleSeparator} />
-          <Typography className={classes.name} variant="body2" color="textSecondary">
+          <hr id='invisibleSeparator' className={classes.invisibleSeparator} />
+          <Typography id='text' className={classes.name} variant="body2" color="textSecondary">
             {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
           </Typography>
           
-          <hr className={classes.invisibleSeparator} />
+          <hr id='invisibleSeparator' className={classes.invisibleSeparator} />
           {art &&
                 <div>
-                <Typography className={classes.name} variant="h5">{tit}</Typography>
-                <hr className={classes.invisibleSeparator} />
-                <Typography className={classes.name} variant="body1">{art}</Typography>
+                <Typography id='text' className={classes.name} variant="h5">{tit}</Typography>
+                <hr id='invisibleSeparator' className={classes.invisibleSeparator} />
+                <Typography id='text' className={classes.name} variant="body1">{art}</Typography>
                 </div>
                 }
               
