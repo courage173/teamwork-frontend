@@ -4,7 +4,7 @@
     border-left: 1px solid  lightgrey;
     border-right: 1px solid  lightgrey;
     justify-content: space-between;
-    width:700px;
+    width:100%;
     border-radius: 0px 0px 2px 2px;
 }
 .card-img-topin {
@@ -16,18 +16,30 @@
     
     
 }
+
+
+@media (max-width: 768px) {
+    .card-img-topin {
+        height: 70vw;
+        object-fit: cover;
+        width: 100vw;
+        border-radius: 10%;
+    }
+}
 .main{
-    padding-top: 20px;
+    margin-bottom: 1vh;
+    margin-top: 3vh;
 }
 .art {
     width: 100%;
+    
     
 }
 .editp {
     border-top: 1px solid  lightgrey;
     border-left: 1px solid  lightgrey;
     border-right: 1px solid  lightgrey;
-    width: 700px;
+    width: 100%;
     position: relative;
 }
 #editProfile {

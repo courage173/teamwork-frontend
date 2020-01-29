@@ -5,7 +5,8 @@ import {Switch, Route,Redirect} from 'react-router-dom';
 import Navbar from './components/pages/Navbar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
-import {privateRoute} from './components/route/userRoute'
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 //pages
 import Login from './components/pages/Login'
@@ -47,13 +48,33 @@ const theme = createMuiTheme({
      useNextVariants: true,
    }
 })
+function detectmob() { 
+  if( navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i)
+  ){
+     return true;
+   }
+  else {
+     return false;
+   }
+ }
+ 
 
-const App =() => {
+const App =({isAuthenticated}) => {
+  console.log(isAuthenticated)
+  console.log(detectmob())
+
   
   return (
     <React.Fragment>
      <MuiThemeProvider theme={theme}> 
-     <Navbar />
+     {isAuthenticated === false && detectmob() === true ? null : <Navbar />}
+     {/* {detectmob() ? null : <Navbar />} */}
       <div className="container">      
       <Switch>
         <Route path='/dashboard' exact component={Dashboard} />
@@ -73,4 +94,13 @@ const App =() => {
   );
 }
 
-export default App;
+Navbar.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired
+}
+function mapStateToProps(state){
+  return {
+      isAuthenticated: !!state.user.authenticated,
+  }
+}
+
+export default connect(mapStateToProps,null)(App);

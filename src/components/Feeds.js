@@ -25,6 +25,7 @@ const styles = {
     card: {
         display: 'flex',
         marginBottom: 20,
+        width: '100%'
     },
     image: {
         width: '25%',
@@ -150,7 +151,8 @@ class Feeds extends Component {
                 imagurl &&
               <CardMedia id='imageUrl' className={classes.image}
               image={imagurl}
-              title="Profile pic"/>}
+              
+              title="Profile pic"></CardMedia>}
               {article && <CardContent className={classes.content}>
                     <Typography variant="h5" 
                     onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
