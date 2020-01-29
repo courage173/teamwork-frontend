@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+    #profilePicture{
+        margin-left: 9vh!important;
+    }
+    #name{
+        margin-left: 9vh!important;
+    }
+    #invisibleSeparator{
+        margin-left: 5vh!important;
+    }
+    #text{
+        margin-left: 5vh!important;
+    }
+
+}
