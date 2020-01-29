@@ -81,7 +81,8 @@ const styles = {
     artMenu: {
         padding: '10px',
         spacing: '5px',
-        overflow:'hidden'
+        overflow:'hidden',
+        width: '100%'
     },
     cat: {
         paddingLeft: '20px',

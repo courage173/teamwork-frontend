@@ -14,6 +14,8 @@ import './styles/dashboardStyle.css';
 import {Link} from 'react-router-dom';
 import PostArticles from './postArticle'
 import {getUserArticles} from '../../actions/articleActions'
+import {Image,Transformation,publicId} from 'cloudinary-react'
+
 
 import Feeds from '../Feeds'
 
@@ -87,7 +89,7 @@ class Dashboard extends Component {
         
         return (
             <Grid container item spacing={5}>
-                <Grid item container sm={10} xs={14}>
+                <Grid item container sm={8} xs={12}>
                 <div className='editp'>
                 <div id='editProfile'>
                 <Typography size="small" color='primary' className={classes.edit}  component={Link} to='/update'>
@@ -96,7 +98,10 @@ class Dashboard extends Component {
                 </div>
                 <Typography variant="h4"  className={classes.name}>{first_name + ' ' + last_name}</Typography>
                 
-                    <img alt='dashImage' className="img-fluid img-responsive img-rounded card-img-topin" src={user.imageUrl? user.imageUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} />
+                    <Image alt='dashImage' className="img-fluid img-responsive img-rounded card-img-topin" cloudName="dm4gkystq" publicId={user.imageUrl? user.imageUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"}>
+                    <Transformation aspectRatio="4:3" crop="fill" />
+                    <Transformation width="auto" dpr="auto" crop="scale" />
+                    </Image>
                     </div>
                  <div className='containe'>
                  {/* <Typography variant="h5" className={classes.profile}>Profile details</Typography> */}
@@ -105,16 +110,18 @@ class Dashboard extends Component {
                     <Typography  className={classes.update}>{jobRole}</Typography>
                  </div>
                  <div className='main'>
+                 
                  <PostArticles/>
+                 </div>
                  <div className='art'>
                     {articles}
                  </div>
                     
-                 </div>
+                 
                 </Grid>
-                <Grid item sm={2} xs={10}>
+                <Grid item sm={4} xs={12}>
                     
-                        <postArticles />
+                        
                         
                         
                    

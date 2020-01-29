@@ -9,13 +9,11 @@ import dayjs from 'dayjs';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import Grid from '@material-ui/core/Grid';
-import ChatIcon from '@material-ui/icons/Chat'
+
 
 import CloseIcon from '@material-ui/icons/Close';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 
-import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia'
 // Redux stuff
 import { connect } from 'react-redux';
@@ -48,14 +46,18 @@ const styles = (theme) => ({
     marginTop: 50,
     marginBottom: 50
   },
+  name: {
+    marginLeft: '2vh'
+  },
   image: {
     width: 200,
 },
 profileImage: {
-  maxWidth: 200,
+  width: '20vh',
   height: 200,
-  borderRadius: '50%',
-  objectFit: 'cover'
+  borderRadius: '100%',
+  objectFit: 'cover',
+  marginLeft: '3vh'
 },
 });
 
@@ -120,24 +122,25 @@ componentDidMount(){
           alt="Profile" className={classes.profileImage} />
         </Grid>
         <Grid item sm={7}>
-          <Typography
-            
+          
+          <Typography           
             color="primary"
             variant="h5"
-            
+            className={classes.name}  
           >
             {name}
           </Typography>
           <hr className={classes.invisibleSeparator} />
-          <Typography variant="body2" color="textSecondary">
+          <Typography className={classes.name} variant="body2" color="textSecondary">
             {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
           </Typography>
+          
           <hr className={classes.invisibleSeparator} />
           {art &&
                 <div>
-                <Typography variant="h5">{tit}</Typography>
+                <Typography className={classes.name} variant="h5">{tit}</Typography>
                 <hr className={classes.invisibleSeparator} />
-                <Typography variant="body1">{art}</Typography>
+                <Typography className={classes.name} variant="body1">{art}</Typography>
                 </div>
                 }
               
@@ -147,7 +150,7 @@ componentDidMount(){
               <div>
                 {
                   tit && <div>
-                    <Typography variant="h5">{tit}</Typography>
+                    <Typography className={classes.name} variant="h5">{tit}</Typography>
                     <hr className={classes.invisibleSeparator} />
                   </div>
                   

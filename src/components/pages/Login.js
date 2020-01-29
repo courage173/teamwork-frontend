@@ -8,6 +8,7 @@ import {Button} from '@material-ui/core'
 import {connect} from "react-redux"
 import CircularProgress from '@material-ui/core/CircularProgress'; 
 import {login} from '../../actions/auth'
+import team1 from './images/team1.jpg'
 
 import './styles/loginStyle.css';
 import Box from '@material-ui/core/Box';
@@ -50,6 +51,9 @@ const styles = {
         color: 'red',
         fontSize: '0.8rem',
         marginTop: 10
+    },
+    forgotPass: {
+        marginTop: '2vh'
     }
   
 }
@@ -76,10 +80,7 @@ class Login extends Component {
         this.setState({
             loading: true
         })
-        const user = {
-            email: this.state.email,
-            password: this.state.password
-        }
+        
         const email = this.state.email
         const password = this.state.password
         
@@ -120,7 +121,9 @@ class Login extends Component {
                </Grid>
                <Grid item sm={4} xs={12}>
                 <Box border={4} {...defaultProps} className="bod">
-               <Typography variant='h3'   className={classes.pageTitle}>
+                
+                <img class='mobileLogo' src={team1} alt="team work"/>
+               <Typography variant='h3' id='pageTitle'  className={classes.pageTitle}>
                        Welcome Back
                    </Typography>
                    
@@ -142,11 +145,12 @@ class Login extends Component {
                                 {error.message}
                             </Typography>
                         )}
-                        <Button type="submit" disabled={loading} variant="contained" color='primary' className={classes.button}>Login
+                        <Button type="submit" disabled={loading} id="submitButton" variant="contained" color='primary' className={classes.button}>Login
                         {loading &&(
                             <CircularProgress size={20} className={classes.progress}/>
                         )}
                         </Button>
+                        <Typography varaint='body2' className={classes.forgotPass}>Forgot password?</Typography>
                         <Typography className={classes.serverError}> {this.state.serverError} </Typography>
                    </form>
                    </Box>

@@ -28,6 +28,8 @@ if(localStorage.krealaxJWT){
     }
     
 }
+
+
 ReactDOM.render(
 <BrowserRouter>
     <Provider store={store}>

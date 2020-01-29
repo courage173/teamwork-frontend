@@ -2,6 +2,10 @@
     background-image: url("../images/image1.png");
     background-repeat: no-repeat
 }
+
+.mobileLogo{
+    display: none;
+}
 #but{
     padding: 50px;
 }
@@ -42,6 +46,28 @@
         height: 92vh;
         
     }
+    #how {
+        margin-top: 4vh
+    }
+    .mobileLogo{
+        width: 20vh!important;
+        height: 20vh;
+        object-fit: cover;
+        display: inline-block;
+    }
+    .bod{
+        border: none!important;
+    }
+    #submitButton{
+        width: 100%;
+        padding: 2vh;
+        border-radius: 5vh
+    }
+    #pageTitle {
+        margin: 1vh;
+        font-size: 4vh;
+    }
+
     #krd {
         color: #33c9dc;
         display: none;
