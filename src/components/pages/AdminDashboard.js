@@ -203,7 +203,7 @@ class AdminDashboard extends Component {
             <Grid item container sm={8} xs={12}>
                <Typography variant='h4' id='kr'>Welcome Admin</Typography>
               <div className={classes.div}>
-              <img className={classes.image} alt="Default" src={photoUrl? photoUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} />
+              <img className={classes.image} id='dashboardImage' alt="Default" src={photoUrl? photoUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} />
               
                <br />
                <div id='fle' border={4} {...defaultProp} className={classes.subMenu}>

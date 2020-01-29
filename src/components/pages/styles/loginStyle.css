@@ -49,6 +49,9 @@
     #how {
         margin-top: 4vh
     }
+    #kr {
+        margin-left: 4vh;
+    }
     .mobileLogo{
         width: 20vh!important;
         height: 20vh;
@@ -64,6 +67,9 @@
         padding: 2vh;
         border-radius: 5vh
     }
+    #dashboardImage{
+        margin-left: 9vh;
+    }
     #pageTitle {
         margin: 1vh;
         font-size: 4vh;
@@ -76,7 +82,8 @@
     #fle{
         
         display: inline;
-        color: #33c9dc
+        color: #33c9dc;
+        margin-left: 7vh;
         
         
         
