@@ -69,14 +69,16 @@ const App =({isAuthenticated}) => {
   console.log(isAuthenticated)
   console.log(detectmob())
 
-  
+  const style = isAuthenticated === false && detectmob() === true? '1vh' : null
+  console.log(style)
   return (
     <React.Fragment>
      <MuiThemeProvider theme={theme}> 
      {isAuthenticated === false && detectmob() === true ? null : <Navbar />}
      {/* {detectmob() ? null : <Navbar />} */}
-      <div className="container">      
+      <div className="container" style={{marginTop: style}} >      
       <Switch>
+        
         <Route path='/dashboard' exact component={Dashboard} />
         <Route path='/home' exact component={Homepage} />
         <Route path='/' exact component={Login} />   
