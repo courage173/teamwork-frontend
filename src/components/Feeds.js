@@ -69,7 +69,7 @@ const styles = {
         
     },
     content:{
-        padding: '3vh' ,
+        padding: '1vh' ,
         width: '100%'
     },
     button: {

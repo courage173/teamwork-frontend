@@ -5,6 +5,7 @@
     /*border: 1px solid #33c9dc;*/
 }
 
+
 .gif {
     padding-left: 20px;
 }
@@ -21,6 +22,9 @@
         width: 20vh;
         border-radius: 50%;
         height: 15vh;
+    }
+    .homeGrid{
+        padding: 2vh!important;
     }
     #imageU {
         margin-left: 50px;

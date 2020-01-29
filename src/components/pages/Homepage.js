@@ -49,7 +49,7 @@ class Homepage extends Component {
         return (
            
             <Grid container spacing={5}>
-                <Grid item sm={8} xs={14}>
+                <Grid className='homeGrid' item sm={8} xs={14}>
                 <div className="article">
                     <PostArticles/>
                     
