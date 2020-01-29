@@ -2,17 +2,21 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import {Toolbar} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import HomeIcon from '@material-ui/icons/Home';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {logout} from '../../actions/auth'
+import PersonIcon from '@material-ui/icons/Person';
+import InfoIcon from '@material-ui/icons/Info';
+import './styles/NavStyle.css'
 
-let token = localStorage.getItem('krealaxJWT')
+
 const Navbar = ({isAuthenticated, logout,isAdmin})=>(
     <AppBar position="fixed" className="appBar ">
         
         <Toolbar className="nav-container ">
-            
+    
             <div id='nav' class="navbar navbar-expand-lg navbar-light  ">
             <nav class="navbar navbar-expand-md  ">
             
@@ -31,6 +35,9 @@ const Navbar = ({isAuthenticated, logout,isAdmin})=>(
             
             </div>
             </div>
+            {isAuthenticated ? <Button  className="icon" color="inherit"  component={Link} to="/home" ><HomeIcon /></Button>: null}
+            {isAuthenticated ? <Button className="icon"  color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} ><PersonIcon/></Button>: null}
+            <Button color="inherit" className="icon"  component={Link} to="/about" ><InfoIcon /></Button>
         </Toolbar>
     </AppBar>
 )

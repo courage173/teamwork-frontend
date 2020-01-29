@@ -1,0 +1,24 @@
+
+
+
+.icon{
+    display: none!important;
+}
+
+@media (max-width: 768px){
+    .icon {
+        color: rgba(0, 0, 0, 0.23)!important;
+        padding: 0!important;
+        min-width: 5vh!important;
+        display: inline-block!important
+        
+    }
+    a:hover {
+        color: #dee2e6;
+        text-decoration: none;
+    }
+    
+}
+
+
+
