@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import {Toolbar} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
@@ -12,35 +12,57 @@ import InfoIcon from '@material-ui/icons/Info';
 import './styles/NavStyle.css'
 
 
-const Navbar = ({isAuthenticated, logout,isAdmin})=>(
-    <AppBar position="fixed" className="appBar ">
+class Navbar extends Component {
+    constructor(){
+        super();
+        this.state = {
+           active: false
+        }
+    }
+
+    handleClick = () => {
+        this.setState({active: !this.state.active})
+        console.log('clicked')
+    }
+    
+    render(){
+        const {isAuthenticated, logout,isAdmin} = this.props
+        const sideNav = this.state.active ? 'nav-active' : 'navLinks'
+        const toggle = this.state.active ? 'toggle' : ' '
+
+    return (
+        <AppBar position="fixed" className="appBarr ">
         
-        <Toolbar className="nav-container ">
+        <Toolbar className="left">
+        
     
-            <div id='nav' class="navbar navbar-expand-lg navbar-light  ">
-            <nav class="navbar navbar-expand-md  ">
-            
- 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-</nav>
-<div  className="collapse navbar-collapse" id="collapsibleNavbar" >
+        
+        <div className='fullNavs' onClick= { this.handleClick} >
+              <ul className={sideNav}>
     
-            {isAuthenticated ? <Button  className="nav-link col" color="primary"  component={Link} to="/home" >Home</Button>: null}
-            {isAuthenticated ? <Button className="nav-link col"  color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} >Dashboard</Button>: null}
-        {isAuthenticated ?<Button className="nav-link col"  onClick={()=> logout()} component={Link} to="/" color="inherit">Logout</Button>:  <Button color="inherit" className="nav-link col" component={Link} to="/">Login</Button> }
-            <Button color="inherit" className="nav-link col"  component={Link} to="/about" >About</Button>
-            
+               <li> {isAuthenticated ? <Button onClick= { this.handleClick} className="coll" color="inherit"  component={Link} to="/home" >Home</Button>: null}</li>
+               <li> {isAuthenticated ? <Button onClick= { this.handleClick} className="coll"  color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} >Dashboard</Button>: null}</li>
+               <li> {isAuthenticated ?<Button onClick= { this.handleClick} className="coll"  onClick={()=> logout()} component={Link} to="/" color="inherit">Logout</Button>:  <Button color="inherit" className="nav-link col" component={Link} to="/">Login</Button> }</li>
+               <li> <Button color="inherit" onClick= { this.handleClick} className=" coll"  component={Link} to="/about" >About</Button></li>
+               
+               </ul>
             </div>
+           <div className='navs'>
+            {isAuthenticated ? <Button  className="icon navIcon" color="inherit"  component={Link} to="/home" ><HomeIcon /></Button>: null}
+            {isAuthenticated ? <Button className="icon navIcon"  color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} ><PersonIcon/></Button>: null}
+            <Button color="inherit" className="icon navIcon"  component={Link} to="/about" ><InfoIcon /></Button>
             </div>
-            {isAuthenticated ? <Button  className="icon" color="inherit"  component={Link} to="/home" ><HomeIcon /></Button>: null}
-            {isAuthenticated ? <Button className="icon"  color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} ><PersonIcon/></Button>: null}
-            <Button color="inherit" className="icon"  component={Link} to="/about" ><InfoIcon /></Button>
+           
+            <div className={"burger" + ' ' + toggle} onClick= { this.handleClick}>
+            <div className="line1" />
+            <div className="line2" />
+            <div className="line3" />
+        </div>
         </Toolbar>
     </AppBar>
-)
+    )
+    }
+}
 Navbar.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired

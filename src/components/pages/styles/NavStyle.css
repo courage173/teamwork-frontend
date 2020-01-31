@@ -1,23 +1,130 @@
 
+.navLinks {
+    display: flex;
+    justify-content: space-around;
+    
+}
 
+.fullNav{
+    margin-left: 68%;
+    padding-top: 15px
+}
+
+.navLinks li {
+    list-style: none;
+}
+
+.navLinks li button a{
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+/* for navbar active */
+.nav-active {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.nav-active li {
+    list-style: none;
+}
+
+.nav-active li button a{
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+}
 
 .icon{
     display: none!important;
 }
 
-@media (max-width: 768px){
+@media screen and (max-width: 768px){
+    .navs {
+        display: flex;
+        margin-left: 35%
+        
+    }
+   
     .icon {
         color: rgba(0, 0, 0, 0.23)!important;
         padding: 0!important;
         min-width: 5vh!important;
-        display: inline-block!important
+        display: block!important
         
     }
     a:hover {
         color: #dee2e6;
         text-decoration: none;
     }
+    .burger{
+        margin-left: 27%
+    }
+    .burger div {
+        width: 25px;
+        height: 3px;
+        background-color: rgba(0, 0, 0, 0.23);
+        margin: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+    }
+    body{
+        overflow-x: hidden;
+    }
+    .navLinks {
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 8vh;
+        background-color: #00bcd4; 
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        align-content: center;
+        transform: translateX(100%);
+        transition: 0.5s ease-out;
+    }
+    .navLinks li {
+        opacity: 0;
+    }
+
+    .nav-active {
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 8vh;
+        background-color: #00bcd4; 
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        align-content: center;
+        transform: translateX(0%);
+        transition: 0.5s ease-in;
+    }
+
+    .toggle .line1{
+        transform: rotate(-45deg) translate(-5px,6px)
+    }
+    .toggle .line2{
+        opacity: 0;
+    }
+    .toggle .line3{
+        transform: rotate(45deg) translate(-5px,-6px)
+    }
     
+}
+
+
+@media screen and (min-width: 768px){
+    .left {
+        margin-left: auto!important;
+    }
 }
 
 
