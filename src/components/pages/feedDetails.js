@@ -88,7 +88,7 @@ componentDidMount(){
  
  
   render() {
-   let id;
+  // let id;
    let tit;
    let art
    let name
@@ -100,7 +100,7 @@ componentDidMount(){
     if(title===undefined){
       console.log(title)
     }else{
-      id = title.ArticleId
+      //id = title.ArticleId
       tit = title.title
       art = title.article
       name = title.createdBy
@@ -203,8 +203,7 @@ FeedDetails.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   
-}),
-clearArt: PropTypes.func.isRequired
+})
  
 };
 

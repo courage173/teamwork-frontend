@@ -11,6 +11,8 @@ import rootReducer from './rootReducer';
 import jwt_decode from 'jwt-decode'
 import { getUser ,logout} from './actions/auth';
 import { createLogger } from 'redux-logger';
+
+
 const loggerMiddleware = createLogger()
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk,loggerMiddleware)))

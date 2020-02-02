@@ -154,12 +154,12 @@ class Feeds extends Component {
               
               title="Profile pic"></CardMedia>}
               {article && <CardContent className={classes.content}>
-                    <Typography variant="h5" 
+                    <a href='#'><Typography variant="h5" 
                     onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
-                    component={Link}                    
+                                       
                     
                     color='primary'
-                    >{title}</Typography>
+                    >{title}</Typography></a>
                     <Typography variant="body2"  color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
                     <Typography variant="body1">{article}</Typography>
                     <div className="comment">
@@ -186,12 +186,12 @@ class Feeds extends Component {
       <CardHeader
         
         
-        title={<Typography variant="h5" 
+        title={<a href='#' ><Typography variant="h5" 
         onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
         component={Link}                    
         
         color='primary'
-        >{title}</Typography>}
+        >{title}</Typography></a>}
         
         
         

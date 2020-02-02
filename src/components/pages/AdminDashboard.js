@@ -135,6 +135,9 @@ class AdminDashboard extends Component {
         })
         
     }
+    componentWillUnmount(){
+        this.props.getUserArticles(1)
+    }
     
 
     handleSubmit = (event) => {
