@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {Switch, Route,Redirect} from 'react-router-dom';
 import Navbar from './components/pages/Navbar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
