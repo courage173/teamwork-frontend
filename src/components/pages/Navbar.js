@@ -29,9 +29,10 @@ class Navbar extends Component {
         const {isAuthenticated, logout,isAdmin} = this.props
         const sideNav = this.state.active ? 'nav-active' : 'navLinks'
         const toggle = this.state.active ? 'toggle' : ' '
+        const loginNav = isAuthenticated ? null : "cont"
 
     return (
-        <AppBar position="fixed" className="appBarr ">
+        <AppBar position="fixed" className={ "appBarr" + ' ' + loginNav }>
         
         <Toolbar className="left">
         

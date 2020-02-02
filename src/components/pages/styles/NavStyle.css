@@ -45,6 +45,9 @@
 }
 
 @media screen and (max-width: 768px){
+    .cont{
+        display: none!important;
+    }
     .navs {
         display: flex;
         margin-left: 35%
