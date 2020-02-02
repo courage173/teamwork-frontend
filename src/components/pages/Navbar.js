@@ -32,7 +32,7 @@ class Navbar extends Component {
         const loginNav = isAuthenticated ? null : "cont"
 
     return (
-        <AppBar position="fixed" className={ "appBarr" + ' ' + loginNav }>
+        <AppBar position="fixed" className={ "appBarr " + loginNav }>
         
         <Toolbar className="left">
         
@@ -54,7 +54,7 @@ class Navbar extends Component {
             <Button color="inherit" className="icon navIcon"  component={Link} to="/about" ><InfoIcon /></Button>
             </div>
            
-            <div className={"burger" + ' ' + toggle} onClick= { this.handleClick}>
+            <div className={"burger " + toggle} onClick= { this.handleClick}>
             <div className="line1" />
             <div className="line2" />
             <div className="line3" />
