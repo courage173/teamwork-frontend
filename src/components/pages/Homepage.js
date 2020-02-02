@@ -29,7 +29,7 @@ class Homepage extends Component {
             //     })
             //     .catch(err => console.log(err))
         }
-        componentWillReceiveProps(nextProps,prevState) {
+        UNSAFE_componentWillReceiveProps(nextProps,prevState) {
             
             if(prevState === nextProps){
                 return 
@@ -49,7 +49,7 @@ class Homepage extends Component {
         return (
            
             <Grid container spacing={5}>
-                <Grid className='homeGrid' item sm={8} xs={14}>
+                <Grid className='homeGrid' item sm={8} xs={12}>
                 <div className="article">
                     <PostArticles/>
                     
@@ -78,7 +78,6 @@ const mapStateToProps =(state) =>{
  }
 
 Homepage.propTypes = {
-    getUser: PropTypes.func.isRequired,
     feeds: PropTypes.func.isRequired
     
 }

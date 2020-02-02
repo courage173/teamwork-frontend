@@ -122,7 +122,7 @@ class Login extends Component {
                <Grid item sm={4} xs={12}>
                 <Box border={4} {...defaultProps} className="bod">
                 
-                <img class='mobileLogo' src={team1} alt="team work"/>
+                <img className='mobileLogo' src={team1} alt="team work"/>
                <Typography variant='h3' id='pageTitle'  className={classes.pageTitle}>
                        Welcome Back
                    </Typography>
