@@ -162,7 +162,7 @@ class Feeds extends Component {
                     <a href='#'><Typography variant="h5" 
                     onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
                                        
-                    
+                    className="titleMobile"
                     color='primary'
                     >{title}</Typography></a>
                     <Typography variant="body2"  color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
@@ -195,7 +195,7 @@ class Feeds extends Component {
         title={<a href='#' ><Typography variant="h5" 
         onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
         component={Link}                    
-        
+        className='titleMobil'
         color='primary'
         >{title}</Typography></a>}
         

@@ -23,6 +23,13 @@
         border-radius: 50%;
         height: 15vh;
     }
+    .titleMobile {
+        width: 200px;
+        word-wrap: break-word
+    }
+    .titleMobil{
+        word-wrap: break-word
+    }
     .homeGrid{
         padding: 2vh!important;
     }
