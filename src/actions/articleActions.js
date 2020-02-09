@@ -1,6 +1,7 @@
 import {POST_ARTICLES,EDIT_ARTICLES,GET_SINGLE_ARTICLES,
     GET_ALL_ARTICLES,GET_CAT_ARTICLES,
-    POST_ARTICLE_COMMENT,DELETE_ARTICLES, GET_USER_ARTICLES,CLEAR_ARTICLE} from '../types';
+    POST_ARTICLE_COMMENT,DELETE_ARTICLES, GET_USER_ARTICLES,CLEAR_ARTICLE, 
+     GET_ARTICLE_COMMENT,DELETE_ARTICLES_COMMENT} from '../types';
 import {feeds} from './userAction'
 import api from '../api'
 
@@ -67,15 +68,40 @@ export const getUserArticles = (userId) => {
     return dispatch => api.user.getUserArticle(userId).then(payload => dispatch(getUserArt(payload))) 
 }
 
+
 //post article comment
 export const postArtComment = (payload) => ({
     type: POST_ARTICLE_COMMENT,
     payload
 })
 
-export const postArticleComment = (article_id,data) => {
-    return dispatch => api.user.postComment(article_id,data).then(payload => dispatch(postArtComment(payload))) 
+export const postArticleComment = (article_id,comment) => {
+    //console.log(data)
+    return dispatch => api.user.postComment(article_id,comment).then(payload => {
+        //dispatch(postArtComment(payload.data))
+        dispatch(getArticleComments(article_id))
+    }) 
 }
+//getting article comments
+export const getArtComment = (payload) => ({
+    type: GET_ARTICLE_COMMENT,
+    payload
+})
+
+export const getArticleComments = (article_id) => {
+    //console.log(data)
+    return dispatch => api.user.getArticleComment(article_id).then(payload => dispatch(getArtComment(payload.data))) 
+}
+//delete aticle comment
+export const deleteArticlesComment = (payload) => ({
+    type: DELETE_ARTICLES_COMMENT,
+    payload
+})
+
+export const deleteArtComment = (commentId) => {
+    return dispatch => api.user.deleteArticleComment(commentId).then(payload => dispatch(deleteArticlesComment(payload))) 
+}
+
 //Delete article
 export const deleteArticles = (payload) => ({
     type: DELETE_ARTICLES,

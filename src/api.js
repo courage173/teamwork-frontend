@@ -1,25 +1,20 @@
 import axios from "axios";
-//import {toke} from './index'
-// import {store} from './index'
 
-
-// function getAccessToken() {
-//     return store.getState().user.token
-    
-//      // adjust according to your store structure
-//   }
 
 let token = localStorage.getItem('krealaxJWT')
 
 
 export default {
+    //login route
     user: {
         login: (email,password) =>
             {console.log(email)
                 return axios.post('https://krealax.herokuapp.com/v1/auth/signin',{email,password}).then(res => {
                     //console.log(res.data.data.token)
                     token = res.data.data.token
-                    return res.data.data})},
+                    return res.data.data})
+                },
+            //register route
         register: (
             email,
             password, 
@@ -53,6 +48,7 @@ export default {
                 return res.json()
             });
         },
+        //upload profile picture
         uploadPic: (form_data) => {
             
             const request = {
@@ -67,6 +63,7 @@ export default {
                   return res.json()
               });
         },
+        //getting all feeds(articles and gifs)
         feeds: () => {
             const request = {
                 method: "GET",
@@ -82,6 +79,7 @@ export default {
                 return res.json()
             }).catch(err => console.log(err))
         },
+        //post gifs
         postGif: (form_data) => {
             console.log(form_data)
             const request = {
@@ -97,6 +95,7 @@ export default {
                 return res.json()
             }).catch(err => console.log(err))
         },
+        //get all gifs
         getAllGif: () => {
             const request = {
                 method: "GET",
@@ -112,6 +111,7 @@ export default {
                 return res.json()
             }).catch(err => console.log(err))
         },
+        //get a single gif
         getSingleGif: (id) => {
             const request = {
                 method: "GET",
@@ -127,6 +127,7 @@ export default {
                 return res.json()
             }).catch(err => console.log(err))
         },
+        //delete gifs
         deleteGif: (id) => {
             const request = {
                 method: "DELETE",
@@ -142,7 +143,8 @@ export default {
                 return res.json()
             }).catch(err => console.log(err))
         },
-        postGifComment: (id,userData) => {
+        //post gif comment
+        postGifComment: (id,comment) => {
             const request = {
                 method: "POST",
                 headers: { 
@@ -150,7 +152,7 @@ export default {
                     'Accept': 'application/json',  
                     'Authorization': 'Bearer ' + token    
                 },
-                body: JSON.stringify(userData)
+                body: JSON.stringify({comment})
                 
             }
             return fetch(`https://krealax.herokuapp.com/v1/gifs/${id}/comment`,request).then(res => {
@@ -158,6 +160,36 @@ export default {
                 return res.json()
             }).catch(err => console.log(err))
         },
+        //get gif comment
+        getGifComment: (gif_id) => {
+            const request = {
+                method: "GET",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',  
+                    'Authorization': 'Bearer ' + token    
+                },            
+            }
+            return fetch(`https://krealax.herokuapp.com/v1/gifs/${gif_id}/comment`,request).then(res => {
+                console.log(res)
+                return res.json()
+            }).catch(err => console.log(err))
+            },
+            //deleting gif comments
+            deleteGifComment: (commentId) => {
+                const request = {
+                    method: "DELETE",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',  
+                        'Authorization': 'Bearer ' + token    
+                    },            
+                }
+                return fetch(`https://krealax.herokuapp.com/v1/gifs/${commentId}/comment`,request).then(res => {
+                    console.log(res)
+                    return res.json()
+                }).catch(err => console.log(err))
+                },
 
 
         getUser: () => {
@@ -279,7 +311,7 @@ export default {
             }).catch(err => console.log(err))
         },
         //Post articles comment
-        postComment: (article_id,data) => {
+        postComment: (article_id,comment) => {
         const request = {
             method: "POST",
             headers: { 
@@ -287,15 +319,46 @@ export default {
                 'Accept': 'application/json',  
                 'Authorization': 'Bearer ' + token    
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({comment})
             
         }
         return fetch(`https://krealax.herokuapp.com/v1/articles/${article_id}/comment`,request).then(res => {
             
+            
             return res.json()
         }).catch(err => console.log(err))
         },
-
+        //getting article comments
+        getArticleComment: (article_id) => {
+            const request = {
+                method: "GET",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',  
+                    'Authorization': 'Bearer ' + token    
+                },            
+            }
+            return fetch(`https://krealax.herokuapp.com/v1/articles/${article_id}/comment`,request).then(res => {
+                console.log(res)
+                return res.json()
+            }).catch(err => console.log(err))
+            },
+        //deleting article comments
+        deleteArticleComment: (commentId) => {
+            const request = {
+                method: "DELETE",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',  
+                    'Authorization': 'Bearer ' + token    
+                },            
+            }
+            return fetch(`https://krealax.herokuapp.com/v1/articles/${commentId}/comment`,request).then(res => {
+                console.log(res)
+                return res.json()
+            }).catch(err => console.log(err))
+            },
+    
         postCatgory: (data) => {
             const request = {
                 method: "POST",

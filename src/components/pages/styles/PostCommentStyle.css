@@ -1,0 +1,53 @@
+.textA {
+    width: 70%;
+    border-radius: 30px;
+    margin-left: 8vh;
+    padding-left: 10px;
+    resize: none; 
+    outline: none
+    
+}
+
+/* .content {
+    display: contents
+} */
+#text1 {
+    width: 200px;
+    word-wrap: break-word
+}
+
+.creatDate {
+    color:  rgba(0, 0, 0, 0.54);
+    font-size: 0.87rem;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em
+}
+#nam{
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #profilePic{
+        margin-left: 15vh;
+        width: 10vh
+    }
+    #names{
+        display: none;
+    }
+    #nam{
+        display: block;
+        margin-top: 3vh;
+        margin-left: 2vh
+    }
+    .textA {
+     
+        margin-left: 1vh;
+        
+        
+    }
+    #text1 {
+        margin-left: 8vh
+        
+    }
+}

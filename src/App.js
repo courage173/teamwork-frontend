@@ -17,6 +17,7 @@ import AdminDashboard from './components/pages/AdminDashboard'
 import updateForm from './components/pages/updateForm'
 import postArticle from './components/pages/postArticle'
 import FeedDetails from './components/pages/feedDetails'
+import PostComment from './components/pages/PostComment'
 
 
 
@@ -84,6 +85,7 @@ const App =({isAuthenticated}) => {
         <Route path='/update' exact component={updateForm} />
         <Route path='/article' exact component={postArticle} />
         <Route path='/details' exact component={FeedDetails} />
+        <Route path='/comments' exact component={PostComment} />
         <Redirect from="*" to="/" />
           
       </Switch>

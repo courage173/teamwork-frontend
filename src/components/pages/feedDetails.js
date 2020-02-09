@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import dayjs from 'dayjs';
 import './styles/feedDetail.css'
+import PostComment from './PostComment'
+
 
 
 // MUI Stuff
@@ -50,8 +52,24 @@ const styles = (theme) => ({
   name: {
     marginLeft: '2vh'
   },
+  nam: {
+    wordWrap: 'break-word',
+    marginLeft: '2vh',
+    width: '90%',
+    textAlign: 'center'
+  },
   image: {
     width: 200,
+},
+commentPost: {
+  width: '100%'
+},
+postComent:{
+  marginTop: '20px',
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column'
+ // borderTop: '1px solid rgba(0,0,0,.1)'
 },
 profileImage: {
   width: '20vh',
@@ -88,7 +106,7 @@ componentDidMount(){
  
  
   render() {
-  // let id;
+    let id;
    let tit;
    let art
    let name
@@ -97,10 +115,11 @@ componentDidMount(){
    let imageUrl
    
     const {classes,title} = this.props
+    
     if(title===undefined){
       console.log(title)
     }else{
-      //id = title.ArticleId
+      id = title.ArticleId
       tit = title.title
       art = title.article
       name = title.createdBy
@@ -118,10 +137,10 @@ componentDidMount(){
       </div>
     ) : (
       <Grid container spacing={16}>
-        <Grid item sm={5}>
+        
           <img src={imageUrl? imageUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} 
           alt="Profile" className={classes.profileImage} id='profilePicture' />
-        </Grid>
+        
         <Grid item sm={7}>
           
           <Typography           
@@ -140,10 +159,12 @@ componentDidMount(){
           <hr id='invisibleSeparator' className={classes.invisibleSeparator} />
           {art &&
                 <div>
-                <Typography id='text' className={classes.name} variant="h5">{tit}</Typography>
+                <Typography  className={classes.nam} variant="h5">{tit}</Typography>
                 <hr id='invisibleSeparator' className={classes.invisibleSeparator} />
                 <Typography id='text' className={classes.name} variant="body1">{art}</Typography>
+                
                 </div>
+                
                 }
               
               
@@ -165,8 +186,15 @@ componentDidMount(){
           title="Photo"
           
         /> </div>}
+        
         </Grid>
-        <hr className={classes.visibleSeparator} />
+        <hr id='invisibleSeparator' className={classes.commentPost}/>
+        <Grid container className={classes.postComent}>
+        
+        <PostComment gif={gifUrl} article={art} id={id} />
+      
+        </Grid>
+        
       </Grid>
 
     )
@@ -189,6 +217,7 @@ componentDidMount(){
           <DialogContent>
           <Card>
             {dialogMarkup}
+            
            </Card>
            
             
