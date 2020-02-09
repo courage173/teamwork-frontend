@@ -55,7 +55,7 @@ export const register = (
         department,
         address 
     ).then(user => {
-        console.log(user)
+        return user
         
         
         })}

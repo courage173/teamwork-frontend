@@ -122,8 +122,10 @@ class AdminDashboard extends Component {
             gender: '',
             error: {},
             user_id: null,
-            data: null,
-            message: ''
+            data: [],
+            message: '',
+            Errormessage: '',
+            loading: false
         }
     }
     componentDidMount(){
@@ -146,6 +148,7 @@ class AdminDashboard extends Component {
         this.setState({
             loading: true
         })
+        console.log(this.state.loading)
         const email = this.state.email
         const password = this.state.password
         const first_name = this.state.first_name
@@ -170,11 +173,18 @@ class AdminDashboard extends Component {
            
                 
                 
-        ).then(()=> {
-            this.setState({loading: false,message: `Success! User with Email ${this.state.email} and password ${this.state.password} created successfully`})
+        ).then((res)=> {
+            
+            if (res.status === 'success'){
+                this.setState({loading: false,message: `Success! User with Email ${this.state.email} and password ${this.state.password} created successfully`})
+            }else{
+                console.log(this.state.loading)
+                this.setState({Errormessage: res.message, loading:false})
+            }
         }).catch((err)=>{
             console.log(err)
             this.setState({error: err.response, loading: false})
+           
         })
         
         
@@ -279,13 +289,14 @@ class AdminDashboard extends Component {
                         //error={error.password ? true : false}
                         onChange={this.handleChange} fullWidth />
                        
-                       <Button type="submit" variant="contained" color='primary' className={classes.button}>Submit
+                       <Button type="submit" variant="contained" color='primary' className={classes.button} disabled={loading} >Submit
                         {loading &&(
                             <CircularProgress size={27} className={classes.progress}/>
                         )}
                         </Button>
                         
                         <p style={{color: "green"}}>{this.state.message}</p>  
+                        <p style={{color: "red"}}>{this.state.Errormessage}</p> 
                    </form>
                 </Box>
 

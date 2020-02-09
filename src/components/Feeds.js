@@ -47,6 +47,11 @@ const styles = {
         
         
     },
+    comments:{
+        color: 'red',
+        marginBottom: "30px",
+        
+    },
     media: {
         height: 0,
         paddingTop: '56.25%', // 16:9
@@ -139,7 +144,7 @@ class Feeds extends Component {
     render() {
         dayjs.extend(relativeTime)
         
-        const {classes, data: {title,article_id, article,created_on,id,gifUrl,imagurl}} = this.props
+        const {classes, data: {title,article_id, article,created_on,id,gifUrl,imagurl,coments}} = this.props
         
         
         return (
@@ -163,9 +168,10 @@ class Feeds extends Component {
                     <Typography variant="body2"  color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
                     <Typography variant="body1">{article}</Typography>
                     <div className="comment">
-                    <Button type="submit" color='primary' className={classes.butto}><AddCommentIcon/></Button>
+                    <Button  onClick={() => { this.handleClick(id,article_id,article,gifUrl); }} type="submit" color='primary' className={classes.butto}><AddCommentIcon/><span className={classes.comments}>{coments ? coments[0] === null ? null: coments.length : null}</span></Button>
                     
-                    <Button type="submit" style={{color:'red'}} onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.butto}><DeleteIcon /></Button>
+                    <Button type="submit" style={{color:'#d0583d'}} onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.butto}><DeleteIcon /></Button>
+                    
                     </div>
                 </CardContent>}
                 
@@ -209,9 +215,9 @@ class Feeds extends Component {
         onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
         component={Link}
       />
-      <Button type="submit" color='primary' className={classes.buttona}><AddCommentIcon/></Button>
+      <Button  onClick={() => { this.handleClick(id,article_id,article,gifUrl); }} type="submit" color='primary' className={classes.buttona}><AddCommentIcon/><span className={classes.comments}>{coments ? coments[0] === null ? null: coments.length : null}</span></Button>
                     
-                    <Button type="submit" style={{color:'red'}} onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.button}><DeleteIcon /></Button>
+                    <Button type="submit" style={{color:'#d0583d'}} onClick={() => { this.handleDeleteOpen(id,article,gifUrl); }} className={classes.button}><DeleteIcon /></Button>
       </Card>
              </div>
             }
