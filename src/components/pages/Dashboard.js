@@ -105,9 +105,9 @@ class Dashboard extends Component {
                     </div>
                  <div className='containe'>
                  {/* <Typography variant="h5" className={classes.profile}>Profile details</Typography> */}
-                    <Typography  className={classes.update}>{email}</Typography>
-                    <Typography  className={classes.update}>{department} </Typography>
-                    <Typography  className={classes.update}>{jobRole}</Typography>
+                    <Typography variant="body1"  className={classes.update}>{email}</Typography>
+                    <Typography variant="body1" className={classes.update}>{department} </Typography>
+                    <Typography variant="body1" className={classes.update}>{jobRole}</Typography>
                  </div>
                  <div className='main'>
                  
