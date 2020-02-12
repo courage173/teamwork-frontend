@@ -37,6 +37,9 @@ and (max-width : 768px)
        
         
     }
+    .headerMargin {
+        margin-top: 1vh;
+    }
 }
 
 

@@ -1,5 +1,6 @@
 import {USER_LOGGED_IN,USER_LOGGED_OUT,GET_LOGGED_USER} from '../types'
-let token = localStorage.getItem('krealaxJWT')
+
+
 const initialState = {
     user,
     authenticated: false

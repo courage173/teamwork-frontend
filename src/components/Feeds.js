@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import {Link} from 'react-router-dom'
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link'
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import Button from '@material-ui/core/Button'; 
+import Button from '@material-ui/core/Button';
+
 import {getSingleArticles} from '../actions/articleActions'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
@@ -159,12 +160,12 @@ class Feeds extends Component {
               
               title="Profile pic"></CardMedia>}
               {article && <CardContent className={classes.content}>
-                    <a href='#'><Typography variant="h5" 
+                    <Typography><Link style={{textDecoration: 'none'}} variant="h5"  href="#" underline='none'
                     onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
                                        
                     className="titleMobile"
                     color='primary'
-                    >{title}</Typography></a>
+                    >{title}</Link></Typography>
                     <Typography variant="body2"  color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
                     <Typography variant="body1">{article}</Typography>
                     <div className="comment">
@@ -192,12 +193,12 @@ class Feeds extends Component {
       <CardHeader
         
         
-        title={<a href='#' ><Typography variant="h5" 
+        title={<Link href='#'><Typography variant="h5" 
         onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
-        component={Link}                    
+                          
         className='titleMobil'
         color='primary'
-        >{title}</Typography></a>}
+        >{title}</Typography></Link>}
         
         
         

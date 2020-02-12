@@ -22,7 +22,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import { connect } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { typography } from '@material-ui/system';
+
 
 
 
@@ -93,7 +93,7 @@ class FeedDetails extends Component {
 
 componentDidMount(){
   const {
-     title, article
+     title
   } = this.props;
   
   if(title===undefined){

@@ -1,6 +1,6 @@
 import {USER_LOGGED_IN,USER_LOGGED_OUT,GET_LOGGED_USER,PROFILE_PICTURE} from '../types';
 import api from '../api'
-let token = localStorage.getItem('krealaxJWT')
+
 
 
 export const userLoggedIn = (user) => ({

@@ -49,32 +49,16 @@ const theme = createMuiTheme({
      useNextVariants: true,
    }
 })
-function detectmob() { 
-  if( navigator.userAgent.match(/Android/i)
-  || navigator.userAgent.match(/webOS/i)
-  || navigator.userAgent.match(/iPhone/i)
-  || navigator.userAgent.match(/iPad/i)
-  || navigator.userAgent.match(/iPod/i)
-  || navigator.userAgent.match(/BlackBerry/i)
-  || navigator.userAgent.match(/Windows Phone/i)
-  ){
-     return true;
-   }
-  else {
-     return false;
-   }
- }
- 
 
 const App =({isAuthenticated}) => {
   
-  const style = isAuthenticated === false && detectmob() === true? '1vh' : null
-  console.log(style)
+  const style = isAuthenticated ===false ? 'headerMargin' : null
+  
   return (
     <React.Fragment>
      <MuiThemeProvider theme={theme}> 
       <Navbar />
-      <div className="container" style={{marginTop: style}} >      
+      <div className={"container " + style}  style={{marginTop: style}} >      
       <Switch>
         
         <Route path='/dashboard' exact component={Dashboard} />

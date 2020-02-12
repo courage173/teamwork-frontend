@@ -156,12 +156,12 @@ class AdminDashboard extends Component {
         const jobroles= this.state.jobRoles
         const department = this.state.department
         const address = this.state.address
-        const gender = this.state.gender
+        //const gender = this.state.gender
         const is_admin = this.state.isAdmin
         //console.log(isAdmin)
            
         
-        this.props. register(
+        this.props.register(
             email,
             password, 
             first_name,
@@ -207,7 +207,7 @@ class AdminDashboard extends Component {
     render() {
         const {classes,user} =this.props;
         const photoUrl = user.imageUrl
-        const {error,loading} = this.state
+        const {loading} = this.state
         let articles = this.state.data ? (
             this.state.data.map((dat) => <Feeds key={dat.article_id} data={dat}/>) 
         ) : (<p>Loading...</p>)
