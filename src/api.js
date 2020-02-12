@@ -9,7 +9,7 @@ export default {
     user: {
         login: (email,password) =>
             {console.log(email)
-                return axios.post('http://localhost:3000/v1/auth/signin',{email,password}).then(res => {
+                return axios.post('https://krealax.herokuapp.com/v1/auth/signin',{email,password}).then(res => {
                     //console.log(res.data.data.token)
                     token = res.data.data.token
                     return res.data.data})
@@ -44,7 +44,7 @@ export default {
                     )
             };
         
-            return fetch('http://localhost:3000/v1/auth/create-user', request).then(res => {
+            return fetch('https://krealax.herokuapp.com/v1/auth/create-user', request).then(res => {
                 return res.json()
             });
         },
@@ -59,7 +59,7 @@ export default {
                 body: form_data
               };
           
-              return fetch('http://localhost:3000/v1/auth/upload-image', request).then(res => {
+              return fetch('https://krealax.herokuapp.com/v1/auth/upload-image', request).then(res => {
                   return res.json()
               });
         },
@@ -74,7 +74,7 @@ export default {
                 }
                 
             }
-            return fetch('http://localhost:3000/v1/feeds',request).then(res => {
+            return fetch('https://krealax.herokuapp.com/v1/feeds',request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
@@ -90,7 +90,7 @@ export default {
                 body: form_data
             };              
             
-            return fetch('http://localhost:3000/v1/gifs/gifs',request).then(res => {
+            return fetch('https://krealax.herokuapp.com/v1/gifs/gifs',request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
@@ -106,7 +106,7 @@ export default {
                 }
                 
             }
-            return fetch('http://localhost:3000/v1/gifs/all-gifs',request).then(res => {
+            return fetch('https://krealax.herokuapp.com/v1/gifs/all-gifs',request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
@@ -122,7 +122,7 @@ export default {
                 }
                 
             }
-            return fetch(`http://localhost:3000/v1/gifs/${id}`,request).then(res => {
+            return fetch(`https://krealax.herokuapp.com/v1/gifs/${id}`,request).then(res => {
                 console.log(token)
                 return res.json()
             }).catch(err => console.log(err))
@@ -138,7 +138,7 @@ export default {
                 }
                 
             }
-            return fetch(`http://localhost:3000/v1/gifs/delete-gifs/${id}`,request).then(res => {
+            return fetch(`https://krealax.herokuapp.com/v1/gifs/delete-gifs/${id}`,request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
@@ -155,7 +155,7 @@ export default {
                 body: JSON.stringify({comment})
                 
             }
-            return fetch(`http://localhost:3000/v1/gifs/${id}/comment`,request).then(res => {
+            return fetch(`https://krealax.herokuapp.com/v1/gifs/${id}/comment`,request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
@@ -170,7 +170,7 @@ export default {
                     'Authorization': 'Bearer ' + token    
                 },            
             }
-            return fetch(`http://localhost:3000/v1/gifs/${gif_id}/comment`,request).then(res => {
+            return fetch(`https://krealax.herokuapp.com/v1/gifs/${gif_id}/comment`,request).then(res => {
                 console.log(res)
                 return res.json()
             }).catch(err => console.log(err))
@@ -185,7 +185,7 @@ export default {
                         'Authorization': 'Bearer ' + token    
                     },            
                 }
-                return fetch(`http://localhost:3000/v1/gifs/${commentId}/comment`,request).then(res => {
+                return fetch(`https://krealax.herokuapp.com/v1/gifs/${commentId}/comment`,request).then(res => {
                     console.log(res)
                     return res.json()
                 }).catch(err => console.log(err))
@@ -203,7 +203,7 @@ export default {
                 }
                 
             }
-            return fetch('http://localhost:3000/v1/auth/user',request).then(res => {
+            return fetch('https://krealax.herokuapp.com/v1/auth/user',request).then(res => {
                 //console.log(token)
                 return res.json()
             }).catch(err => console.log(err))
@@ -221,7 +221,7 @@ export default {
                 body: JSON.stringify({title,article,flagged,category})
                 
             }
-            return fetch('http://localhost:3000/v1/articles',request).then(res => {
+            return fetch('https://krealax.herokuapp.com/v1/articles',request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
@@ -238,7 +238,7 @@ export default {
             body: JSON.stringify({title,article,flagged,category})
             
         }
-        return fetch(`http://localhost:3000/v1/articles/${article_id}`,request).then(res => {
+        return fetch(`https://krealax.herokuapp.com/v1/articles/${article_id}`,request).then(res => {
             
             return res.json()
         }).catch(err => console.log(err))
@@ -255,7 +255,7 @@ export default {
             },
             
         }
-        return fetch(`http://localhost:3000/v1/articles/${article_id}`,request).then(res => {
+        return fetch(`https://krealax.herokuapp.com/v1/articles/${article_id}`,request).then(res => {
             
             return res.json()
         }).catch(err => console.log(err))
@@ -271,7 +271,7 @@ export default {
             },
             
         }
-        return fetch(`http://localhost:3000/v1/articles/user-feed/${userId}`,request).then(res => {
+        return fetch(`https://krealax.herokuapp.com/v1/articles/user-feed/${userId}`,request).then(res => {
             
             return res.json()
         }).catch(err => console.log(err))
@@ -288,7 +288,7 @@ export default {
                 },
                 
             }
-            return fetch(`http://localhost:3000/v1/articles/`,request).then(res => {
+            return fetch(`https://krealax.herokuapp.com/v1/articles/`,request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
@@ -305,7 +305,7 @@ export default {
                 },
                 
             }
-            return fetch(`http://localhost:3000/v1/articles/cat/${catId}`,request).then(res => {
+            return fetch(`https://krealax.herokuapp.com/v1/articles/cat/${catId}`,request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
@@ -322,7 +322,7 @@ export default {
             body: JSON.stringify({comment})
             
         }
-        return fetch(`http://localhost:3000/v1/articles/${article_id}/comment`,request).then(res => {
+        return fetch(`https://krealax.herokuapp.com/v1/articles/${article_id}/comment`,request).then(res => {
             
             
             return res.json()
@@ -338,7 +338,7 @@ export default {
                     'Authorization': 'Bearer ' + token    
                 },            
             }
-            return fetch(`http://localhost:3000/v1/articles/${article_id}/comment`,request).then(res => {
+            return fetch(`https://krealax.herokuapp.com/v1/articles/${article_id}/comment`,request).then(res => {
                 console.log(res)
                 return res.json()
             }).catch(err => console.log(err))
@@ -353,7 +353,7 @@ export default {
                     'Authorization': 'Bearer ' + token    
                 },            
             }
-            return fetch(`http://localhost:3000/v1/articles/${commentId}/comment`,request).then(res => {
+            return fetch(`https://krealax.herokuapp.com/v1/articles/${commentId}/comment`,request).then(res => {
                 console.log(res)
                 return res.json()
             }).catch(err => console.log(err))
@@ -370,7 +370,7 @@ export default {
                 body: JSON.stringify(data)
                 
             }
-            return fetch(`http://localhost:3000/v1/category`,request).then(res => {
+            return fetch(`https://krealax.herokuapp.com/v1/category`,request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
@@ -386,7 +386,7 @@ export default {
                     body: JSON.stringify(data)
                     
                 }
-                return fetch(`http://localhost:3000/v1/category/${id}`,request).then(res => {
+                return fetch(`https://krealax.herokuapp.com/v1/category/${id}`,request).then(res => {
                     
                     return res.json()
                 }).catch(err => console.log(err))
@@ -401,7 +401,7 @@ export default {
                     },
                     
                 }
-                return fetch(`http://localhost:3000/v1/category`,request).then(res => {
+                return fetch(`https://krealax.herokuapp.com/v1/category`,request).then(res => {
                     
                     return res.json()
                 }).catch(err => console.log(err))
@@ -416,7 +416,7 @@ export default {
                     },
                     
                 }
-                return fetch(`http://localhost:3000/v1/category/${id}`,request).then(res => {
+                return fetch(`https://krealax.herokuapp.com/v1/category/${id}`,request).then(res => {
                     
                     return res.json()
                 }).catch(err => console.log(err))
@@ -431,7 +431,7 @@ export default {
                     },
                     
                 }
-                return fetch(`http://localhost:3000/v1/category/${id}`,request).then(res => {
+                return fetch(`https://krealax.herokuapp.com/v1/category/${id}`,request).then(res => {
                     
                     return res.json()
                 }).catch(err => console.log(err))
@@ -447,7 +447,7 @@ export default {
                 
                 
             }
-            return fetch(`http://localhost:3000/v1/articles/${article_id}`,request).then(res => {
+            return fetch(`https://krealax.herokuapp.com/v1/articles/${article_id}`,request).then(res => {
                 
                 return res.json()
             }).catch(err => console.log(err))
