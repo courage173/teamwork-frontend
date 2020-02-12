@@ -1,11 +1,10 @@
-import React, { Component, Fragment} from 'react'
+import React, { Component} from 'react'
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 //import Button from '@material-ui/core/button'
 import {connect} from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import {feeds} from '../../actions/userAction'
 import {getAllGif} from '../../actions/userAction'
 import {getUser} from '../../actions/auth';
@@ -14,7 +13,7 @@ import './styles/dashboardStyle.css';
 import {Link} from 'react-router-dom';
 import PostArticles from './postArticle'
 import {getUserArticles} from '../../actions/articleActions'
-import {Image,Transformation,publicId} from 'cloudinary-react'
+import {Image,Transformation} from 'cloudinary-react'
 
 
 import Feeds from '../Feeds'
@@ -77,7 +76,7 @@ class Dashboard extends Component {
         let articles = this.state.data ? (
             this.state.data.map((dat) => <Feeds key={dat.id} data={dat}/>) 
         ) : (<p>Loading...</p>)
-        const {error,loading} = this.state
+        
         //const {user:{first_name,last_name,is_admin,email,created_on}} = this.props
         const first_name = this.state.first_name
         const last_name = this.state.last_name
@@ -104,7 +103,6 @@ class Dashboard extends Component {
                     </Image>
                     </div>
                  <div className='containe'>
-                 {/* <Typography variant="h5" className={classes.profile}>Profile details</Typography> */}
                     <Typography variant="body1"  className={classes.update}>{email}</Typography>
                     <Typography variant="body1" className={classes.update}>{department} </Typography>
                     <Typography variant="body1" className={classes.update}>{jobRole}</Typography>
