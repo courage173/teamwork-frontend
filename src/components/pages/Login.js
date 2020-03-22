@@ -83,21 +83,27 @@ class Login extends Component {
         
         const email = this.state.email
         const password = this.state.password
+        if(!email || !password){
+           return this.setState({
+                loading: false, error: {email:'this field is required',password: 'this field is required'}
+            })
+        }else{
+            this.props.login(email,password).then((res)=> {
+                //console.log(res.user.token)
+                this.setState({loading: false, serverError: ''})
+                if(res.user.data.is_admin){
+                    return this.props.history.push("/admin")
+                }
+                return this.props.history.push("/home")
+            }).catch((err)=>{
+                if(err.response && err.response.data){
+                    this.setState({error: err.response.data.errors, loading: false})
+                   }else{
+                       this.setState({loading: false, serverError: 'Internal Server Error!! Check your Internet Connection'})
+                   }
+            })
+        }
         
-        this.props.login(email,password).then((res)=> {
-            //console.log(res.user.token)
-            this.setState({loading: false, serverError: ''})
-            if(res.user.data.is_admin){
-                return this.props.history.push("/admin")
-            }
-            return this.props.history.push("/home")
-        }).catch((err)=>{
-            if(err.response && err.response.data){
-                this.setState({error: err.response.data.errors, loading: false})
-               }else{
-                   this.setState({loading: false, serverError: 'Internal Server Error!! Check your Internet Connection'})
-               }
-        })
         
         
         
@@ -107,7 +113,8 @@ class Login extends Component {
 
     handleChange =(event)=>{
         this.setState({
-            [event.target.name] : event.target.value
+            [event.target.name] : event.target.value,
+            error: {}
         })
     }
     render() {
