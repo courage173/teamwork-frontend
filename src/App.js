@@ -53,6 +53,7 @@ const theme = createMuiTheme({
 const App =({isAuthenticated}) => {
   
   const style = isAuthenticated ===false ? 'headerMargin' : null
+  console.log(isAuthenticated)
   
   return (
     <React.Fragment>
@@ -79,7 +80,7 @@ const App =({isAuthenticated}) => {
   );
 }
 
-Navbar.propTypes = {
+App.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired
 }
 function mapStateToProps(state){
