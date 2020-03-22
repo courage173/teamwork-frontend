@@ -22,7 +22,7 @@ class Navbar extends Component {
 
     handleClick = () => {
         this.setState({active: !this.state.active})
-        console.log('clicked')
+       
     }
     
     render(){
