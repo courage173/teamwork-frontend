@@ -130,9 +130,9 @@ class Login extends Component {
                 <Box border={4} {...defaultProps} className="bod">
                 
                 <img className='mobileLogo' src={team1} alt="team work"/>
-               <Typography variant='h3' id='pageTitle'  className={classes.pageTitle}>
+               <h3 variant='h3' id='pageTitle'  className={classes.pageTitle}>
                        Welcome Back
-                   </Typography>
+                   </h3>
                    
                    <form id='form' noValidate onSubmit={this.handleSubmit}>
                         <Typography>

@@ -58,7 +58,8 @@ const styles = {
         paddingTop: '56.25%', // 16:9
         marginLeft: 100,
         width: "70%",
-        borderRadius: '20px'
+        borderRadius: '20px',
+        cursor: 'pointer'
         
       },
       card2: {
@@ -160,12 +161,12 @@ class Feeds extends Component {
               
               title="Profile pic"></CardMedia>}
               {article && <CardContent className={classes.content}>
-                    <Typography><Link style={{textDecoration: 'none'}} variant="h5"  href="#" underline='none'
+                    <Typography variant='h6'
                     onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
-                                       
+                      style={{cursor: 'pointer'}}                 
                     className="titleMobile"
                     color='primary'
-                    >{title}</Link></Typography>
+                    >{title}</Typography>
                     <Typography variant="body2"  color="textSecondary">{dayjs(created_on).fromNow()}</Typography>
                     <Typography variant="body1">{article}</Typography>
                     <div className="comment">
@@ -193,12 +194,12 @@ class Feeds extends Component {
       <CardHeader
         
         
-        title={<Link href='#'><Typography variant="h5" 
+        title={<Typography variant="h5" 
         onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
-                          
+        style={{cursor: 'pointer'}}          
         className='titleMobil'
         color='primary'
-        >{title}</Typography></Link>}
+        >{title}</Typography>}
         
         
         
@@ -214,7 +215,7 @@ class Feeds extends Component {
         image={gifUrl}
         title="Gifs"
         onClick={() => { this.handleClick(id,article_id,article,gifUrl); }}
-        component={Link}
+        
       />
       <Button  onClick={() => { this.handleClick(id,article_id,article,gifUrl); }} type="submit" color='primary' className={classes.buttona}><AddCommentIcon/><span className={classes.comments}>{coments ? coments[0] === null ? null: coments.length : null}</span></Button>
                     

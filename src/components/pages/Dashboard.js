@@ -88,7 +88,7 @@ class Dashboard extends Component {
         
         return (
             <Grid container item spacing={5}>
-                <Grid item container sm={8} xs={12}>
+                <Grid item  sm={8} xs={12}>
                 <div className='editp'>
                 <div id='editProfile'>
                 <Typography size="small" color='primary' className={classes.edit}  component={Link} to='/update'>
