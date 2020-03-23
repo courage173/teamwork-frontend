@@ -18,7 +18,7 @@ class Homepage extends Component {
             
 
             this.props.feeds().then(res => {
-                console.log(res.payload.data)
+               
                 this.setState({data: res.payload.data})
             })
             
@@ -71,7 +71,7 @@ class Homepage extends Component {
 
 const mapStateToProps =(state) =>{
     const article = state.articles.articles
-    console.log(article) 
+  
     return {
      article
    }

@@ -8,7 +8,7 @@ export default {
     //login route
     user: {
         login: (email,password) =>
-            {console.log(email)
+            {
                 return axios.post('https://krealax.herokuapp.com/v1/auth/signin',{email,password}).then(res => {
                     //console.log(res.data.data.token)
                     token = res.data.data.token

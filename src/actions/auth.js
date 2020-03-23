@@ -28,7 +28,7 @@ export const uploadImage = (payload) => ({
 export const login = (email,password)=> {
     
     return dispatch => api.user.login(email,password).then(user => {
-        console.log(user)
+       
         localStorage.krealaxJWT = user.token
         
        // return dispatch(userLoggedIn(user))})}
