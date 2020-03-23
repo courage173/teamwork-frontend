@@ -135,9 +135,9 @@ class Login extends Component {
                    </h3>
                    
                    <form id='form' noValidate onSubmit={this.handleSubmit}>
-                        {/* <Typography variant='body2'>
+                        <Typography variant='body2'>
                             Please Log In
-                        </Typography> */}
+                        </Typography>
                         <TextField id="email" name='email' label='Email' className={classes.textField}
                         value={this.state.email} helperText={error.email}
                         error={error.email ? true : false} 
@@ -157,7 +157,7 @@ class Login extends Component {
                             <CircularProgress size={20} className={classes.progress}/>
                         )}
                         </Button>
-                        <Typography varaint='body2' className={classes.forgotPass}>Forgot password?</Typography>
+                        <Typography variant='body2' className={classes.forgotPass}>Forgot password?</Typography>
                         <Typography className={classes.serverError}> {this.state.serverError} </Typography>
                    </form>
                    </Box>
