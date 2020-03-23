@@ -43,7 +43,7 @@ class Navbar extends Component {
     
                <li> {isAuthenticated ? <Button onClick= { this.handleClick} className="coll" color="inherit"  component={Link} to="/home" >Home</Button>: null}</li>
                <li> {isAuthenticated ? <Button onClick= { this.handleClick} className="coll"  color="inherit" component={Link} to={isAdmin ? "admin":"/dashboard"} >Dashboard</Button>: null}</li>
-               <li> {isAuthenticated ?<Button onClick= { this.handleClick} className="coll"  onClick={()=> logout()} component={Link} to="/" color="inherit">Logout</Button>:  <Button color="inherit" className="coll" component={Link} to="/">Login</Button> }</li>
+               <li><Button  className="coll"  onClick={ ()=>isAuthenticated && logout()} component={Link} to="/" color="inherit"> {isAuthenticated ? 'Logout' : 'Login'} </Button> </li>
                <li> <Button color="inherit" onClick= { this.handleClick} className=" coll"  component={Link} to="/about" >About</Button></li>
                
                </ul>
