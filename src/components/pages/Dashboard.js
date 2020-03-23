@@ -91,9 +91,9 @@ class Dashboard extends Component {
                 <Grid item  sm={8} xs={12}>
                 <div className='editp'>
                 <div id='editProfile'>
-                <Typography variant='body1' size="small" color='primary' className={classes.edit}  component={Link} to='/update'>
+                {/* <Typography variant='body1' size="small" color='primary' className={classes.edit}  component={Link} to='/update'>
                         Edit Profile
-                    </Typography>
+                </Typography> */}
                 </div>
                 <Typography variant="h4"  className={classes.name}>{first_name + ' ' + last_name}</Typography>
                 
