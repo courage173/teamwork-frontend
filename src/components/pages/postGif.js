@@ -115,13 +115,13 @@ class PostGif extends Component {
           fullWidth
           maxWidth="sm"
         >
-          <myButton
-            tip="Close"
+          <div
+            tip="Close"                             
             onClick={this.handleClose}
-            tipClassName={classes.closeButton}
+           
           >
-            <CloseIcon />
-          </myButton>
+            <CloseIcon style={{cursor: 'pointer'}} />
+          </div>
           <DialogTitle>Post a new GIf</DialogTitle>
           <DialogContent>
             <form onSubmit={this.handleSubmit}>

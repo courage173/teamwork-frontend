@@ -83,13 +83,13 @@ class DeleteFeed extends Component {
           fullWidth
           maxWidth="sm"
         >
-          <myButton
+          <div
             tip="Close"
             onClick={this.props.close}
-            tipClassName={classes.closeButton}
+            
           >
-            <CloseIcon />
-          </myButton>
+            <CloseIcon style={{cursor: 'pointer'}} />
+          </div>
           <DialogContent>
            
              <CardContent>
