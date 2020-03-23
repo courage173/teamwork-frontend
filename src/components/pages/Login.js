@@ -135,7 +135,7 @@ class Login extends Component {
                    </h3>
                    
                    <form id='form' noValidate onSubmit={this.handleSubmit}>
-                        <Typography>
+                        <Typography variant='body2'>
                             Please Log In
                         </Typography>
                         <TextField id="email" name='email' label='Email' className={classes.textField}
