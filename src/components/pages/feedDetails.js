@@ -215,7 +215,6 @@ componentDidMount(){
           <div
             tip="close"
             onClick={this.props.close}
-            tipclassname={classes.closeButton}
           >
             <CloseIcon className={classes.closeIcon} />
           </div>
