@@ -61,8 +61,8 @@ class Dashboard extends Component {
         this.props.getUser().then(res => this.setState({first_name: res.user.data.first_name, last_name: res.user.data.last_name,
             email: res.user.data.email, department: res.user.data.department, jobRole: res.user.data.jobrole,userId: res.user.data.user_id
         }))
-        this.props.feeds().then(res => console.log(res))
-        this.props.getAllGif().then(res => console.log(res))
+        this.props.feeds()
+        this.props.getAllGif()
         const userId = this.state.user_id
         this.props.getUserArticles(userId).then(res => this.setState({data: res.payload.data}))
     }
@@ -72,9 +72,9 @@ class Dashboard extends Component {
     
    
     render() {
-        console.log(this.state.data)
+        
         let articles = this.state.data ? (
-            this.state.data.map((dat) => <Feeds key={dat.id} data={dat}/>) 
+            this.state.data.map((dat,i) => <Feeds key={i} data={dat}/>) 
         ) : (<p>Loading...</p>)
         
         //const {user:{first_name,last_name,is_admin,email,created_on}} = this.props
@@ -84,7 +84,7 @@ class Dashboard extends Component {
         const department = this.state.department 
         const jobRole =  this.state.jobRole
          const {classes,user} =this.props
-        //console.log(this.props.user.data.email)
+        
         
         return (
             <Grid container item spacing={5}>

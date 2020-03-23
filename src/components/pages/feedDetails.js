@@ -39,8 +39,13 @@ const styles = (theme) => ({
   closeButton: {
     position: 'absolute',
     left: '91%',
-    top: '6%'
+    top: '6%',
+    
   },
+  closeIcon: {
+    cursor: 'pointer'
+  },
+  
   button: {
     color: '#33c9dc'
   },
@@ -117,7 +122,7 @@ componentDidMount(){
     const {classes,title} = this.props
     
     if(title===undefined){
-      console.log(title)
+      
     }else{
       id = title.ArticleId
       tit = title.title
@@ -136,7 +141,7 @@ componentDidMount(){
         <CircularProgress size={200} thickness={2} />
       </div>
     ) : (
-      <Grid container spacing={16}>
+      <Grid container >
         
           <img src={imageUrl? imageUrl : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} 
           alt="Profile" className={classes.profileImage} id='profilePicture' />
@@ -207,13 +212,13 @@ componentDidMount(){
           fullWidth
           maxWidth="sm"
         >
-          <myButton
-            tip="Close"
+          <div
+            tip="close"
             onClick={this.props.close}
-            tipClassName={classes.closeButton}
+            tipclassname={classes.closeButton}
           >
-            <CloseIcon />
-          </myButton>
+            <CloseIcon className={classes.closeIcon} />
+          </div>
           <DialogContent>
           <Card>
             {dialogMarkup}

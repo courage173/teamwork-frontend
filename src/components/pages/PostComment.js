@@ -116,9 +116,9 @@ class PostComment extends Component {
         const {classes} = this.props
        const {loading,load} = this.state
         
-        const comments = this.state.data.map((com) => (
+        const comments = this.state.data.map((com,i) => (
             
-            <Grid container spacing={16} className={classes.mainDiv}>
+            <Grid container  className={classes.mainDiv} key={i}>
             <img src={com.image_url ? com.image_url : "https://res.cloudinary.com/dm4gkystq/image/upload/v1577129448/wxovzrmx7onvd5fsktzk.jpg"} 
             alt="Profile" className={classes.profileImage} id='profilePic' />
         

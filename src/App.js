@@ -53,7 +53,7 @@ const theme = createMuiTheme({
 const App =({isAuthenticated}) => {
   
   const style = isAuthenticated ===false ? 'headerMargin' : null
-  console.log(isAuthenticated)
+  
   
   return (
     <React.Fragment>

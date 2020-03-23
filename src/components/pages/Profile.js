@@ -45,7 +45,7 @@ class Profile extends Component {
   
     render() {
         const firstName = this.state.firstName
-        console.log(firstName)
+    
         const loading = this.state.loading
          const {classes} = this.props
          const {user} = this.props
